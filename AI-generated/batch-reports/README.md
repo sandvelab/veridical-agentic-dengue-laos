@@ -50,3 +50,10 @@ re-running a batch produces a different report rather than the same one.
   silently, three forks promoted by a rule committed before the combination it chose was run,
   and the finding that one-at-a-time fork effects do not add — three forks worth 4.632 CRPS
   separately delivered 2.402 together, and two of nine children reversed sign.
+
+- `26-08-27_b21_greedyBranch.md` — batch 21, **on branch `greedy` only**: batch 9's promotion
+  rule iterated to a fixpoint instead of applied once. Three rounds, 23.698 → 21.275 mean
+  CRPS, past the reference model and past each of its repeats — and still half a standard
+  error from it, so nothing the project concludes changes. The cost is paid in the record:
+  the first fork the rule moved is the one under which the model stores no fitted object.
+

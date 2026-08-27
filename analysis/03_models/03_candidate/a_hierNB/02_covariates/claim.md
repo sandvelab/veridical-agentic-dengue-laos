@@ -5,7 +5,7 @@ Which climate covariates enter the mean, and at which lags? The file carries rai
 ## Children
 
 kind: alternatives
-main-path: c_climateFree
+main-path: b_rich
 
 ## Environment
 

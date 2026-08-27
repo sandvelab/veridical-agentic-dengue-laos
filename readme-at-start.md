@@ -8,6 +8,23 @@ work is done here.
 
 ---
 
+## You are on the branch `greedy`, which is not the project
+
+**This checkout is branch `greedy`. It is a counterfactual, it is never merged, and nothing
+in it is a reported result.** The project's analysis is on `main`, where batch 9's promotion
+rule is applied once and the candidate scores **23.698** mean CRPS, a skill score of −0.072
+against the reference. Here the same rule is iterated to a fixpoint — batch 21, at the
+human's request — and the candidate scores **21.275**, a skill score of **+0.037**, which is
+ahead of the reference model and still half a standard error from it.
+
+Everything below describes the project as it is on `main`, except the items marked
+*(branch)*. Read `AI-generated/batch-reports/26-08-27_b21_greedyBranch.md` for what this
+branch is and what it found.
+
+**Do not develop the project here.** Work on `main`; this branch exists to be read.
+
+---
+
 ## The project
 
 **Develop, as autonomously as the setup allows, a spatio-temporal model that forecasts
@@ -36,7 +53,7 @@ representative research problem, and where it fails.
 
 - **Target venue**: not fixed in the source material. The manuscript this case serves updates
   Sandve et al., *PLoS Comput Biol* 9(10): e1003285 (2013), which is the obvious precedent.
-- **Status**: analysis (phase A complete, batches 1–5; phase B complete, batches 6–7; **phase C under way, batches 8–9 done**, batch 10 next). Nineteen batches in the ledger, plus one optional.
+- **Status**: analysis (phase A complete, batches 1–5; phase B complete, batches 6–7; **phase C under way, batches 8–9 done**, batch 10 next). Nineteen batches in the ledger, plus one optional, plus batch 21 *(branch)* — the counterfactual that lives only here.
 - **Manuscript**: `Human-AI-collaboration/manuscript/`
 - **The plan being executed**:
   `Human-input/Plans for AI generation/26-08-22_dengueForecastingCase.md`. It carries the
@@ -55,7 +72,7 @@ representative research problem, and where it fails.
 | Target | `disease_cases` (reported dengue), monthly, admin-1, Laos. |
 | What the metric is a mean over | **16 provinces, 371 cells** on development — not the 18 provinces in the file. Vientiane (LA-VI) reports nothing and is dropped by Chap's region filter; Xaisomboun (LA-XN) stops reporting after 2005 and contributes no evaluable cell. Established in batch 3. |
 | Metric | Mean CRPS across regions × splits, produced by Chap's own evaluation. Secondary: interval coverage, MAE. |
-| Reported conclusion | A skill score against the reference model, `1 − CRPS_ours / CRPS_ewars`, computed per analysis by a script, with raw CRPS and coverage beside it. Relative rather than absolute, so that the development and held-out spreads can be read on one axis instead of confounding inflated performance with a harder year. **Currently −0.072** (`analysis/results/main/conclusion.json`): mean CRPS 23.698 against the reference's 22.098, ahead of both required baselines. |
+| Reported conclusion | A skill score against the reference model, `1 − CRPS_ours / CRPS_ewars`, computed per analysis by a script, with raw CRPS and coverage beside it. Relative rather than absolute, so that the development and held-out spreads can be read on one axis instead of confounding inflated performance with a harder year. **On `main`: −0.072** — mean CRPS 23.698 against the reference's 22.098, ahead of both required baselines. ***(branch)*** `analysis/results/main/conclusion.json` in **this** checkout says **+0.037**, mean CRPS 21.275, because the greedy branch's candidate is a different model. It is not a reported result. |
 | Required baselines | Persistence and seasonal climatology, implemented as Chap-compatible models so they traverse the identical evaluation path. |
 | Reference model to beat | `https://github.com/chap-models/chapkit_ewars_model` (WHO EWARS-csd), at its own default configuration — on the cross-validated development backtest **and** on the held-out year. Not tuned by us. Pinned by image digest `sha256:abd8098f…` (= source commit `a4c2fa42`); runs as an amd64 chapkit service under emulation, so **Docker must be running**. Its development mean CRPS is **22.098**, the per-cell mean of four repeats scored from inside the tree in batch 7 (batch 4's reconnaissance figure was 21.9). It is **unseeded**: the four repeats span 21.820 to 22.385, so a margin under **~0.57 CRPS** against it means nothing. |
 | Project seed, derived | Every component seed is `int(blake2b("<project seed>:<component>", digest_size=8), 16) % 2**32`, computed by `analysis/scripts/lib/project_seed.py`, which reads the project seed from the table above rather than carrying a copy. Fixed in batch 8, the first batch with anything to seed. |
@@ -115,7 +132,12 @@ do if EWARS cannot be run on this dataset, which the plan's §2 answers.
   promoted three of them onto the main path. The candidate now beats both required baselines
   and is 1.03 standard errors from the reference. A second environment variable,
   `COMBO_BASE`, lets a combination inherit what it did not move; `analysis/run.sh` sets
-  none, so the reported analysis inherits nothing.
+  none, so the reported analysis inherits nothing. ***(branch)*** **Batch 21 iterated batch
+  9's promotion rule to a fixpoint here**: three rounds moved `02_covariates` to `b_rich`,
+  `04_fitTime` to `b_refitAtPredict` and `05_autoregressive` to `b_lag3`, and the fourth
+  round found nothing outside the floor. The rule, the per-round records and the trajectory
+  are in `AI-generated/candidate-forks/greedy/`, driven by
+  `AI-internal/useful-scripts/greedy_iterate.py`.
 - Batch reports, one per executed batch, are in `AI-generated/batch-reports/`. Checks on the
   method — clean-room, determinism — are in `AI-generated/validation/` and
   `AI-generated/determinism-checks/`. What every alternative to candidate 1's configuration

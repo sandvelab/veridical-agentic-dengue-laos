@@ -123,3 +123,31 @@ Merging a combination's own models with the base's for the same node; refused in
 `combos.resolve_glob`, because a merged answer would describe an analysis that never ran.
 
 agency: agent-autonomous.
+
+---
+
+## Batch 21 addendum — the greedy branch, 2026-08-27
+
+**Branch `greedy` only; not a reported result of the project.** Re-run unchanged over the
+model the greedy iteration promoted, three rounds of batch 9's rule applied to a fixpoint.
+
+```
+result:              results/main/metrics_cell.csv · results/main/models.csv
+                     and the nine sweep combinations' equivalents, of which three are new
+                     on this branch:
+                     autoregressive_none/metrics_cell.csv · autoregressive_none/models.csv
+                     covariates_climateFree/metrics_cell.csv
+                     covariates_climateFree/models.csv
+                     fitTime_trainOnly/metrics_cell.csv · fitTime_trainOnly/models.csv
+script:              unchanged
+invocation:          unchanged, with COMBO=main and no COMBO_BASE, driven by
+                     AI-internal/useful-scripts/greedy_iterate.py once per round
+commit:              cb61c1d
+instructions-commit: cf97b81
+produced:            2026-08-27
+```
+
+The per-cell scores everything on this branch is computed from. The reference's four repeats and both baselines are **inherited from what they scored on the main line** rather than re-run, and `models.csv` carries the combination each row was scored under; only `hier_nb` moved.
+
+agency: agent-autonomous, under a human-set instruction to explore the iterated path on a
+branch.

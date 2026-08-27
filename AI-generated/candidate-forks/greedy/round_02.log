@@ -1,0 +1,69 @@
+# round 2: base eac9ddd252bf, mean CRPS 21.857
+
+$ /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/.venv/bin/python /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/AI-internal/useful-scripts/candidate_fork_sweep.py run --label greedy/round02
+01_observation/a_negBinomial
+  observation_negBinomial: 75 s -> AI-generated/candidate-forks/greedy/round02/sweep_observation_negBinomial.log
+01_observation/b_zeroInflated
+  observation_zeroInflated: 73 s -> AI-generated/candidate-forks/greedy/round02/sweep_observation_zeroInflated.log
+02_covariates/a_lagged
+  covariates_lagged: 80 s -> AI-generated/candidate-forks/greedy/round02/sweep_covariates_lagged.log
+02_covariates/c_climateFree
+  covariates_climateFree: 76 s -> AI-generated/candidate-forks/greedy/round02/sweep_covariates_climateFree.log
+03_population/b_covariate
+  population_covariate: 102 s -> AI-generated/candidate-forks/greedy/round02/sweep_population_covariate.log
+03_population/c_ignored
+  population_ignored: 99 s -> AI-generated/candidate-forks/greedy/round02/sweep_population_ignored.log
+04_fitTime/a_trainOnly
+  fitTime_trainOnly: 40 s -> AI-generated/candidate-forks/greedy/round02/sweep_fitTime_trainOnly.log
+05_autoregressive/b_lag3
+  autoregressive_lag3: 99 s -> AI-generated/candidate-forks/greedy/round02/sweep_autoregressive_lag3.log
+06_yearVariance/a_shared
+  yearVariance_shared: 39 s -> AI-generated/candidate-forks/greedy/round02/sweep_yearVariance_shared.log
+
+combination                  CRPS     MAE  10-90  25-75   skill     s
+autoregressive_lag3        21.275  26.278  0.741  0.582 +0.0373    91
+population_ignored         21.807  26.973  0.714  0.577 +0.0132    91
+main                       21.857  26.877  0.722  0.571 +0.0109    93
+observation_zeroInflated   21.950  26.977  0.752  0.598 +0.0067    64
+observation_negBinomial    22.179  26.914  0.744  0.596 -0.0036    67
+population_covariate       22.284  27.001  0.725  0.571 -0.0084    94
+covariates_lagged          22.545  27.334  0.720  0.580 -0.0202    71
+covariates_climateFree     22.825  27.310  0.720  0.588 -0.0329    68
+fitTime_trainOnly          22.877  27.313  0.704  0.569 -0.0352    32
+yearVariance_shared        23.099  26.658  0.725  0.590 -0.0453    30
+
+-> AI-generated/candidate-forks/greedy/round02/fork_leaderboard.csv
+$ /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/.venv/bin/python /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/AI-internal/useful-scripts/node.py promote analysis/03_models/03_candidate/a_hierNB/05_autoregressive b_lag3
+main path of analysis/03_models/03_candidate/a_hierNB/05_autoregressive is now b_lag3
+# promoted 05_autoregressive: a_none -> b_lag3
+#   removed analysis/03_models/03_candidate/a_hierNB/05_autoregressive/a_none/results/main
+#   removed analysis/03_models/03_candidate/a_hierNB/05_autoregressive/b_lag3/results/autoregressive_lag3
+#   removed analysis/03_models/03_candidate/a_hierNB/results/autoregressive_lag3
+#   removed analysis/03_models/03_candidate/a_hierNB/work/autoregressive_lag3
+#   removed analysis/04_score/01_collect/results/autoregressive_lag3
+#   removed analysis/04_score/02_aggregate/a_unweighted/results/autoregressive_lag3
+$ bash /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/analysis/03_models/03_candidate/a_hierNB/run.sh
+observation/c_hurdle[main]: hurdle; zeros 0.56, mean over all months 32.3 against 73.9 over reporting months -> /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/analysis/03_models/03_candidate/a_hierNB/01_observation/c_hurdle/results/main
+covariates/b_rich[main]: 3 covariates x 3 lags = 9 columns; missing values {'rainfall': 0, 'mean_temperature': 0, 'mean_relative_humidity': 0} -> /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/analysis/03_models/03_candidate/a_hierNB/02_covariates/b_rich/results/main
+population/a_offset[main]: log(population) offset; largest/smallest 23.8 -> /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/analysis/03_models/03_candidate/a_hierNB/03_population/a_offset/results/main
+fitTime/b_refitAtPredict[main]: refit at predict, 8 fits per backtest, recovering 21 months of history the main path ignores -> /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/analysis/03_models/03_candidate/a_hierNB/04_fitTime/b_refitAtPredict/results/main
+autoregressive/b_lag3[main]: log1p cases at lag 3; autocorrelation 0.701 at lag 3 against 0.758 at lag 12 -> /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/analysis/03_models/03_candidate/a_hierNB/05_autoregressive/b_lag3/results/main
+yearVariance/b_provinceScaled[main]: one variance per province; the widest province's annual spread is 5.6 times the narrowest -> /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/analysis/03_models/03_candidate/a_hierNB/06_yearVariance/b_provinceScaled/results/main
+candidate[main]: {'observation': 'c_hurdle', 'covariates': 'b_rich', 'population': 'a_offset', 'fit_time': 'b_refitAtPredict', 'autoregressive': 'b_lag3', 'year_variance': 'b_provinceScaled'}, covariates ['rainfall', 'mean_temperature', 'mean_relative_humidity'], seed 849487747 -> /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/analysis/03_models/03_candidate/a_hierNB/results/main
+hier_nb[main]: 91 s (11.4 s/split) -> /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/analysis/03_models/03_candidate/a_hierNB/results/main
+$ bash /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/analysis/04_score/01_collect/run.sh
+collect[main]: 8 model rows, 2968 cells, 16 locations -> /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/analysis/04_score/01_collect/results/main
+$ bash /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/analysis/04_score/02_aggregate/run.sh
+aggregate/a_unweighted[main]: 8 models over 371 cells; best hier_nb at CRPS 21.275
+$ bash /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/analysis/04_score/03_compare/run.sh
+compare[main]: 8 leaderboard rows; reference CRPS 22.098 over 371 cells
+  hier_nb        diff   -0.823  se(split-clustered) 1.602  skill +0.037  wins 50% of cells
+  climatology    diff   +2.238  se(split-clustered) 1.919  skill -0.101  wins 44% of cells
+  persistence    diff   +2.781  se(split-clustered) 2.985  skill -0.126  wins 47% of cells
+  noise floor (reference vs its own repeats): largest |mean diff| 0.565
+fig_accuracy_and_spread.png -> /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/analysis/04_score/03_compare/results/main
+fig_crps_by_location.png -> /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/analysis/04_score/03_compare/results/main
+fig_paired_vs_reference.png -> /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/analysis/04_score/03_compare/results/main
+$ /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/environment/chapenv/bin/python /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/analysis/scripts/conclude.py
+conclusion[main]: hier_nb CRPS 21.275 vs reference 22.098 -> skill +0.0373
+# main path re-run in 103 s

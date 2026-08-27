@@ -116,3 +116,24 @@ twenty-eight will cost roughly three times that once the baselines and the refer
 re-scored under the setup forks. Nothing binds. If it ever does, the rule is unchanged —
 keep `metrics_cell.csv`, keep every specification and fitted object, drop our own models'
 evaluations, never the reference's.
+
+---
+
+## Batch 21 — the greedy branch (branch `greedy` only), 2026-08-27
+
+**Nothing in this section is on `main`.** The branch iterates batch 9's promotion rule to a
+fixpoint; three rounds, nineteen backtests, ten combinations left in the tree.
+
+| Artifact | Size | Role | Regenerable | Transparency | Note |
+|---|---|---|---|---|---|
+| `a_hierNB/results/*/eval.nc` | 105 MB | main result | yes — 91 s each for the eleven that refit inside `predict`, 30–40 s for the rest | medium | Larger and slower to rebuild than the main line's, because the model the branch selected refits eight times per backtest. |
+| `a_hierNB/results/main/fitted_model.json` | **520 bytes** | **main result** | n/a | **highest, and empty** | **The one that matters here.** On the main line this file carries seventeen annual variances, two blocks of coefficients and an EM history. On this branch it is a stub — `fit_time = predict` fits inside chap-core's untracked run directories — so the branch's *reported model has no stored parameters at all*. Nothing can be pruned from it and nothing can be read out of it. |
+| `AI-generated/candidate-forks/greedy/round_NN.json` | 40 KB | **main result** | **no, for round 2** | **highest** | The record the rule's decisions are in, written before each round touched the tree. Round 2's per-combination results were replaced by round 3 before any commit held them, so these three files and the sweep logs are the only record of what round 2 measured. **Do not prune.** |
+| `greedy/roundNN/fork_leaderboard.csv` | 6 KB | **main result** | round 3 yes, round 2 **no** | **highest** | Same reason. Round 3's rows describe combinations that are still in the tree; round 2's do not. |
+| `greedy/greedy_trajectory.{png,csv}` | 180 KB | side result | yes, seconds | high | Rule 7's plotted and pre-aggregation values beside the figure. |
+
+**The branch costs about 9 MB more than the main line** and roughly doubles the time to
+reproduce the candidate's own results, which is not what makes it expensive. What it costs
+is the fitted object, and that is not a storage question: the greedy rule selected, among
+other things, the one fork in the tree that removes the model's parameters from the record,
+and no threshold on development CRPS could have noticed.

@@ -81,3 +81,25 @@ the script to have.
 alternatives-considered: none new.
 
 agency: agent-autonomous.
+
+---
+
+## Batch 21 addendum — the greedy branch, 2026-08-27
+
+**Branch `greedy` only; not a reported result of the project.** Re-run unchanged over the
+model the greedy iteration promoted, three rounds of batch 9's rule applied to a fixpoint.
+
+```
+result:              results/main/conclusion.json
+script:              unchanged
+invocation:          unchanged, with COMBO=main and no COMBO_BASE, driven by
+                     AI-internal/useful-scripts/greedy_iterate.py once per round
+commit:              cb61c1d
+instructions-commit: cf97b81
+produced:            2026-08-27
+```
+
+Skill score **+0.037** against the reference, from -0.072 on the main line; `beats_reference` true, `beats_all_baselines` true. The same script computed it, from the same stored scores, by the same route -- which is the point of having one place where the conclusion is computed. What changed is three rounds of selection on the 371 development cells the score is then read off.
+
+agency: agent-autonomous, under a human-set instruction to explore the iterated path on a
+branch.

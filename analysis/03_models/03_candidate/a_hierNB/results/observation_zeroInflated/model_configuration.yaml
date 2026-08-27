@@ -1,9 +1,18 @@
-additional_continuous_covariates: []
+additional_continuous_covariates:
+- rainfall
+- mean_temperature
+- mean_relative_humidity
 user_option_values:
-  autoregressive: none
-  covariate_lags: []
-  covariates: []
-  fit_time: train
+  autoregressive: lag3
+  covariate_lags:
+  - 1
+  - 2
+  - 3
+  covariates:
+  - rainfall
+  - mean_temperature
+  - mean_relative_humidity
+  fit_time: predict
   observation: zero_inflated
   population: offset
   seed: 849487747

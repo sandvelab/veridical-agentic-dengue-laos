@@ -5,7 +5,7 @@ Does the model do its fitting in train or in predict? Chap fits once and then pr
 ## Children
 
 kind: alternatives
-main-path: a_trainOnly
+main-path: b_refitAtPredict
 
 ## Environment
 

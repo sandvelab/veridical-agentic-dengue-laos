@@ -101,3 +101,25 @@ the field's own model are not distinguishable. It wins 41 % of cells and 2 of 8 
 alternatives-considered: none new; the node's own choices are batch 7's.
 
 agency: agent-autonomous.
+
+---
+
+## Batch 21 addendum — the greedy branch, 2026-08-27
+
+**Branch `greedy` only; not a reported result of the project.** Re-run unchanged over the
+model the greedy iteration promoted, three rounds of batch 9's rule applied to a fixpoint.
+
+```
+result:              results/main/leaderboard.csv · paired_vs_reference.csv · paired_by_split.csv · paired_summary.csv · comparison_notes.json · reference_repeat_noise.csv
+script:              unchanged
+invocation:          unchanged, with COMBO=main and no COMBO_BASE, driven by
+                     AI-internal/useful-scripts/greedy_iterate.py once per round
+commit:              cb61c1d
+instructions-commit: cf97b81
+produced:            2026-08-27
+```
+
+The branch's model is **first on the leaderboard**, ahead of all four of the reference's repeats individually. And the paired comparison says the two cannot be separated: -0.823 CRPS with a split-clustered standard error of 1.602, 0.51 standard errors, 50.4 % of cells and 3 of 8 splits. Both statements come from this file and neither is reportable without the other.
+
+agency: agent-autonomous, under a human-set instruction to explore the iterated path on a
+branch.

@@ -56,3 +56,39 @@ alternatives-considered: `n_retrain` greater than 1, which would make chap-core 
     promoted.
 
 agency: agent-autonomous
+
+---
+
+## Batch 21 addendum — promoted on the branch `greedy`, round 1, 2026-08-27
+
+```
+result:              results/main/model_option_spec.json
+script:              scripts/choose_fit_time.py   unchanged
+invocation:          "$PYTHON" scripts/choose_fit_time.py, from a_hierNB/run.sh with
+                     COMBO=main and no COMBO_BASE, driven by
+                     AI-internal/useful-scripts/greedy_iterate.py
+commit:              cb61c1d
+instructions-commit: cf97b81
+produced:            2026-08-27
+```
+
+**On this branch it was promoted**, in round 1, worth **+0.873** CRPS from batch 9's
+promoted path — the largest single-fork effect the second sweep found, and the reason the
+branch's first round was the one that crossed the reference model's score.
+
+**It is the fork the fixpoint depends on most.** Round 3 measured reverting to
+`a_trainOnly` at **1.285** CRPS, the largest of the six reversion costs, so the branch's
+model is more a consequence of this fork than of any other.
+
+**And it is what costs the branch its fitted object.** Under `fit_time = predict` the fit
+happens once per split inside chap-core's untracked run directories, so the model this
+branch ends on stores no coefficients, no variance components and no EM history —
+`a_hierNB/results/main/fitted_model.json` is a stub. The main line pays no such price,
+because on the main line this child was not promoted. A rule that selects on development
+CRPS cannot see the difference; a reader can.
+
+The cost in compute is unchanged and now falls on every run: 91 seconds for the branch's
+eight-split backtest against 36 for the main line's.
+
+agency: agent-autonomous, under a human-set instruction to explore the iterated path on a
+branch.

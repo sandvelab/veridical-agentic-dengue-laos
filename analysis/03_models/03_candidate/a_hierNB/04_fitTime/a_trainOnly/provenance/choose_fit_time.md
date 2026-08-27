@@ -67,3 +67,29 @@ the promoted main path: `b_refitAtPredict` +0.873, the best combination in the s
 script sha256: 55205731fdb2cf1e963cd991d25d18aa2ba44a04322f145bb7d65f8b2e7b69eb
 
 agency: agent-autonomous.
+
+---
+
+## Batch 21 addendum — demoted on the branch `greedy`, round 1, 2026-08-27
+
+```
+result:              results/fitTime_trainOnly/model_option_spec.json
+                     (its results/main/ was removed when the fork moved)
+script:              scripts/choose_fit_time.py   unchanged
+invocation:          "$PYTHON" scripts/choose_fit_time.py, from this node's run.sh with
+                     COMBO=fitTime_trainOnly and COMBO_BASE=main, driven by
+                     AI-internal/useful-scripts/candidate_fork_sweep.py
+commit:              cb61c1d
+instructions-commit: cf97b81
+produced:            2026-08-27
+```
+
+**On this branch, fitting once in train is what the model gives up to reach its score.**
+Round 3 measured it at 22.560 against the fixpoint's 21.275: reverting to it costs **1.285**
+CRPS, the largest reversion cost of any of the six forks. It also buys back everything the
+refit costs — 36 seconds a backtest instead of 91, and a fitted object that exists.
+
+**On `main` this is the main path.**
+
+agency: agent-autonomous, under a human-set instruction to explore the iterated path on a
+branch.

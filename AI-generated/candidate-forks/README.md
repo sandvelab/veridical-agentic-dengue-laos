@@ -34,3 +34,11 @@ is no longer the tree's.
 Each round holds `fork_leaderboard.csv` (one row per combination), `fork_sweep.json` (the
 base, the ranking and the base configuration's hash), `sweep_runs.json` (what ran and for how
 long) and one `sweep_<combination>.log` per combination, carrying every command line.
+
+## On the branch `greedy` only
+
+- `greedy/` — batch 21. The same rule iterated to a fixpoint rather than applied once: its
+  own `greedy_rule.md`, one `round_NN.json` per round, each round's sweep in the format
+  above, and the trajectory with its plotted values. **Not present on `main`, and not a
+  reported result.** See `greedy/README.md`.
+

@@ -7,7 +7,7 @@
    "mean_temperature"
   ],
   "user_option_values": {
-   "autoregressive": "none",
+   "autoregressive": "lag3",
    "covariate_lags": [
     2
    ],
@@ -15,14 +15,14 @@
     "rainfall",
     "mean_temperature"
    ],
-   "fit_time": "train",
+   "fit_time": "predict",
    "observation": "hurdle",
    "population": "offset",
    "seed": 849487747,
    "year_variance": "province_scaled"
   }
  },
- "configuration_sha256": "3eec41eaa045c9bbb042ba24edc4d581c2c3cb6eb32b1f0aa8bd7a451eed0a74",
+ "configuration_sha256": "258b25ece437955576c86f2c5e38a07dcc42db7321a9300d3d6fb4e03a6f3c86",
  "dataset": "analysis/02_setup/results/main/analysis_dataset.csv",
  "dataset_sha256": "c9bf8b0849c768bfe6c65d54975dd08fa390204f8b59e76904170222a7a87d4c",
  "eval_flags": {

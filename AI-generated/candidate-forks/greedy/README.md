@@ -13,8 +13,22 @@ stops; this directory is what happens when the same rule is iterated to a fixpoi
   `AI-internal/useful-scripts/greedy_iterate.py` rather than by a reading of a table.
 - `round_NN.log` — the commands each round ran, in order.
 - `greedy_path.json` — the trajectory across rounds, and the final main path.
-- `../greedy_roundNN/` under `AI-generated/candidate-forks/greedy/round*/` — each round's
-  own sweep, in the format `candidate_fork_sweep.py` writes for every other sweep.
+- `roundNN/` — each round's own sweep, in the format `candidate_fork_sweep.py` writes for
+  every other sweep in the project.
+- `greedy_trajectory.png`, `.csv`, `_children.csv` — the figure, its plotted values, and the
+  pre-aggregation values: every child every round measured.
+- `provenance.md` — one section per file (`AGENTS.md` §8).
 
 Round 1's sweep is batch 9's `../round2_promoted/`, reused rather than re-run: it was taken
 around exactly the configuration this branch starts from, and our models are seeded.
+
+## What it found
+
+Three rounds and then a fixpoint: 23.698 → 21.857 → **21.275** mean CRPS, past the
+reference model's 22.098 and past each of its four repeats. The fourth sweep found the best
+remaining move worth 0.150 CRPS, a quarter of the resolvable floor, so the branch stopped
+because the rule ran out and not because the round cap bound.
+
+It changes nothing the project can conclude — the paired difference against the reference is
+half a standard error — and it costs the model's fitted object, because the first fork the
+rule moved is the one that fits inside `predict` and stores nothing.

@@ -2,13 +2,13 @@ additional_continuous_covariates:
 - rainfall
 - mean_temperature
 user_option_values:
-  autoregressive: none
+  autoregressive: lag3
   covariate_lags:
   - 2
   covariates:
   - rainfall
   - mean_temperature
-  fit_time: train
+  fit_time: predict
   observation: hurdle
   population: offset
   seed: 849487747

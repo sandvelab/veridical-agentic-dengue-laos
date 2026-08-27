@@ -132,3 +132,43 @@ weighting fork is not to be cut from the manifest stands -- with more force now,
 candidate's worst province is one of the two carrying the most cases.
 
 agency: agent-autonomous.
+
+---
+
+## Batch 21 addendum — the greedy branch, 2026-08-27
+
+**Branch `greedy` only; not a reported result of the project.** Re-run unchanged over the
+model the greedy iteration promoted, three rounds of batch 9's rule applied to a fixpoint.
+
+```
+result:              main/metrics_summary.csv · main/crps_by_location.csv
+                     main/crps_by_split.csv · main/crps_by_horizon.csv · main/crps_by_region_split.csv
+                     and the nine sweep combinations' equivalents, of which
+                     three are new on this branch:
+                     autoregressive_none/metrics_summary.csv
+                     autoregressive_none/crps_by_location.csv
+                     autoregressive_none/crps_by_split.csv
+                     autoregressive_none/crps_by_horizon.csv
+                     autoregressive_none/crps_by_region_split.csv
+                     covariates_climateFree/metrics_summary.csv
+                     covariates_climateFree/crps_by_location.csv
+                     covariates_climateFree/crps_by_split.csv
+                     covariates_climateFree/crps_by_horizon.csv
+                     covariates_climateFree/crps_by_region_split.csv
+                     fitTime_trainOnly/metrics_summary.csv
+                     fitTime_trainOnly/crps_by_location.csv
+                     fitTime_trainOnly/crps_by_split.csv
+                     fitTime_trainOnly/crps_by_horizon.csv
+                     fitTime_trainOnly/crps_by_region_split.csv
+script:              unchanged
+invocation:          unchanged, with COMBO=main and no COMBO_BASE, driven by
+                     AI-internal/useful-scripts/greedy_iterate.py once per round
+commit:              cb61c1d
+instructions-commit: cf97b81
+produced:            2026-08-27
+```
+
+The branch's model aggregates to **21.275** mean CRPS, 26.278 MAE, 0.741 coverage at 10-90. By lead time 17.97 / 20.41 / 25.44 against the reference's 16.54 / 21.97 / 27.79 -- it wins at two and three months and loses at one. By province it beats the reference in Vientiane Capital (65.2 against 92.8) and still loses in Salavan (47.4 against 38.4), whose 10-90 coverage is 0.21 against a nominal 0.80. Two rounds of selection did not repair the province batch 9 named as the remaining gap.
+
+agency: agent-autonomous, under a human-set instruction to explore the iterated path on a
+branch.

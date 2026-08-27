@@ -214,3 +214,120 @@ because the parameters are already stable to six figures and the cap is the hone
 of where the procedure stopped.
 
 agency: agent-autonomous.
+
+---
+
+## Batch 21 addendum — the greedy branch, three rounds to a fixpoint, 2026-08-27
+
+**Branch `greedy` only. Nothing recorded in this section is on `main`, and nothing here is
+a reported result of the project.** The main line's candidate is the one this file records
+above: 23.698 mean CRPS, one application of batch 9's promotion rule. This section records
+what the same rule produced when it was iterated.
+
+```
+result:              results/main/eval.nc · eval.log · model_spec.json · run_cost.json
+                     results/main/fitted_model.json   (a stub -- see below)
+                     and the nine sweep combinations, each named after the child it
+                     takes, each re-measured in round 3 around the fixpoint so that the
+                     leaderboard rows and the files agree. Three of the nine are new on
+                     this branch, because the promotions moved which child of those forks
+                     is the alternative:
+                     autoregressive_none/eval.nc · autoregressive_none/eval.log
+                     autoregressive_none/model_spec.json · autoregressive_none/run_cost.json
+                     autoregressive_none/fitted_model.json
+                     autoregressive_none/candidate_spec.json
+                     autoregressive_none/model_configuration.yaml
+                     covariates_climateFree/eval.nc · covariates_climateFree/eval.log
+                     covariates_climateFree/model_spec.json
+                     covariates_climateFree/run_cost.json
+                     covariates_climateFree/fitted_model.json
+                     covariates_climateFree/candidate_spec.json
+                     covariates_climateFree/model_configuration.yaml
+                     fitTime_trainOnly/eval.nc · fitTime_trainOnly/eval.log
+                     fitTime_trainOnly/model_spec.json · fitTime_trainOnly/run_cost.json
+                     fitTime_trainOnly/fitted_model.json
+                     fitTime_trainOnly/candidate_spec.json
+                     fitTime_trainOnly/model_configuration.yaml
+                     and six that batch 9's record above already names:
+                     covariates_lagged, observation_negBinomial,
+                     observation_zeroInflated, population_covariate,
+                     population_ignored, yearVariance_shared
+script:              scripts/run_hier_nb.py            unchanged from batch 9
+                     scripts/hier_nb_model/*           unchanged from batch 9
+                     driven by AI-internal/useful-scripts/greedy_iterate.py, which
+                     executes the rule in AI-generated/candidate-forks/greedy/greedy_rule.md
+invocation:          .venv/bin/python AI-internal/useful-scripts/greedy_iterate.py round \
+                       --reuse-sweep round2_promoted        (round 1)
+                     .venv/bin/python AI-internal/useful-scripts/greedy_iterate.py loop
+                                                            (rounds 2 and 3)
+                     Each round runs candidate_fork_sweep.py for its sweep and then, for
+                     the promoted combination, a_hierNB/run.sh and the whole scoring chain
+                     with COMBO=main and no COMBO_BASE. The reference and the baselines are
+                     not re-run: nothing this branch moves changes what they face, and the
+                     reference is unseeded.
+inputs:              analysis/02_setup/results/main/analysis_dataset.csv
+                     sha256:c9bf8b0849c768bfe6c65d54975dd08fa390204f8b59e76904170222a7a87d4c
+                     -- the same file, byte for byte, as every other run in the project
+environment:         unchanged: environment/ (CPython 3.13.0, chap-core==2.1.0); the model
+                     in its own uv environment built from the tracked lockfile, verified
+                     byte-identical after each of the sixteen runs
+seeds:               unchanged: project seed 20260822 -> component seed 849487747
+commit:              cb61c1d  (the scripts, throughout all three rounds)
+instructions-commit: cf97b81
+node:                analysis/03_models/03_candidate/a_hierNB
+produced:            2026-08-27
+```
+
+**What the iteration produced.** Three rounds, ending in a fixpoint — a round in which no
+fork's best child beat the main path by more than the 0.57 CRPS floor.
+
+| after round | main path moved | mean CRPS |
+|---|---|---|
+| 0 | — (batch 9's promoted candidate) | 23.698 |
+| 1 | `02_covariates` → `b_rich`, `04_fitTime` → `b_refitAtPredict` | **21.857** |
+| 2 | `05_autoregressive` → `b_lag3` | **21.275** |
+| 3 | nothing clears the floor: the fixpoint | 21.275 |
+
+The greedy model is the hurdle observation model with all three climate columns at lags 1,
+2 and 3, a log-population offset, a lagged-count term at three months, per-province annual
+variances, and refitting inside every `predict` call. Configuration
+`8e021eaf2d1e3751…`; 91 seconds for the eight-split backtest against 36 for the main
+line's.
+
+**What it scores.** Mean CRPS **21.275** over the same 371 cells, against the reference's
+22.098, climatology's 24.337 and persistence's 24.879 — and against every one of the
+reference's four repeats individually, the best of which is 21.820. Skill score **+0.037**,
+where the main line's is −0.072. Mean absolute error 26.278, the best in the project. 10–90
+coverage 0.741 against a nominal 0.80.
+
+**And the comparison still cannot separate the two models.** The paired per-cell difference
+is −0.823 CRPS with a split-clustered standard error of **1.602** — 0.51 standard errors.
+It wins **50.4 %** of cells and 3 of 8 splits. Beating the reference on the mean and being
+indistinguishable from it are both true, and reporting the first without the second would
+be the more attractive half of a result the backtest does not support.
+
+**Where the gain is.** By lead time the greedy model is 17.97 / 20.41 / **25.44** against
+the reference's 16.54 / 21.97 / 27.79: it now wins at two and three months and still loses
+at one, which is where the whole remaining gap is. The main line's candidate was 20.4 /
+23.2 / 27.5, so two rounds of selection bought about 2.4 CRPS at the two longer leads and
+2.4 at the shortest.
+
+**Rule 5, and the cost the greedy path pays for its score.** `results/main/fitted_model.json`
+**is a stub**. The first fork the rule moved was `04_fitTime`, and under `fit_time = predict`
+the fit happens once per split inside chap-core's untracked run directories, so the model
+this branch ends on has *no stored fitted object at all* — no coefficients, no variance
+components, no EM history. Batch 9 recorded that gap as a property of one non-main child;
+on this branch it is a property of the reported model. A selection rule that maximises
+development CRPS is indifferent to whether the model it selects can be inspected, and this
+is what that looks like in the record.
+
+alternatives-considered: promoting one fork per round rather than every fork that clears
+the floor, which is the stricter reading of coordinate descent and would have taken four
+rounds instead of three; not taken, because it is not the rule batch 9 wrote and the branch
+exists to iterate *that* rule. Committing each round's promotion separately, as batch 9 did
+by hand; not done, because the loop runs unattended — the cost is that the tree's
+main-path markers moved twice inside one commit, and the round records rather than the git
+history are what say when.
+
+agency: agent-autonomous, under a human-set instruction to explore the iterated path on a
+branch (plan §4b, 2026-08-27).

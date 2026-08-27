@@ -41,3 +41,31 @@ alternatives-considered: `b_rich`, which takes the opposite position and scores 
     published Lao configuration does.
 
 agency: agent-autonomous
+
+---
+
+## Batch 21 addendum — demoted on the branch `greedy`, round 1, 2026-08-27
+
+```
+result:              results/covariates_climateFree/model_option_spec.json
+                     (this child no longer has results/main on this branch: its
+                     results/main/ was removed when the fork moved, because two children
+                     of one fork with results under one combination is a configuration
+                     assemble_candidate_config.py refuses on purpose)
+script:              scripts/choose_covariates.py   unchanged
+invocation:          "$PYTHON" scripts/choose_covariates.py, from this node's run.sh with
+                     COMBO=covariates_climateFree and COMBO_BASE=main, driven by
+                     AI-internal/useful-scripts/candidate_fork_sweep.py
+commit:              cb61c1d
+instructions-commit: cf97b81
+produced:            2026-08-27
+```
+
+**On this branch it is the alternative, not the main path.** It scores 22.027 against the
+branch's 21.275 at the fixpoint — that is `a_lagged`; this child was measured in round 2 at
+22.545 against 21.857, so returning to it costs 0.688 CRPS from where the branch stood
+then. **On `main` it is the main path**, and the record of the reported analysis is the
+section above.
+
+agency: agent-autonomous, under a human-set instruction to explore the iterated path on a
+branch.

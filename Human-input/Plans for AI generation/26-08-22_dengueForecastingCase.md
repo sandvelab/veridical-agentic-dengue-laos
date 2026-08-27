@@ -300,6 +300,16 @@ before any of this.
 | **The iterated path is run anyway, on a branch named `greedy` that is never merged**, as batch 21 | "It could be interesting to see where this would have taken us." What stopping cost is then a measured quantity rather than an estimate from one sweep, and the branch is the only place in the project where selection is deliberately pushed to a fixpoint — which makes it evidence about the method rather than a result about Laos | human-set |
 
 
+### 2026-08-27 — settled by batch 21, from the greedy branch
+
+| Decision | Basis | Agency |
+|---|---|---|
+| **Iterating the rule reaches a fixpoint in three rounds at 21.275 mean CRPS**, past the reference's 22.098 and past each of its four repeats individually — and changes nothing the project can conclude | Measured on branch `greedy`. The paired difference against the reference is −0.823 CRPS with a split-clustered standard error of 1.602: half a standard error, where batch 9's candidate was 1.03 on the other side. The main line's "we cannot separate these two" survives the counterfactual with the sign of the point estimate reversed, which is the strongest available evidence that stopping cost the project nothing it reports | agent-autonomous |
+| **The cost of iterating is paid in the record, not in the score.** The first fork the rule moved (`04_fitTime` → `b_refitAtPredict`) is the one under which the model has no stored fitted object at all | A rule that selects on development CRPS cannot see whether the model it selects can be inspected. On the branch, `a_hierNB/results/main/fitted_model.json` is a 520-byte stub where the main line's carries seventeen annual variances, two blocks of coefficients and an EM history. This is the branch's most useful product and it is an argument for the main line's decision that the score alone does not give | agent-autonomous |
+| **A second demonstration that one-at-a-time fork effects do not compose, with the sign reversed** | The lagged-count term is worth −0.075 around batch 8's configuration, +0.353 around batch 9's, and +0.582 once the model refits inside `predict` — it and the refit are complements, and no one-at-a-time sweep can see a complement. With batch 9's finding that three forks overstated their combined worth, **tier 2 of the phase-D manifest now has two independent demonstrations behind it** and is not a candidate for cutting | agent-autonomous |
+| The holdout is **not** opened on the branch, and the branch's model does not join the phase-D manifest unless the human says so | The project has one opening and it belongs to the frozen manifest. Answering the branch's question out of sample would spend part of it on a path the project does not report | agent-autonomous |
+
+
 ## 5. How this plan is executed
 
 **One batch per invocation.** `/do 26-08-22_dengueForecastingCase` runs the **next open batch**
@@ -366,7 +376,7 @@ at the end of every batch, and append newly created batches to it.
 | 18 | E | Clean-room and outsider validation; the plan's own drift | open | |
 | 19 | E | The case write-up, the reproducibility report, the release | open | |
 | 20 | E | The external check on `tha` and `vnm` — optional, first to be cut | open | |
-| 21 | C, on branch `greedy` | The counterfactual: iterate batch 9's promotion rule to a fixpoint on a branch, and measure what stopping once cost | open | |
+| 21 | C, on branch `greedy` | The counterfactual: iterate batch 9's promotion rule to a fixpoint on a branch, and measure what stopping once cost | done — produced | [[26-08-27_b21_greedyBranch]] |
 
 ---
 
@@ -821,4 +831,4 @@ Everything else is yours to decide, and the record of how you decided it is a de
 
 ### Batch 21 — the greedy branch
 
-- On branch `greedy` only.
+- [[26-08-27_b21_greedyBranch]] — on branch `greedy` only.

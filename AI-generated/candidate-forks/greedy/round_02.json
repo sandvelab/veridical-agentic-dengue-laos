@@ -1,0 +1,166 @@
+{
+ "backed_off": false,
+ "base_configuration_sha256": "eac9ddd252bf829a5e9bf68eea871877ce8b2eae113faebb6b36c8df4cd5d253",
+ "base_main_path": {
+  "01_observation": "c_hurdle",
+  "02_covariates": "b_rich",
+  "03_population": "a_offset",
+  "04_fitTime": "b_refitAtPredict",
+  "05_autoregressive": "a_none",
+  "06_yearVariance": "b_provinceScaled"
+ },
+ "base_mean_crps": 21.85676938814016,
+ "best_single_fork": {
+  "combination": "autoregressive_lag3",
+  "mean_crps": 21.27521145013477
+ },
+ "conclusion_after_the_round": {
+  "baselines": [
+   "climatology",
+   "persistence"
+  ],
+  "beats_all_baselines": true,
+  "beats_reference": true,
+  "candidate_exists": true,
+  "combo": "main",
+  "coverage_10_90_ours": 0.7412398921832885,
+  "coverage_10_90_reference": 0.8039083557951483,
+  "coverage_25_75_ours": 0.5822102425876011,
+  "coverage_25_75_reference": 0.6024258760107817,
+  "crps_by_model": {
+   "climatology": 24.336908636118597,
+   "hier_nb": 21.27521145013477,
+   "persistence": 24.879338288409706,
+   "reference": 22.098446493261456,
+   "reference_r1": 21.917403964959565,
+   "reference_r2": 22.27197036657682,
+   "reference_r3": 22.38484446091644,
+   "reference_r4": 21.81956718059299
+  },
+  "crps_ours": 21.27521145013477,
+  "crps_reference": 22.098446493261456,
+  "dataset": "development",
+  "mae_ours": 26.277628032345017,
+  "n_cells": 371,
+  "n_locations": 16,
+  "n_splits": 8,
+  "our_model": "hier_nb",
+  "our_model_basis": "the main path through 03_models/03_candidate (a_hierNB)",
+  "our_model_is_a_baseline": false,
+  "paired_mean_diff_vs_reference": -0.8232350431266845,
+  "paired_se_cluster_split": 1.6023366481685943,
+  "paired_win_rate_cells": 0.5040431266846361,
+  "resolvable_difference_floor": 0.565277280323451,
+  "skill_by_model": {
+   "climatology": -0.10129500024084148,
+   "hier_nb": 0.03725307312338533,
+   "persistence": -0.12584105384947475
+  },
+  "skill_score": 0.03725307312338533
+ },
+ "fixpoint": false,
+ "floor_crps": 0.57,
+ "forks": [
+  {
+   "best_child": "b_zeroInflated",
+   "best_child_mean_crps": 21.94999242587601,
+   "best_combination": "observation_zeroInflated",
+   "children_scored": {
+    "a_negBinomial": 22.178932797843665,
+    "b_zeroInflated": 21.94999242587601
+   },
+   "clears_the_floor": false,
+   "effect_on_the_base": -0.09322303773585006,
+   "fork": "01_observation",
+   "on_the_main_path": "c_hurdle"
+  },
+  {
+   "best_child": "a_lagged",
+   "best_child_mean_crps": 22.54480054716981,
+   "best_combination": "covariates_lagged",
+   "children_scored": {
+    "a_lagged": 22.54480054716981,
+    "c_climateFree": 22.82460798113208
+   },
+   "clears_the_floor": false,
+   "effect_on_the_base": -0.6880311590296486,
+   "fork": "02_covariates",
+   "on_the_main_path": "b_rich"
+  },
+  {
+   "best_child": "c_ignored",
+   "best_child_mean_crps": 21.807256857142857,
+   "best_combination": "population_ignored",
+   "children_scored": {
+    "b_covariate": 22.283579099730456,
+    "c_ignored": 21.807256857142857
+   },
+   "clears_the_floor": false,
+   "effect_on_the_base": 0.04951253099730479,
+   "fork": "03_population",
+   "on_the_main_path": "a_offset"
+  },
+  {
+   "best_child": "a_trainOnly",
+   "best_child_mean_crps": 22.876748377358492,
+   "best_combination": "fitTime_trainOnly",
+   "children_scored": {
+    "a_trainOnly": 22.876748377358492
+   },
+   "clears_the_floor": false,
+   "effect_on_the_base": -1.0199789892183304,
+   "fork": "04_fitTime",
+   "on_the_main_path": "b_refitAtPredict"
+  },
+  {
+   "best_child": "b_lag3",
+   "best_child_mean_crps": 21.27521145013477,
+   "best_combination": "autoregressive_lag3",
+   "children_scored": {
+    "b_lag3": 21.27521145013477
+   },
+   "clears_the_floor": true,
+   "effect_on_the_base": 0.5815579380053926,
+   "fork": "05_autoregressive",
+   "on_the_main_path": "a_none"
+  },
+  {
+   "best_child": "a_shared",
+   "best_child_mean_crps": 23.099285878706198,
+   "best_combination": "yearVariance_shared",
+   "children_scored": {
+    "a_shared": 23.099285878706198
+   },
+   "clears_the_floor": false,
+   "effect_on_the_base": -1.242516490566036,
+   "fork": "06_yearVariance",
+   "on_the_main_path": "b_provinceScaled"
+  }
+ ],
+ "forks_moving": [
+  "05_autoregressive"
+ ],
+ "gain": 0.5815579380053926,
+ "one_at_a_time_overstates_the_gain_by": 0.0,
+ "promoted_mean_crps": 21.27521145013477,
+ "promotions": [
+  {
+   "fork": "05_autoregressive",
+   "from": "a_none",
+   "removed": [
+    "analysis/03_models/03_candidate/a_hierNB/05_autoregressive/a_none/results/main",
+    "analysis/03_models/03_candidate/a_hierNB/05_autoregressive/b_lag3/results/autoregressive_lag3",
+    "analysis/03_models/03_candidate/a_hierNB/results/autoregressive_lag3",
+    "analysis/03_models/03_candidate/a_hierNB/work/autoregressive_lag3",
+    "analysis/04_score/01_collect/results/autoregressive_lag3",
+    "analysis/04_score/02_aggregate/a_unweighted/results/autoregressive_lag3"
+   ],
+   "to": "b_lag3"
+  }
+ ],
+ "round": 2,
+ "sum_of_the_moving_forks_effects": 0.5815579380053926,
+ "sweep": "AI-generated/candidate-forks/greedy/round02",
+ "sweep_reused": false,
+ "worse_than_the_best_single_fork_by": 0.0
+}

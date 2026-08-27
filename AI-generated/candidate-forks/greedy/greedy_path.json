@@ -1,0 +1,43 @@
+{
+ "ended_at_mean_crps": 21.27521145013477,
+ "final_main_path": {
+  "01_observation": "c_hurdle",
+  "02_covariates": "b_rich",
+  "03_population": "a_offset",
+  "04_fitTime": "b_refitAtPredict",
+  "05_autoregressive": "b_lag3",
+  "06_yearVariance": "b_provinceScaled"
+ },
+ "floor_crps": 0.57,
+ "reached_the_fixpoint": true,
+ "round_cap": 8,
+ "rounds": 3,
+ "source": "AI-generated/candidate-forks/greedy/round_NN.json",
+ "started_at_mean_crps": 23.697926164420487,
+ "total_gain": 2.4227147142857177,
+ "trajectory": [
+  {
+   "base_mean_crps": 23.697926164420487,
+   "moved": [
+    "02_covariates",
+    "04_fitTime"
+   ],
+   "promoted_mean_crps": 21.85676938814016,
+   "round": 1
+  },
+  {
+   "base_mean_crps": 21.85676938814016,
+   "moved": [
+    "05_autoregressive"
+   ],
+   "promoted_mean_crps": 21.27521145013477,
+   "round": 2
+  },
+  {
+   "base_mean_crps": 21.27521145013477,
+   "moved": [],
+   "promoted_mean_crps": null,
+   "round": 3
+  }
+ ]
+}

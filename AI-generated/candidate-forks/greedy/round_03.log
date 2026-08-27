@@ -1,0 +1,36 @@
+# round 3: base 8e021eaf2d1e, mean CRPS 21.275
+
+$ /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/.venv/bin/python /Users/geirksa_1_2_3/ai/special-purpose vaults/ReprodicbleAgenticAiCase/AI-internal/useful-scripts/candidate_fork_sweep.py run --label greedy/round03
+01_observation/a_negBinomial
+  observation_negBinomial: 73 s -> AI-generated/candidate-forks/greedy/round03/sweep_observation_negBinomial.log
+01_observation/b_zeroInflated
+  observation_zeroInflated: 74 s -> AI-generated/candidate-forks/greedy/round03/sweep_observation_zeroInflated.log
+02_covariates/a_lagged
+  covariates_lagged: 75 s -> AI-generated/candidate-forks/greedy/round03/sweep_covariates_lagged.log
+02_covariates/c_climateFree
+  covariates_climateFree: 75 s -> AI-generated/candidate-forks/greedy/round03/sweep_covariates_climateFree.log
+03_population/b_covariate
+  population_covariate: 98 s -> AI-generated/candidate-forks/greedy/round03/sweep_population_covariate.log
+03_population/c_ignored
+  population_ignored: 100 s -> AI-generated/candidate-forks/greedy/round03/sweep_population_ignored.log
+04_fitTime/a_trainOnly
+  fitTime_trainOnly: 34 s -> AI-generated/candidate-forks/greedy/round03/sweep_fitTime_trainOnly.log
+05_autoregressive/a_none
+  autoregressive_none: 98 s -> AI-generated/candidate-forks/greedy/round03/sweep_autoregressive_none.log
+06_yearVariance/a_shared
+  yearVariance_shared: 41 s -> AI-generated/candidate-forks/greedy/round03/sweep_yearVariance_shared.log
+
+combination                  CRPS     MAE  10-90  25-75   skill     s
+population_ignored         21.126  26.177  0.744  0.590 +0.0440    91
+population_covariate       21.250  26.058  0.747  0.585 +0.0384    90
+main                       21.275  26.278  0.741  0.582 +0.0373    91
+autoregressive_none        21.857  26.877  0.722  0.571 +0.0109    90
+observation_zeroInflated   21.972  26.476  0.757  0.593 +0.0057    65
+covariates_lagged          22.027  26.803  0.741  0.593 +0.0032    67
+yearVariance_shared        22.163  26.140  0.730  0.598 -0.0029    33
+covariates_climateFree     22.271  26.648  0.741  0.588 -0.0078    67
+observation_negBinomial    22.418  26.846  0.744  0.593 -0.0144    65
+fitTime_trainOnly          22.560  26.884  0.706  0.574 -0.0209    26
+
+-> AI-generated/candidate-forks/greedy/round03/fork_leaderboard.csv
+# no fork clears the floor: this base is the greedy fixpoint

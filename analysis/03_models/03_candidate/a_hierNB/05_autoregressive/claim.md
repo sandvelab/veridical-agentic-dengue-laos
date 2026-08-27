@@ -5,7 +5,7 @@ Does the model see the recent case history, or only the calendar and the weather
 ## Children
 
 kind: alternatives
-main-path: a_none
+main-path: b_lag3
 
 ## Environment
 

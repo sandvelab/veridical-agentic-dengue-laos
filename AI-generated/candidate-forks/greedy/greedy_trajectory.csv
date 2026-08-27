@@ -1,0 +1,5 @@
+after_round,mean_crps,moved,note
+0,23.697926164420487,,"batch 9's promoted candidate, where the branch starts"
+1,21.85676938814016,02_covariates + 04_fitTime,"gain +1.841, one at a time predicted +1.694"
+2,21.27521145013477,05_autoregressive,"gain +0.582, one at a time predicted +0.582"
+3,21.27521145013477,,no fork clears the floor: the greedy fixpoint

@@ -2,19 +2,31 @@
  "combo": "population_covariate",
  "configuration": "analysis/03_models/03_candidate/a_hierNB/results/population_covariate/model_configuration.yaml",
  "configuration_contents": {
-  "additional_continuous_covariates": [],
+  "additional_continuous_covariates": [
+   "rainfall",
+   "mean_temperature",
+   "mean_relative_humidity"
+  ],
   "user_option_values": {
-   "autoregressive": "none",
-   "covariate_lags": [],
-   "covariates": [],
-   "fit_time": "train",
+   "autoregressive": "lag3",
+   "covariate_lags": [
+    1,
+    2,
+    3
+   ],
+   "covariates": [
+    "rainfall",
+    "mean_temperature",
+    "mean_relative_humidity"
+   ],
+   "fit_time": "predict",
    "observation": "hurdle",
    "population": "covariate",
    "seed": 849487747,
    "year_variance": "province_scaled"
   }
  },
- "configuration_sha256": "92e9b7419697e5f98b4cba0653874d748a1d4747b94a8c6b0314d19e16189452",
+ "configuration_sha256": "7d9c60c138e4af4beb1be603afc11b83f47d7ff9a57bba307a4d945b8bd319fa",
  "dataset": "analysis/02_setup/results/main/analysis_dataset.csv",
  "dataset_sha256": "c9bf8b0849c768bfe6c65d54975dd08fa390204f8b59e76904170222a7a87d4c",
  "eval_flags": {

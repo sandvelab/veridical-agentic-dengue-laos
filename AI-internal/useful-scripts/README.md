@@ -17,6 +17,8 @@ into the second, because what they run is the analysis.
 | `claims.py` | Maintain and audit the claim collection; flag draft sentences with no supporting claim | `/claims` |
 | `build_hierarchical_report.py` | Generate the linked static-HTML drill-down report from the tree | `/hierarchical-report` |
 | `verify_model_determinism.sh` | Rule 6: run each of our models twice under scratch combinations and compare the per-cell scores and the fitted model. Writes to `AI-generated/determinism-checks/` and removes the scratch combinations | — |
+| `greedy_iterate.py` | **Branch `greedy` only.** Iterate the promotion rule to a fixpoint: sweep, select by the committed rule, promote, run the promoted path, repeat. Writes one record per round before touching the tree | — |
+| `greedy_trajectory.py` | **Branch `greedy` only.** The figure and the values behind it: what iterating did to development CRPS, round by round | — |
 | `candidate_fork_sweep.py` | Run every non-main child of candidate 1's forks on the development data, one combination each, and tabulate what they score. Writes its results **into the tree** through the tree's own scripts, and only the cross-combination table to `AI-generated/candidate-forks/`. A phase-C selection aid, not the stability node | — |
 
 `check_invariants.py` exits non-zero on any failure, so it works in a pre-commit hook or CI.

@@ -48,3 +48,37 @@ alternatives-considered: A per-covariate lag rather than one lag list applied to
     the forecast month is not available at forecast time.
 
 agency: agent-autonomous
+
+---
+
+## Batch 21 addendum — promoted on the branch `greedy`, round 1, 2026-08-27
+
+```
+result:              results/main/model_option_spec.json
+script:              scripts/choose_covariates.py   unchanged
+invocation:          "$PYTHON" scripts/choose_covariates.py, from a_hierNB/run.sh with
+                     COMBO=main and no COMBO_BASE, driven by
+                     AI-internal/useful-scripts/greedy_iterate.py
+commit:              cb61c1d
+instructions-commit: cf97b81
+produced:            2026-08-27
+```
+
+**On this branch it was promoted**, in round 1, because the greedy rule is batch 9's rule
+without the "applied once" clause: measured from batch 9's promoted path this child was
+worth **+0.821** CRPS, outside the 0.57 floor, and the rule takes every fork whose best
+child clears it.
+
+**What it is worth at the fixpoint.** Round 3 measured the fork again from the branch's
+final path: putting the two lagged covariates back (`a_lagged`) scores 22.027 against
+21.275, so the rich set is now worth **+0.752** — a third measurement of this fork, after
++0.461 around batch 8's configuration and +0.821 around batch 9's. The fork's answer on the
+main line stands: what each child is worth depends on where it is measured from, and this
+child's three measurements span 0.36 CRPS.
+
+**Nothing here is on `main`.** The main line's covariates fork takes `c_climateFree`, and
+this record's section above — "it was not promoted" — is the record of the reported
+analysis.
+
+agency: agent-autonomous, under a human-set instruction to explore the iterated path on a
+branch.

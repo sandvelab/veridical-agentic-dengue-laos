@@ -1,0 +1,24 @@
+{
+ "base_combination": "main",
+ "base_configuration_sha256": "8e021eaf2d1e375188728bec463388328c7ddfdf465af6a0df1c6ed3b19eba41",
+ "best_combination": "population_ignored",
+ "best_mean_crps": 21.125690784366576,
+ "best_moves_the_main_path_by": 0.14952066576819334,
+ "combinations": 10,
+ "main_path_mean_crps": 21.27521145013477,
+ "ranking": [
+  "population_ignored",
+  "population_covariate",
+  "main",
+  "autoregressive_none",
+  "observation_zeroInflated",
+  "covariates_lagged",
+  "yearVariance_shared",
+  "covariates_climateFree",
+  "observation_negBinomial",
+  "fitTime_trainOnly"
+ ],
+ "reference_mean_crps": 22.098446493261456,
+ "source": "analysis/04_score/02_aggregate/a_unweighted/results/<combo>/metrics_summary.csv, and the candidate node's run_cost.json and candidate_spec.json",
+ "swept": "analysis/03_models/03_candidate/a_hierNB"
+}

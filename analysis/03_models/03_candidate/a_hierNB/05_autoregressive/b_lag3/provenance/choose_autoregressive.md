@@ -45,3 +45,44 @@ alternatives-considered: A separate model per horizon, each using the freshest l
     project defines. Recorded because it is the version of this idea that might work.
 
 agency: agent-autonomous
+
+---
+
+## Batch 21 addendum — promoted on the branch `greedy`, round 2, 2026-08-27
+
+```
+result:              results/main/model_option_spec.json
+script:              scripts/choose_autoregressive.py   unchanged
+invocation:          "$PYTHON" scripts/choose_autoregressive.py, from a_hierNB/run.sh with
+                     COMBO=main and no COMBO_BASE, driven by
+                     AI-internal/useful-scripts/greedy_iterate.py
+commit:              cb61c1d
+instructions-commit: cf97b81
+produced:            2026-08-27
+```
+
+**This is the fork whose worth moved most, and it moved with the company it kept.** Three
+measurements of the same child, each from a different configuration:
+
+| measured around | worth |
+|---|---|
+| batch 8's defaults | **−0.075** |
+| batch 9's promoted path (the main line) | +0.353 |
+| the greedy branch after round 1 | **+0.582** |
+
+Batch 9's conclusion — that a lagged-count term is worth nothing on this dataset at a
+three-month lead — was true where it was measured. What round 1 changed is that the model
+now refits inside every `predict` call, so at each split the lagged-count column is filled
+from history the train-time fit never saw; the autoregressive term and the refit are
+complements, and neither one alone shows it. This is the same non-additivity batch 9 found,
+with the sign running the other way: there, three forks worth 4.632 together delivered
+2.402; here, a fork worth nothing became worth something once another one moved.
+
+**Promoted in round 2**, taking the branch from 21.857 to 21.275 — exactly the +0.582 the
+sweep predicted, the only round in which the prediction and the outcome agreed to three
+decimals, because only one fork moved.
+
+**Nothing here is on `main`**, where this fork stays at `a_none`.
+
+agency: agent-autonomous, under a human-set instruction to explore the iterated path on a
+branch.

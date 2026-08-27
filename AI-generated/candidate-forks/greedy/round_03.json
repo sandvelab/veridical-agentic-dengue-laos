@@ -1,0 +1,96 @@
+{
+ "base_configuration_sha256": "8e021eaf2d1e375188728bec463388328c7ddfdf465af6a0df1c6ed3b19eba41",
+ "base_main_path": {
+  "01_observation": "c_hurdle",
+  "02_covariates": "b_rich",
+  "03_population": "a_offset",
+  "04_fitTime": "b_refitAtPredict",
+  "05_autoregressive": "b_lag3",
+  "06_yearVariance": "b_provinceScaled"
+ },
+ "base_mean_crps": 21.27521145013477,
+ "fixpoint": true,
+ "floor_crps": 0.57,
+ "forks": [
+  {
+   "best_child": "b_zeroInflated",
+   "best_child_mean_crps": 21.972088409703503,
+   "best_combination": "observation_zeroInflated",
+   "children_scored": {
+    "a_negBinomial": 22.41775669811321,
+    "b_zeroInflated": 21.972088409703503
+   },
+   "clears_the_floor": false,
+   "effect_on_the_base": -0.6968769595687334,
+   "fork": "01_observation",
+   "on_the_main_path": "c_hurdle"
+  },
+  {
+   "best_child": "a_lagged",
+   "best_child_mean_crps": 22.026948323450135,
+   "best_combination": "covariates_lagged",
+   "children_scored": {
+    "a_lagged": 22.026948323450135,
+    "c_climateFree": 22.27090551212938
+   },
+   "clears_the_floor": false,
+   "effect_on_the_base": -0.751736873315366,
+   "fork": "02_covariates",
+   "on_the_main_path": "b_rich"
+  },
+  {
+   "best_child": "c_ignored",
+   "best_child_mean_crps": 21.125690784366576,
+   "best_combination": "population_ignored",
+   "children_scored": {
+    "b_covariate": 21.25024570619946,
+    "c_ignored": 21.125690784366576
+   },
+   "clears_the_floor": false,
+   "effect_on_the_base": 0.14952066576819334,
+   "fork": "03_population",
+   "on_the_main_path": "a_offset"
+  },
+  {
+   "best_child": "a_trainOnly",
+   "best_child_mean_crps": 22.560006385444744,
+   "best_combination": "fitTime_trainOnly",
+   "children_scored": {
+    "a_trainOnly": 22.560006385444744
+   },
+   "clears_the_floor": false,
+   "effect_on_the_base": -1.284794935309975,
+   "fork": "04_fitTime",
+   "on_the_main_path": "b_refitAtPredict"
+  },
+  {
+   "best_child": "a_none",
+   "best_child_mean_crps": 21.85676938814016,
+   "best_combination": "autoregressive_none",
+   "children_scored": {
+    "a_none": 21.85676938814016
+   },
+   "clears_the_floor": false,
+   "effect_on_the_base": -0.5815579380053926,
+   "fork": "05_autoregressive",
+   "on_the_main_path": "b_lag3"
+  },
+  {
+   "best_child": "a_shared",
+   "best_child_mean_crps": 22.162757929919135,
+   "best_combination": "yearVariance_shared",
+   "children_scored": {
+    "a_shared": 22.162757929919135
+   },
+   "clears_the_floor": false,
+   "effect_on_the_base": -0.8875464797843655,
+   "fork": "06_yearVariance",
+   "on_the_main_path": "b_provinceScaled"
+  }
+ ],
+ "forks_moving": [],
+ "round": 3,
+ "sum_of_the_moving_forks_effects": 0,
+ "sweep": "AI-generated/candidate-forks/greedy/round03",
+ "sweep_reused": false
+}

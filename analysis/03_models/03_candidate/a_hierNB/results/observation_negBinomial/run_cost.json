@@ -8,6 +8,6 @@
  },
  "model": "hier_nb",
  "route": "MLproject with uv_env, native",
- "seconds_per_split": 4.1,
- "wall_clock_seconds": 32.9
+ "seconds_per_split": 8.1,
+ "wall_clock_seconds": 64.8
 }

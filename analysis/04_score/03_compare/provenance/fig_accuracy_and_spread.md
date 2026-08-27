@@ -79,3 +79,24 @@ the field's own model are not distinguishable. It wins 41 % of cells and 2 of 8 
 alternatives-considered: none new; the node's own choices are batch 7's.
 
 agency: agent-autonomous.
+
+---
+
+## Batch 21 addendum — regenerated on the branch `greedy`, 2026-08-27
+
+**Branch `greedy` only.** The figure and both of its value files were regenerated over the
+model three rounds of batch 9's promotion rule promoted — mean CRPS 21.275 against the main
+line's 23.698 — by the same script, unchanged, with COMBO=main.
+
+```
+result:              results/main/fig_accuracy_and_spread.png
+                     results/main/fig_accuracy_and_spread.csv                  (plotted values)
+                     results/main/fig_accuracy_and_spread_preaggregation.csv (pre-aggregation values)
+script:              scripts/fig_accuracy_and_spread.py   unchanged
+commit:              cb61c1d
+instructions-commit: cf97b81
+produced:            2026-08-27
+```
+
+agency: agent-autonomous, under a human-set instruction to explore the iterated path on a
+branch.

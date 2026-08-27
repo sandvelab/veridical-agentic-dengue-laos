@@ -126,3 +126,35 @@ configuration change and a seed change arriving together, with no way to attribu
 difference to either.
 
 agency: agent-autonomous.
+
+---
+
+## Batch 21 addendum — the greedy branch's configuration, 2026-08-27
+
+```
+result:              results/main/model_configuration.yaml
+                     results/main/candidate_spec.json
+                     and the nine combination directories the three rounds' sweeps wrote
+script:              scripts/assemble_candidate_config.py   unchanged
+invocation:          "$PYTHON" scripts/assemble_candidate_config.py, from a_hierNB/run.sh
+                     with COMBO=main and no COMBO_BASE
+commit:              cb61c1d
+instructions-commit: cf97b81
+produced:            2026-08-27
+```
+
+**What the assembled configuration became.** `configuration_sha256`
+**8e021eaf2d1e3751…**, from `28c7c617d5c26fa0…` on the main line: `observation: hurdle`,
+`covariates` all three at `covariate_lags [1, 2, 3]`, `population: offset`,
+`fit_time: predict`, `autoregressive: lag3`, `year_variance: province_scaled`. Seed
+unchanged at 849487747, derived as before, and `choice_combos` records all six choices as
+taken under `main` — the branch's main path inherits nothing, exactly as the reported
+analysis does not.
+
+Three intermediate configurations existed and were each scored: batch 9's, round 1's, and
+round 2's, which is the fixpoint. The two that were superseded are recorded in
+`AI-generated/candidate-forks/greedy/round_NN.json` by the combination each round measured
+rather than by their own directories, which the promotion removed.
+
+agency: agent-autonomous, under a human-set instruction to explore the iterated path on a
+branch.

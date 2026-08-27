@@ -38,3 +38,30 @@ alternatives-considered: `b_lag3`, the term itself, built and run in this batch.
     third month is not a model this evaluation can score.
 
 agency: agent-autonomous
+
+---
+
+## Batch 21 addendum — demoted on the branch `greedy`, round 2, 2026-08-27
+
+```
+result:              results/autoregressive_none/model_option_spec.json
+                     (its results/main/ was removed when the fork moved)
+script:              scripts/choose_autoregressive.py   unchanged
+invocation:          "$PYTHON" scripts/choose_autoregressive.py, from this node's run.sh
+                     with COMBO=autoregressive_none and COMBO_BASE=main, driven by
+                     AI-internal/useful-scripts/candidate_fork_sweep.py
+commit:              cb61c1d
+instructions-commit: cf97b81
+produced:            2026-08-27
+```
+
+**Dropping the lagged-count term costs 0.582 CRPS on this branch** (21.857 against the
+fixpoint's 21.275) and **nothing at all on `main`**, where the same measurement, taken
+around a model that fits only in train, put the term inside the resolvable floor. The
+difference between those two statements is not about this child; it is about what else the
+model was doing when the question was asked.
+
+**On `main` this is the main path.**
+
+agency: agent-autonomous, under a human-set instruction to explore the iterated path on a
+branch.

@@ -1,0 +1,20 @@
+{
+ "construction": "not fitted here: fit_time = predict",
+ "fitted_in": "predict",
+ "model": "hier_nb_candidate",
+ "options": {
+  "autoregressive": "lag3",
+  "covariate_lags": [],
+  "covariates": [],
+  "fit_time": "predict",
+  "observation": "hurdle",
+  "population": "offset",
+  "seed": 849487747,
+  "year_variance": "province_scaled"
+ },
+ "training": {
+  "first_period": "1998-01",
+  "last_period": "2007-12",
+  "rows": 2040
+ }
+}
