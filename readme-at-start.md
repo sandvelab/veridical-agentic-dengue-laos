@@ -134,8 +134,10 @@ check in batch 18 is a six-hour run. Both human-set, 2026-08-31, on batch 16's q
   **69 combinations**, the tree above and four levels below it — the national mean each
   model was scored at, that mean by province, each province month by month, and the
   per-cell scores everything above is an average of, for each combination that was scored. Every number on it is displayed from the file the analysis wrote. It is
-  gitignored and rebuilt in about two seconds by `/hierarchical-report`; only its
-  `provenance.md` is versioned. Its full design — every node,
+  rebuilt in a few seconds by `/hierarchical-report` and **committed as a dated snapshot**
+  since 2026-09-27 (row 34) — gitignored before that, which left the README pointing a
+  reader on GitHub at a file that was not there; `index.html` and the folder README say
+  the date and commit each build was made from. Its full design — every node,
   every fork, the file contract between them, and the `COMBO` mechanism that lets one code path
   serve both the main analysis and the stability run — is in
   `AI-generated/batch-reports/26-08-26_b05_bootstrapPlan.md`. **Batch 7 built it**, and

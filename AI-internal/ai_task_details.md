@@ -2941,3 +2941,21 @@ not a filename it reads. The prose is unambiguous and CC's recommended practice 
 naming and linking the licence, but a reader who reads the sidebar — or any automated consumer
 — sees a repository with no licence, which is the state Rule 10 was reopened to fix. Both
 remedies change what the human decided on 2026-09-06, so it is carried rather than taken.
+
+## T35 — outside the plan: the hierarchical report is committed as a dated snapshot (2026-09-27)
+
+### What happened
+
+The human, reading the public repository, could not find the `index.html` that `README.md`
+names as the way into the tree: it was gitignored, so it existed only for someone who had
+cloned and built. At the human's direction the output is now committed. The build script's
+stamp was reworded so that `index.html` and the folder README open by saying the date and
+the commit the snapshot was built from, the command that regenerates it, and that a changed
+tree means rebuilding. `.gitignore` no longer excludes the folder, and the report was
+rebuilt at `46c2745`. The local copy had been from `922506b`, which is the kind of staleness
+the new stamp makes visible.
+
+Checked before committing: 1 461 files, 23 MB, no file over 2 MB, no occurrence of the
+home-directory path, no leftover page from an earlier build. Ledger row 34, a §4b entry, and
+a section in the report's `provenance.md`. Not pushed: the push is outward-facing and waits
+on the human.

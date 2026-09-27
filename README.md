@@ -54,8 +54,9 @@ must be running**, and without it everything except the reference model and the 
 that divide by it will still run.
 
 The alternatives explored and not taken are in the tree alongside the main path, complete
-and runnable. `AI-generated/hierarchical-report/index.html` is the way in once it has been
-built — it is generated and gitignored, and `/hierarchical-report` rebuilds it in about two
+and runnable. `AI-generated/hierarchical-report/index.html` is the way in. It is a generated
+snapshot, committed so it can be read without cloning; its first line says the date and
+commit it was built from, and `/hierarchical-report` rebuilds it from the tree in a few
 seconds.
 
 ## Where the project stands
