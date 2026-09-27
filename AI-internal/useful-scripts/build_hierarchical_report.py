@@ -101,6 +101,18 @@ def _section(text: str, heading: str) -> str:
     return text[m.end():nxt.start() if nxt else len(text)].strip()
 
 
+# Every node's `## Answers` opens with the template's italic instruction — "_(What this
+# node's analysis yielded. …)_" — and the answer follows it. Through 2026-09-27 the page
+# dropped any Answers section starting with "_(", which was all 71 of them, so no node
+# page showed its result. The instruction is stripped and the answer kept.
+_TEMPLATE_NOTE = re.compile(r"^_\(.*?\)_\s*", re.S)
+
+
+def answers_text(answers: str) -> str:
+    """A node's answer without the template's instruction; empty if there is none."""
+    return _TEMPLATE_NOTE.sub("", answers, count=1).strip()
+
+
 def _read(node: Path) -> dict:
     text = (node / "claim.md").read_text()
     body = text.split("## Children")[0]
@@ -540,9 +552,10 @@ def _page(root: Path, node: Path, out: Path, ancestors: list[str],
     parts.append(f"<h1>{html.escape(node.name)}</h1>")
     parts.append(f'<div class=claim>{html.escape(info["claim"])}</div>')
 
-    if info["answers"] and not info["answers"].startswith("_("):
+    answer = answers_text(info["answers"])
+    if answer:
         parts.append("<h2>Answers</h2>")
-        parts.append(f"<p>{html.escape(info['answers'])}</p>")
+        parts += [f"<p>{html.escape(para)}</p>" for para in re.split(r"\n\s*\n", answer)]
 
     mine = _claims_for(rel.as_posix(), all_claims)
     if mine:

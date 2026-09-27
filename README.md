@@ -54,10 +54,13 @@ must be running**, and without it everything except the reference model and the 
 that divide by it will still run.
 
 The alternatives explored and not taken are in the tree alongside the main path, complete
-and runnable. `AI-generated/hierarchical-report/index.html` is the way in. It is a generated
-snapshot, committed so it can be read without cloning; its first line says the date and
-commit it was built from, and `/hierarchical-report` rebuilds it from the tree in a few
-seconds.
+and runnable. **[`AI-generated/claim-tree/`](AI-generated/claim-tree/README.md) is the way in on
+GitHub**: a diagram of the whole tree, one page per node giving its claim and its result,
+and the [claim collection](AI-generated/claim-tree/claims.md) linked to the nodes it rests
+on. To descend a reported number to the per-cell scores it averages, open
+`AI-generated/hierarchical-report/index.html` in a browser from a clone. Both are generated
+snapshots, stamped with the date and commit they were built from, and `/hierarchical-report`
+rebuilds both from the tree in a few seconds.
 
 ## Where the project stands
 

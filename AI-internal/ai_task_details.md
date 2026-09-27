@@ -2959,3 +2959,27 @@ Checked before committing: 1 461 files, 23 MB, no file over 2 MB, no occurrence 
 home-directory path, no leftover page from an earlier build. Ledger row 34, a §4b entry, and
 a section in the report's `provenance.md`. Not pushed: the push is outward-facing and waits
 on the human.
+
+## T36 — outside the plan: the claim tree presented as linked Markdown (2026-09-27)
+
+### What happened
+
+The human found the committed HTML report impractical on GitHub, which shows HTML as
+source, and asked for a presentation that can be browsed there: linked Markdown files, a
+Mermaid overview, and each node shown as **Claim:** and **Result:**. They framed it as
+presentation, outside the reproducibility criteria.
+
+`AI-internal/useful-scripts/build_claim_tree_md.py` writes `AI-generated/claim-tree/`. Its
+`README.md` holds the reported conclusion, a Mermaid flowchart of all 71 nodes, and a linked
+indented list, because GitHub's Mermaid does not follow links. Each node gets
+`analysis/**/README.md`, which GitHub shows when the folder is opened, so the tree is
+browsed by clicking down through folders. `claims.md` holds the 48 claims with a
+by-node table and a Mermaid map. The builder reads the tree through
+`build_hierarchical_report.py`'s own parsing, so the two views cannot disagree, and it
+clears its output before writing so that a removed node leaves no page behind. Both
+diagrams were rendered with mermaid-cli to confirm they parse.
+
+Found while writing it: all 71 `## Answers` sections open with the template's italic
+instruction, and the HTML page skipped any Answers section that began with `_(`, so no node
+page in the HTML report had shown its result. It now strips the instruction, as the
+Markdown builder does, through a shared `answers_text()`.

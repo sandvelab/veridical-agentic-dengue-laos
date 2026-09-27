@@ -129,6 +129,7 @@ check in batch 18 is a six-hour run. Both human-set, 2026-08-31, on batch 16's q
 ## Where things are
 
 - The analysis is a tree of questions under `analysis/`. Start at
+  `AI-generated/claim-tree/README.md` (Markdown, for browsing on GitHub — row 35),
   `AI-generated/hierarchical-report/index.html`, or `/node tree`. **Batch 17 built that
   report** and batch 19 rebuilt it over the external check's four rows: **1 387 pages** and
   **69 combinations**, the tree above and four levels below it — the national mean each
