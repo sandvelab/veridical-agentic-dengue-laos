@@ -34,6 +34,17 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../../../index.html">analysis</a> / <a href="../../../../index.html">03_models</a> / <a href="../../../index.html">03_candidate</a> / <a href="../../index.html">b_boosted</a> / <a href="../index.html">01_features</a> / b_richCalendar</div>
 <h1>b_richCalendar</h1>
 <div class=claim>The same lag block, plus what the calendar and the map say directly: the month as a pair of harmonics, a year index, the province as an identifier, and rolling summaries of the province&#x27;s own recent history.</div>
+<h2>Answers</h2>
+<p>Twenty-seven features: the sibling&#x27;s eighteen, plus two harmonic pairs of the month, a year
+index, the province as an identifier, and rolling means of the count over 3, 6 and 12
+months ending at the third lag (`results/features_richCalendar/model_option_spec.json`).</p>
+<p>**It scores 20.375 against the sibling&#x27;s 20.771** — better by 0.396 CRPS, which is inside
+the resolvable floor and so does not move the fork. Its point forecast is worse (MAE 28.251
+against 26.953) and its intervals wider (10–90 coverage 0.857 against 0.825), which is the
+signature of a model that has fitted the training years more closely and is less certain
+about a period it cannot extrapolate into. Both costs registered before the run — sixteen
+extra cuts from the province identifier, and a year index every forecast month falls beyond
+— are consistent with what happened, and neither is separable from the other by this run.</p>
 <h2>Results</h2>
 <details><summary>2 other combination(s)</summary>
 <h3>features_richCalendar</h3>

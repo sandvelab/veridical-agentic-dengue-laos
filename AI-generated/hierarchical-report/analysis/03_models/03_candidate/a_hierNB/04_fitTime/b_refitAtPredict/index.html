@@ -34,6 +34,12 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../../../index.html">analysis</a> / <a href="../../../../index.html">03_models</a> / <a href="../../../index.html">03_candidate</a> / <a href="../../index.html">a_hierNB</a> / <a href="../index.html">04_fitTime</a> / b_refitAtPredict</div>
 <h1>b_refitAtPredict</h1>
 <div class=claim>The model is refitted inside every predict call, on the whole expanding historic window Chap hands it, so that a forecast late in the backtest is made by a model that has seen the years between. This is what the reference model does.</div>
+<h2>Answers</h2>
+<p>**22.825** mean CRPS, the best combination in the second sweep and **0.873** better
+     than the main path, at **108** seconds against 36. It recovers the 21 months of history a
+     train-time fit discards by the last split -- the history the reference model has been
+     using all along. It leaves no single fitted object: the fit happens once per split inside
+     chap-core&#x27;s untracked run directories, and `train` writes a stub that says so.</p>
 <h2>Results</h2>
 <details><summary>2 other combination(s)</summary>
 <h3>fitTime_refitAtPredict</h3>

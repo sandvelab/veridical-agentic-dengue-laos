@@ -34,6 +34,21 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../../index.html">analysis</a> / <a href="../../../index.html">03_models</a> / <a href="../../index.html">03_candidate</a> / <a href="../index.html">a_hierNB</a> / 01_observation</div>
 <h1>01_observation</h1>
 <div class=claim>What observation model do the counts get? Monthly province counts on this dataset are heavily over-dispersed and about a third of them are zero, and whether that is one distribution stretched wide or a mixture of two processes is a modelling choice rather than something the data settles.</div>
+<h2>Answers</h2>
+<p>**The zeros and the large counts are two processes, and modelling them as one was the
+candidate&#x27;s largest single defect.** The hurdle -- a logistic model for whether a month
+reports at all and a count model for how much it reports given that it does -- took the
+candidate from **26.100** to **23.985** mean CRPS around the batch-8 configuration, past
+both required baselines, and it is the main path from batch 9
+(`AI-generated/candidate-forks/round1_batch8Defaults/fork_leaderboard.csv`).</p>
+<p>**A mixture is not the same answer and is a much weaker one.** `b_zeroInflated` fitted a
+mixing weight of **0.035** and scored **24.129** from the promoted main path, worse than
+doing nothing. The negative binomial&#x27;s variance function was already absorbing almost all
+of the zeros; what it could not absorb was that the reporting months and the silent months
+have different mean functions, which is what the hurdle gives them and the mixture does not.</p>
+<p>**How much the hurdle is worth depends where you measure it from**: 2.115 CRPS around the
+batch-8 configuration, **0.601** around the promoted one
+(`round2_promoted/fork_interaction.csv`).</p>
 <h2>Children <span class=tag>alternatives</span></h2>
 <p class=meta>Only the main path is run by this node. The others are run by the stability node.</p>
 <ul>

@@ -34,6 +34,20 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../../index.html">analysis</a> / <a href="../../../index.html">03_models</a> / <a href="../../index.html">03_candidate</a> / <a href="../index.html">a_hierNB</a> / 03_population</div>
 <h1>03_population</h1>
 <div class=claim>How does the province population enter the model? The file&#x27;s population figure is one constant per province, and it can serve as a denominator the model forecasts a rate against, as an ordinary covariate, or not at all.</div>
+<h2>Answers</h2>
+<p>**How population enters our model does not matter here.** All three children score within
+**0.18** CRPS of each other, well inside the 0.57 floor: the offset (the main path,
+23.698), dropping population entirely (23.723) and estimating its coefficient (23.876)
+(`round2_promoted/fork_leaderboard.csv`).</p>
+<p>The reason is visible in the fits. The pooled province effect widens from sigma 1.27 with
+the offset to **1.87** with population dropped, and narrows to **0.94** with the
+coefficient estimated: the intercept and the population term are explaining the same thing,
+and the column is constant within a province so an intercept can stand in for it exactly.</p>
+<p>**The premise the offset rests on is nevertheless false.** Across provinces, log mean
+reported cases rises **1.74** per unit of log population, where an offset asserts 1.00. It
+costs nothing on this backtest because a per-province intercept absorbs the difference --
+and it would cost something for a province the model had never seen, which this backtest
+never asks about.</p>
 <h2>Children <span class=tag>alternatives</span></h2>
 <p class=meta>Only the main path is run by this node. The others are run by the stability node.</p>
 <ul>

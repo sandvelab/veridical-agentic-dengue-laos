@@ -34,6 +34,8 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../index.html">analysis</a> / <a href="../../index.html">04_score</a> / <a href="../index.html">02_aggregate</a> / a_unweighted</div>
 <h1>a_unweighted</h1>
 <div class=claim>Take the plain unweighted mean over evaluable cells, which is what Chap&#x27;s own evaluation reports and what the project&#x27;s success criterion is defined against.</div>
+<h2>Answers</h2>
+<p>The headline row per model and the four resolutions beside it, all `groupby` aggregations of one per-cell file. Mean CRPS per province spans **0.01 to 84** across the 16 provinces (`results/main/crps_by_location.csv`), which is the measurement behind the warning that an unweighted mean over cells is close to a statement about the largest few provinces.</p>
 <h2>Results</h2>
 <h3>main</h3>
 <ul>

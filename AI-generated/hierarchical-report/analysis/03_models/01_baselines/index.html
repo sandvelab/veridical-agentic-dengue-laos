@@ -34,6 +34,31 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../index.html">analysis</a> / <a href="../index.html">03_models</a> / 01_baselines</div>
 <h1>01_baselines</h1>
 <div class=claim>How well does the problem&#x27;s own inertia forecast it? Two baselines the plan requires: what the series did last, and what the series usually does in this calendar month.</div>
+<h2>Answers</h2>
+<p>Both baselines the plan&#x27;s §4 requires are implemented against the Chap contract and
+evaluated through the identical path. **Seasonal climatology scores 24.337 mean CRPS and
+persistence 24.879**, over the same 371 cells
+(`04_score/02_aggregate/a_unweighted/results/main/metrics_summary.csv`).</p>
+<p>The two are 0.54 CRPS apart, which is at the edge of what this evaluation can resolve — the
+reference&#x27;s own re-runs move by up to 0.57 — so the honest reading is that **knowing the
+season and knowing the last observation are worth about the same here**, not that one
+baseline is better. Their calibration differs more than their score does: climatology&#x27;s
+central interval is too wide (0.542 against a nominal 0.50) where persistence&#x27;s is almost
+exact (0.491), and both have tails far too thin (0.650 and 0.666 against 0.80).</p>
+<p>Both contain no randomness, and that is verified rather than asserted: two independent runs
+of each produced identical per-cell scores and identical fitted models
+(`AI-generated/determinism-checks/model_determinism.json`).</p>
+<p>**Batch 22 ran both baselines&#x27; alternative constructions, and they are the two extremes of
+the stability set so far.** Wrapping the persistence point in a fitted negative binomial
+rather than in the empirical distribution of past changes is worth **4.181 CRPS** (24.879 →
+20.698) and takes the baseline past the reference model; freezing the climatology&#x27;s estimation
+window is worth **0.532 CRPS** (24.337 → 24.869), inside the noise floor. The better
+persistence construction reaches the reported model too, because the pool takes both baselines
+as members — and makes it **worse**, 18.817 → 19.434.</p>
+<p>So the honest reading of &quot;knowing the season and knowing the last observation are worth about
+the same here&quot; is narrower than it looked: it is true of the two constructions the main path
+happens to run, and knowing the last observation is worth considerably more when its
+uncertainty is wrapped the other published way.</p>
 <h2>Children <span class=tag>sub-analyses</span></h2>
 <ul>
 <li><a href="01_persistence/index.html">01_persistence</a><br><span class=meta>How well does the last observed count forecast the next three months? A persistence forecast is a point, and CRPS scores a distribution, so the baseline is only defined once a predictive distribution is wrapped around that point — and how to wrap it is the question this node forks on.</span></li>

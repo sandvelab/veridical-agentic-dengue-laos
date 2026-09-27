@@ -34,6 +34,20 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../../index.html">analysis</a> / <a href="../../../index.html">03_models</a> / <a href="../../index.html">03_candidate</a> / <a href="../index.html">a_hierNB</a> / 04_fitTime</div>
 <h1>04_fitTime</h1>
 <div class=claim>Does the model do its fitting in train or in predict? Chap fits once and then predicts at every split, so a model that refits inside predict sees each split&#x27;s expanded history while one that does not sees only the training period.</div>
+<h2>Answers</h2>
+<p>**Refitting inside `predict` is worth more than any other unmoved fork, and it is the one
+place our model was handicapped against the reference.** `b_refitAtPredict` scores
+**22.825** mean CRPS from the promoted main path against 23.698 -- a gain of **0.873**,
+outside the 0.57 floor, and the closest any model of ours has come to the reference&#x27;s
+22.098 (`round2_promoted/fork_leaderboard.csv`).</p>
+<p>The asymmetry it measures is real: `chapkit_ewars_model` fits inside its own predict
+endpoint, so at every split of the backtest it has been using history our train-time fit
+discards -- **21 months** of it by the last split.</p>
+<p>It costs **108 seconds** against 36, which is eight fits instead of one, and it leaves no
+single fitted object for the record, since the fit happens once per split inside chap-core&#x27;s
+untracked run directories.</p>
+<p>**It was not promoted**, because around the batch-8 configuration -- the sweep the
+promotion rule was applied to -- it was worth 0.408 and inside the floor.</p>
 <h2>Children <span class=tag>alternatives</span></h2>
 <p class=meta>Only the main path is run by this node. The others are run by the stability node.</p>
 <ul>

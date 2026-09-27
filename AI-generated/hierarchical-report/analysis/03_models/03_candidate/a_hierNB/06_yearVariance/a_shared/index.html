@@ -34,6 +34,12 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../../../index.html">analysis</a> / <a href="../../../../index.html">03_models</a> / <a href="../../../index.html">03_candidate</a> / <a href="../../index.html">a_hierNB</a> / <a href="../index.html">06_yearVariance</a> / a_shared</div>
 <h1>a_shared</h1>
 <div class=claim>One province-year variance for the whole country, estimated by pooling every province&#x27;s annual effects. Every province&#x27;s forecast is then equally wide in relative terms.</div>
+<h2>Answers</h2>
+<p>**23.749** mean CRPS, **0.051** from the promoted main path -- so from where the model
+     now stands, one shared annual variance and seventeen separate ones are indistinguishable.
+     Around the batch-8 configuration the same fork was worth 1.870. It is also the only
+     combination in the second sweep whose fit **converged**, in 48 rounds against the
+     200-round cap every province-scaled fit reaches.</p>
 <h2>Results</h2>
 <details><summary>2 other combination(s)</summary>
 <h3>yearVariance_shared</h3>

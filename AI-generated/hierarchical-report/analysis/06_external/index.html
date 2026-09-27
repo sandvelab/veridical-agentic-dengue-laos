@@ -49,6 +49,55 @@ the reference model&#x27;s four unseeded repeats, the linear opinion pool and th
 — with the file underneath replaced. The step lists come from the same driver the
 perturbation set runs through, because a check that ran different code would measure the
 code and not the model.</div>
+<h2>Answers</h2>
+<p>**The margin holds in five of the six analyses, and the one it does not hold in is a
+held-out year.** The reported model, unchanged, beats the reference model on both sibling
+countries&#x27; development backtests — **+0.0852 on Vietnam and +0.0856 on Thailand** — and on
+Thailand&#x27;s final year at **+0.0197**. On Vietnam&#x27;s final year it **loses**, at **−0.0862**.
+It beats both required baselines on **all six**, including the row it loses on.
+→ `results/external_conclusions.csv`, `results/external_vs_laos.json`</p>
+<p>**The drop from the development backtest to the final year replicates in both countries.**
+Laos −0.0617, Thailand −0.0659, Vietnam −0.1714. **The clause that all three clear the two
+reference bands together holds on this draw and not on the next**: the clean-room run of
+2026-09-05 returned it false for Laos and for Thailand and true only for Vietnam, so it is
+withdrawn as a general statement. What survives both draws is the direction in all three
+countries, the ordering, and the sign of the Vietnamese final-year loss. Three countries are not a sample and this does not put a
+confidence statement on the effect; what it says is that phase E&#x27;s central finding is a
+thing that happens repeatedly rather than a thing that happened once, and that 2010 alone
+does not account for it — the same year is harder for the model relative to the reference
+in every country, including the two it never saw.
+→ `results/external_vs_laos.json`, `results/fig_external_skill.png`</p>
+<p>**The country the model was developed on is the country it scores highest on.** Its Lao
+development skill, +0.1485, is **1.74 times** either sibling&#x27;s, and the two siblings agree
+with each other to 0.0004 while differing from Laos by 0.063. That difference is the
+project&#x27;s most direct measurement of what developing against one dataset bought on that
+dataset, and it is about as large as the whole development-to-final-year drop.
+→ `results/external_conclusions.csv`</p>
+<p>**The reference model&#x27;s own instability is a property of the country, not of the method.**
+Its four unseeded repeats span **0.032 CRPS on Thailand&#x27;s development backtest, 0.565 on
+Laos&#x27;s and 7.082 on Vietnam&#x27;s** — a factor of **219** across three countries of one
+harmonisation, on the same model at the same configuration. In skill that is a band of 0.0024, 0.0256 and 0.1230, so Vietnam&#x27;s +0.0852
+margin sits **inside** the reference&#x27;s own re-run spread and cannot be attributed to a model
+at all, while Thailand&#x27;s near-identical +0.0856 is thirty-six times its band. A noise floor
+measured on one dataset says nothing about another.
+→ `results/external_conclusions.csv`</p>
+<p>**The reported model&#x27;s over-dispersion is worse abroad than at home.** Its 10–90 coverage
+against a nominal 0.80 is 0.863 on Lao development and 0.941 and 0.967 on the two siblings&#x27;;
+on the final years, 0.755, 0.893 and 0.875. The calibration failure the project reports
+beside its Lao score is not a Lao artefact and does not shrink when the model meets more
+provinces.
+→ `results/external_conclusions.csv`</p>
+<p>**The pool&#x27;s independent reconstruction is not available on these datasets**, because a
+member is evaluated on its own only under the family fork&#x27;s own combination and this check
+moves no fork. Recorded, with what it would have cost, rather than left blank.
+→ `results/pool_reconstruction_external.json`</p>
+<p>**The cost model over-predicted by a factor of about two, and its worst row is again the
+one whose shape it does not know.** Planned 3.14 hours, actual **1.81** — a ratio of 0.58
+where phase D&#x27;s two halves came out at 1.00 and 1.15. Per row it runs 0.39 to 1.20, so the
+total being wrong this time and right twice before is the same finding a third way: seconds
+per evaluated cell measured on 192 Lao cells does not transfer to 1 824 Thai ones, and the
+one row that exceeds its estimate is the largest.
+→ `results/external_cost_planned_vs_actual.json`</p>
 <h2>Claims resting on this node</h2>
 <p class=meta>From the claim collection. Nothing enters the manuscript that is not there.</p>
 <div class=claimblock>

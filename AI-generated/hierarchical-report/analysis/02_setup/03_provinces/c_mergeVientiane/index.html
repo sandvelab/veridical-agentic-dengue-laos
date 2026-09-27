@@ -34,6 +34,10 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../index.html">analysis</a> / <a href="../../index.html">02_setup</a> / <a href="../index.html">03_provinces</a> / c_mergeVientiane</div>
 <h1>c_mergeVientiane</h1>
 <div class=claim>Aggregate Vientiane province into Vientiane Capital, which lies geographically inside it, so the province that never reports is not a hole in the map but part of its neighbour. This changes what the headline mean is a mean over, which is why the project&#x27;s conclusion is a ratio rather than a raw score.</div>
+<h2>Answers</h2>
+<p>LA-VI is folded into LA-VT: **2 448 rows, 17 provinces**, and again the same **371** cells (`results/provinces_mergeVientiane/setup_spec.json`). Batch 12 asked whether this child could be scored at all, since it changes what the metric averages over. It can: it changes the *content* of the capital&#x27;s 24 cells, not the number of cells, because the province it absorbs contributed none.</p>
+<p>The merged unit&#x27;s population is 1 308 736 against the capital&#x27;s 960 194, and the geodesic areas put **78.1 %** of the merged polygon in the province (`results/provinces_mergeVientiane/merge_weights.csv`), so the merged climate is largely the province&#x27;s — in 1998-01 rainfall goes from 0.075 to 0.251 mm/day and mean temperature from 24.13 to 22.64 degrees.</p>
+<p>Skill rises to **+0.1714**, again mostly by moving the reference (22.098 to 22.937) rather than us (18.817 to 19.006).</p>
 <h2>Results</h2>
 <details><summary>8 other combination(s)</summary>
 <h3>provinces_mergeVientiane</h3>

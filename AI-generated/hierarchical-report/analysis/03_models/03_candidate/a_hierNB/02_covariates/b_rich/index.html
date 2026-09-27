@@ -34,6 +34,12 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../../../index.html">analysis</a> / <a href="../../../../index.html">03_models</a> / <a href="../../../index.html">03_candidate</a> / <a href="../../index.html">a_hierNB</a> / <a href="../index.html">02_covariates</a> / b_rich</div>
 <h1>b_rich</h1>
 <div class=claim>All three climate columns — rainfall, mean temperature and mean relative humidity — each at one, two and three months&#x27; lag, letting the fit decide which of them carries signal instead of the choice being made in advance.</div>
+<h2>Answers</h2>
+<p>**22.877** mean CRPS, the second-best combination in the second sweep and outside the
+     0.57 floor. Its coefficients are the evidence that the covariate question is not settled:
+     mean temperature at lag 1 takes **+0.653** and at lag 3 **+0.594**, rainfall takes almost
+     nothing at any lag, and the seasonal harmonic `sin1` collapses from −1.235 to −0.027 as
+     the climate columns take over the annual cycle.</p>
 <h2>Results</h2>
 <details><summary>2 other combination(s)</summary>
 <h3>covariates_rich</h3>

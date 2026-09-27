@@ -1,7 +1,7 @@
 # hierarchical-report
 
 The linked drill-down over the claim tree (Rule 8). **Generated — never hand-edit.**
-**A snapshot: generated 2026-09-27 from the tree at commit 46c2745.**
+**A snapshot: generated 2026-09-27 from the tree at commit 3d89200.**
 It is committed so that it can be read without cloning, and it is derived entirely
 from files the repository versions, so it regenerates from a clone in a few seconds:
 

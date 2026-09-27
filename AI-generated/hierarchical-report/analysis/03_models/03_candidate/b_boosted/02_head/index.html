@@ -34,6 +34,31 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../../index.html">analysis</a> / <a href="../../../index.html">03_models</a> / <a href="../../index.html">03_candidate</a> / <a href="../index.html">b_boosted</a> / 02_head</div>
 <h1>02_head</h1>
 <div class=claim>Where does the spread of the forecast come from? A boosted tree returns one number per cell, so the predictive distribution has to be constructed around it, and this is the choice of how.</div>
+<h2>Answers</h2>
+<p>**The fork does not move the model, and the two heads fail in opposite directions.** The
+negative binomial scores **20.771** and the quantile ladder **20.960**, a difference of
+0.189 CRPS — well inside the 0.565 floor, so the main path stays at `a_negBinomial`.</p>
+<p>**On the metric the project reports beside CRPS, the ladder is the better head.** Its
+10–90 coverage is **0.798** against a nominal 0.80 — the closest any model in the project
+has come — where the negative binomial over-covers at 0.825. But its point forecast is the
+worst of any model of ours: **MAE 33.020** against 26.953, because the lower half of its
+distribution is pinned at zero and its median is therefore far below the outcome in every
+province that reports steadily. A head that is well calibrated on average and wrong in the
+middle is not the better head, and this is the plan&#x27;s &quot;a model that wins on mean CRPS while
+being badly calibrated has not won&quot;, arriving with the two halves swapped.</p>
+<p>**Why the ladder&#x27;s lower half is pinned at zero was predicted before it ran and then
+measured.** 56.3 % of the observed counts are exactly zero, so every quantile level below
+that share begins at the marginal quantile — zero — and meets a residual of exactly zero at
+the majority of rows, which is the kink of the pinball loss and says nothing about
+direction. The prediction registered eight of the fifteen levels as stranded; **seven are
+flat at zero across the whole file** and the eighth, 0.50, is flat in Vientiane Capital,
+whose observed median is 109 cases and which never reports a zero at all
+(`../results/head_quantileEnsemble/head_premise_check.json`). The bottom 40 % of every
+forecast this head makes is a point mass at zero.</p>
+<p>**This is where batch 4 said the family would fail, and it is where the family fails.** The
+repair — a model for whether the month reports at all, with the ladder fitted only to the
+months that do — is the construction candidate 1&#x27;s `01_observation` fork calls a hurdle. It
+would be a third child of this fork, not a change to this one.</p>
 <h2>Children <span class=tag>alternatives</span></h2>
 <p class=meta>Only the main path is run by this node. The others are run by the stability node.</p>
 <ul>

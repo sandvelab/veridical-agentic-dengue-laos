@@ -34,6 +34,12 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../../../index.html">analysis</a> / <a href="../../../../index.html">03_models</a> / <a href="../../../index.html">03_candidate</a> / <a href="../../index.html">a_hierNB</a> / <a href="../index.html">02_covariates</a> / c_climateFree</div>
 <h1>c_climateFree</h1>
 <div class=claim>No climate covariates at all, so that the shared annual harmonics and the province-year effect alone carry the seasonal cycle. If this scores like the lagged-climate child, the covariates are decoration on this dataset.</div>
+<h2>Answers</h2>
+<p>**The main path from batch 9**, and the child that says most about the dataset. Around
+     the batch-8 configuration, having no climate term at all was worth **+0.648** CRPS; from
+     the promoted configuration, putting the two lagged covariates back is worth **+0.112**, so
+     the sign reverses. Both are inside or near the floor. It also fits on **2 012** rows
+     rather than 1 978, because no row is dropped for a lag falling before the record starts.</p>
 <h2>Results</h2>
 <h3>main</h3>
 <ul>

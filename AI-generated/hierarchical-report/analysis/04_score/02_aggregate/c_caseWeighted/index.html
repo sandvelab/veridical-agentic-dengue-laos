@@ -34,6 +34,10 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../index.html">analysis</a> / <a href="../../index.html">04_score</a> / <a href="../index.html">02_aggregate</a> / c_caseWeighted</div>
 <h1>c_caseWeighted</h1>
 <div class=claim>Weight the headline mean by the cases actually observed in each cell, so the summary is dominated by the province-months where dengue was happening. A province reporting four cases in twelve years then stops carrying the same weight as the capital.</div>
+<h2>Answers</h2>
+<p>Weighted by the cases actually observed, the pool scores **88.484** against the reference&#x27;s **115.216** — skill **+0.2320**, the highest in tier 1. **The number beside it is the result.** Persistence scores **86.598**: on the months when dengue was happening, the simplest baseline in the project forecasts better than the model this project reports.</p>
+<p>The calibration inverts too. Our pool is over-dispersed everywhere else — 10-90 coverage 0.863 against nominal 0.80 — and here it is **0.701**, under-dispersed. It is too wide on the quiet months that dominate the unweighted mean and too narrow on the outbreak months that dominate this one.</p>
+<p>**137 of 371 cells carry zero weight.** The effective sample falls to **65**, the top decile of cells carries 62.3 % of the weight, and 240 province-by-split groups have no weighted mean at all and are reported missing rather than zero (`results/aggregate_caseWeighted/weighting_notes.json`). This is the opposite blind spot to the unweighted mean&#x27;s, not a correction of it.</p>
 <h2>Results</h2>
 <details><summary>10 other combination(s)</summary>
 <h3>aggregate_caseWeighted</h3>

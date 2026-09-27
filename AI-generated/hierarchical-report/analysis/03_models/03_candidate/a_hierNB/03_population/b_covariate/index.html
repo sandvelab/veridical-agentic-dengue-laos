@@ -34,6 +34,12 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../../../index.html">analysis</a> / <a href="../../../../index.html">03_models</a> / <a href="../../../index.html">03_candidate</a> / <a href="../../index.html">a_hierNB</a> / <a href="../index.html">03_population</a> / b_covariate</div>
 <h1>b_covariate</h1>
 <div class=claim>Population as an estimated coefficient on standardised log population rather than as a fixed offset, so the data decides how reported cases scale with province size instead of the model asserting proportionality.</div>
+<h2>Answers</h2>
+<p>**23.876** mean CRPS, 0.178 worse than the offset. The fitted coefficient on
+     standardised log population is **1.725** and the pooled province spread falls to sigma
+     **0.94** from 1.27, which is the coefficient and the intercept explaining the same thing.
+     The premise it computed is the check the offset never makes: log mean cases rise **1.74**
+     per unit of log population across provinces, where an offset asserts 1.00.</p>
 <h2>Results</h2>
 <details><summary>2 other combination(s)</summary>
 <h3>population_covariate</h3>

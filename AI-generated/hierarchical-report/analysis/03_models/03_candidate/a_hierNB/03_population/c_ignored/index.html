@@ -34,6 +34,11 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../../../index.html">analysis</a> / <a href="../../../../index.html">03_models</a> / <a href="../../../index.html">03_candidate</a> / <a href="../../index.html">a_hierNB</a> / <a href="../index.html">03_population</a> / c_ignored</div>
 <h1>c_ignored</h1>
 <div class=claim>Population does not enter the model at all: a province&#x27;s level is carried entirely by its own pooled intercept, which is estimated from its record rather than from its size.</div>
+<h2>Answers</h2>
+<p>**23.723** mean CRPS, 0.025 from the main path -- two orders of magnitude inside the
+     resolvable floor. Dropping the population column changes nothing this backtest can
+     measure, because the column is constant within a province and the pooled intercept
+     absorbs it exactly: the province spread widens to sigma **1.87** from 1.27.</p>
 <h2>Results</h2>
 <details><summary>2 other combination(s)</summary>
 <h3>population_ignored</h3>

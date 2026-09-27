@@ -34,6 +34,10 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../index.html">analysis</a> / <a href="../../index.html">02_setup</a> / <a href="../index.html">01_population</a> / b_backCast</div>
 <h1>b_backCast</h1>
 <div class=claim>Replace the single population snapshot with a per-province, per-year series back-cast from it, so the figure a model divides by is roughly right at both ends of the record instead of only at the end. The snapshot is a 2020 measurement applied to 1998-2010, and a decade of growth is not uniform across provinces.</div>
+<h2>Answers</h2>
+<p>The snapshot becomes a per-year series: `population(province, year) = snapshot x N(year)/N(2020)`, scaled from **0.7144** in 1998 to **0.8496** in 2009 (`results/popColumn_backCast/setup_spec.json`). The conclusion moves from +0.1485 to **+0.1347** — the pool still beats the reference, by slightly less.</p>
+<p>**The archived column does not have the level its schema claims.** It sums to **4 961 076** across the eighteen provinces; the national total at the schema&#x27;s stated reference year of 2020 is **7 346 533**, and the year whose total is nearest the snapshot&#x27;s is **1995**. This is the third statement in that schema found not to describe the file. The anchor is used as declared anyway, and the discrepancy recorded: changing the reference year multiplies every population by one constant, which a log offset absorbs, so what the fork actually probes is the shape of the trend.</p>
+<p>The series is national, so every province is scaled by the same factor. The fork probes a trend, not a provincial differential, and `Archive/lao-population/provenance.md` records why the censuses that would give one are not here.</p>
 <h2>Results</h2>
 <details><summary>2 other combination(s)</summary>
 <h3>popColumn_backCast</h3>

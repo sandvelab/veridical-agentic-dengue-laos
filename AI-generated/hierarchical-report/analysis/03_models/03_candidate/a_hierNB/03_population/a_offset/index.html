@@ -34,6 +34,11 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../../../index.html">analysis</a> / <a href="../../../../index.html">03_models</a> / <a href="../../../index.html">03_candidate</a> / <a href="../../index.html">a_hierNB</a> / <a href="../index.html">03_population</a> / a_offset</div>
 <h1>a_offset</h1>
 <div class=claim>As a fixed offset, log population: the model forecasts an incidence rate and multiplies it back up by the province&#x27;s size, so the fit never has to learn how large a province is.</div>
+<h2>Answers</h2>
+<p>The offset can be taken: population is positive in every province, and the largest is
+**23.8 times** the smallest (`results/main/model_option_spec.json`). That ratio is also the
+reason the choice matters — a model that had to learn each province&#x27;s size from its counts
+would spend a parameter per province on something the file already says.</p>
 <h2>Results</h2>
 <h3>main</h3>
 <ul>

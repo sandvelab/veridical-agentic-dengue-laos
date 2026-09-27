@@ -34,6 +34,8 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../../index.html">analysis</a> / <a href="../../../index.html">03_models</a> / <a href="../../index.html">01_baselines</a> / <a href="../index.html">01_persistence</a> / a_empiricalChange</div>
 <h1>a_empiricalChange</h1>
 <div class=claim>Wrap the point in the empirical distribution of past h-step changes within the same province, each change entered with its negation so the predictive median stays on the last observation, truncated at zero.</div>
+<h2>Answers</h2>
+<p>Mean CRPS **24.879** over 371 cells in 16 provinces, 28 seconds for the eight-split backtest (`results/main/run_cost.json`). Identical to batch 6&#x27;s vertical-slice figure to the last digit, and byte-identical across two independent runs.</p>
 <h2>Results</h2>
 <h3>main</h3>
 <ul>

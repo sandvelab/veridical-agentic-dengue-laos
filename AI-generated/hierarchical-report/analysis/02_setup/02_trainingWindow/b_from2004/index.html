@@ -34,6 +34,9 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../index.html">analysis</a> / <a href="../../index.html">02_setup</a> / <a href="../index.html">02_trainingWindow</a> / b_from2004</div>
 <h1>b_from2004</h1>
 <div class=claim>Let models learn only from the second half of the development record, 2004-01 onward. The share of zero-valued months falls monotonically across the period, so the early years may describe a reporting regime the evaluated window no longer belongs to; the cut is taken at the calendar midpoint rather than at a zero-rate threshold, so it is not chosen by the quantity it is meant to probe.</div>
+<h2>Answers</h2>
+<p>Half the record is discarded: **2 592 rows in, 1 296 out**, 2004-01 to 2009-12, latest dropped period 2003-12 (`results/trainingWindow_from2004/setup_spec.json`). The evaluated span begins 2008-01, so the 371 cells are untouched — asserted by the script rather than assumed, so a cut that reached into the evaluated span would stop the run instead of producing two children scored on different cells.</p>
+<p>Halving what the models learn from costs **0.0219 of skill**, from +0.1485 to **+0.1266** — the largest downward move of any fork run so far, and still far inside the reference&#x27;s own re-run noise. The early years are worth something and not much.</p>
 <h2>Results</h2>
 <details><summary>2 other combination(s)</summary>
 <h3>trainingWindow_from2004</h3>

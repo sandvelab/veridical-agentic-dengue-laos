@@ -185,3 +185,23 @@ alternatives-considered: rewording the README to say "build it first", which kee
 repository free of derived files but leaves the host reader without the way in; publishing
 the build on GitHub Pages or as a release asset, which would need a second place to keep in
 step with the tree. The human chose committing it with a dated note.
+
+## Rebuilt with each node's result shown — 2026-09-27, row 35
+
+```
+result:              AI-generated/hierarchical-report/   (69 combinations, 1 387 pages)
+script:              AI-internal/useful-scripts/build_hierarchical_report.py
+                     sha256:769304b52ba8b55e2fe45e4481a9077d07369b0cddf301eb7d56b0cd6f55303f
+                     imports AI-internal/useful-scripts/claims.py
+                     sha256:f9c2951668c503c726ead0dabf626cf1a56875554ea62c3dc78516c7e4330ab3
+invocation:          .venv/bin/python AI-internal/useful-scripts/build_hierarchical_report.py
+inputs:              the tree at commit 3d89200, unchanged under analysis/ since the release
+commit:              3d89200
+produced:            2026-09-27
+```
+
+Every node page had omitted its **Answers** section since the first build. Each
+`## Answers` in a `claim.md` opens with the template's italic instruction, `_(What this
+node's analysis yielded. …)_`, and the page skipped any section beginning with `_(`, which
+was all 71 of them. The instruction is now stripped through `answers_text()`, which the
+Markdown mirror shares, and each answer is shown paragraph by paragraph.

@@ -34,6 +34,13 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../index.html">analysis</a> / <a href="../index.html">04_score</a> / 01_collect</div>
 <h1>01_collect</h1>
 <div class=claim>What did each model score on every evaluable cell? One row per model, province, target month and lead time, with CRPS, absolute error, both interval indicators and the observed value beside them, taken from chap-core&#x27;s own registered metrics.</div>
+<h2>Answers</h2>
+<p>2 597 rows: 371 evaluable cells for each of seven model rows — two baselines, the
+reference&#x27;s four repeats, and the reference&#x27;s per-cell mean. Each row carries CRPS, absolute
+error, both interval indicators, the observed value, the split it belongs to and the number
+of draws behind it. Every reported figure in the project is an aggregation of this one file.</p>
+<p>All three models were scored on the identical 371 cells, which is what makes the paired
+comparison at `03_compare` possible at all.</p>
 <h2>Down to the values</h2>
 <p class=meta>National mean, then province, then month, then the per-cell scores everything above is an average of — one page per combination that was scored.</p><ul>
 <li><a href="../../../detail/main/index.html">main</a></li>

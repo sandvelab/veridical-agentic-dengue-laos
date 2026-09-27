@@ -34,6 +34,14 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../../../index.html">analysis</a> / <a href="../../../../index.html">03_models</a> / <a href="../../../index.html">03_candidate</a> / <a href="../../index.html">b_boosted</a> / <a href="../index.html">01_features</a> / a_lagBlock</div>
 <h1>a_lagBlock</h1>
 <div class=claim>A block of lags and nothing else: the climate columns at the lags a three-month forecast can see, the province&#x27;s own recent counts at the lags it can see, and the province&#x27;s size. Time and place enter only through what they imply about those numbers.</div>
+<h2>Answers</h2>
+<p>Eighteen features: three climate columns at lags 0, 1, 2 and 3; the province&#x27;s own counts
+at lags 3, 4, 5, 6 and 12; and log population
+(`results/family_boosted/model_option_spec.json`). No column is standardised and none is
+dropped for being missing. 209 of the 2 012 fitted rows have at least one lag that falls
+before the record begins, and the boosters carry those as a missing-value direction learned
+at each split rather than discarding the rows — which is where this family differs from
+candidate 1, whose fit drops them.</p>
 <h2>Results</h2>
 <h3>main</h3>
 <ul>

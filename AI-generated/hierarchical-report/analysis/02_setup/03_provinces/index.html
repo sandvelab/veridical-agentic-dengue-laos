@@ -34,6 +34,17 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../index.html">analysis</a> / <a href="../index.html">02_setup</a> / 03_provinces</div>
 <h1>03_provinces</h1>
 <div class=claim>Which provinces belong in the analysis at all? One province reports nothing across the whole record and a second stops reporting partway through, and what the headline mean is a mean over depends on the answer.</div>
+<h2>Answers</h2>
+<p>**Both siblings are built and run, and both raise the skill score by moving the reference rather than us.** Removing the two unevaluable provinces before the platform sees them gives **+0.1861**; merging Vientiane province into the capital gives **+0.1714**; the main path gives +0.1485. In both, our pool moves by less than 0.2 CRPS and the reference moves by 0.8 to 1.1. Neither changes the number of evaluated cells, which answers batch 12&#x27;s question about whether `c_mergeVientiane` could be scored at all. See the two children&#x27;s `claim.md`.</p>
+<p>18 provinces go to the platform; **16 contribute 371 evaluable cells**. One province
+(LA-VI, Vientiane) never reports and the platform&#x27;s region filter drops it; one (LA-XN,
+Xaisomboun) survives the filter and has no observation inside the evaluated span, so it
+contributes nothing. The figure is recomputed here from the dataset and the stored scheme
+(`a_chapFilter/results/main/setup_spec.json`) and agrees with batch 3&#x27;s and with what the
+evaluation produced.</p>
+<p>Unlike the other three forks, this one&#x27;s siblings change *what is evaluated*, so raw CRPS is
+not comparable across them. That is survivable only because the project&#x27;s reported
+conclusion is a ratio to the reference computed on whatever cell set the child produced.</p>
 <h2>Claims resting on this node</h2>
 <p class=meta>From the claim collection. Nothing enters the manuscript that is not there.</p>
 <div class=claimblock>

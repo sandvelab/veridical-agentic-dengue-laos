@@ -34,6 +34,21 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../../index.html">analysis</a> / <a href="../../../index.html">03_models</a> / <a href="../../index.html">03_candidate</a> / <a href="../index.html">b_boosted</a> / 01_features</div>
 <h1>01_features</h1>
 <div class=claim>Which features does the booster see? Trees cannot extrapolate a trend or interpolate a cycle, so what a boosted model knows about time and place is exactly what the feature matrix says, and this is the choice of how much to say.</div>
+<h2>Answers</h2>
+<p>**The fork does not move the model.** The lag block alone scores **20.771** and the rich
+calendar **20.375**, a difference of 0.396 CRPS — inside the 0.565 floor the reference&#x27;s own
+re-runs occupy, so by the rule batch 9 fixed the main path stays at `a_lagBlock`
+(`AI-generated/candidate-forks/boosted_round1/fork_leaderboard.csv`).</p>
+<p>**What the richer set buys is not accuracy but width.** Its point forecast is worse — MAE
+28.251 against 26.953 — and its intervals are wider: 10–90 coverage 0.857 against 0.825,
+further from nominal on the over-covering side. A boosted model given the province as an
+identifier and a year index fits the training years more closely and forecasts a period it
+cannot extrapolate into with correspondingly less confidence, which is what the two
+numbers together say.</p>
+<p>**So the twelve-month lag was enough.** `a_lagBlock` has no month, no year and no province
+identifier, and describing all three explicitly moved the score by less than the evaluation
+can resolve. On this dataset a tree given last year&#x27;s count in the same province has
+already been told what the calendar would tell it.</p>
 <h2>Children <span class=tag>alternatives</span></h2>
 <p class=meta>Only the main path is run by this node. The others are run by the stability node.</p>
 <ul>

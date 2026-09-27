@@ -34,6 +34,13 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../index.html">analysis</a> / 04_score</div>
 <h1>04_score</h1>
 <div class=claim>What does each model score, and how do they compare, at every resolution the platform allows? Scores are collected once at the platform&#x27;s finest resolution and everything reported is an aggregation of that one file.</div>
+<h2>Answers</h2>
+<p>The leaderboard for this combination, from best to worst mean CRPS: the reference at
+**22.098**, seasonal climatology at **24.337**, persistence at **24.879**
+(`03_compare/results/main/leaderboard.csv`). Every figure is an aggregation of one per-cell
+file, and that file is written from chap-core&#x27;s own registered metrics.</p>
+<p>The node&#x27;s substantive answer is not the ordering but **what the ordering can support**, and
+that is at `03_compare`.</p>
 <h2>Children <span class=tag>sub-analyses</span></h2>
 <ul>
 <li><a href="01_collect/index.html">01_collect</a><br><span class=meta>What did each model score on every evaluable cell? One row per model, province, target month and lead time, with CRPS, absolute error, both interval indicators and the observed value beside them, taken from chap-core&#x27;s own registered metrics.</span></li>

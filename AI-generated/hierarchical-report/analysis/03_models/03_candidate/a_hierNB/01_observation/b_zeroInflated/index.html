@@ -34,6 +34,11 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../../../index.html">analysis</a> / <a href="../../../../index.html">03_models</a> / <a href="../../../index.html">03_candidate</a> / <a href="../../index.html">a_hierNB</a> / <a href="../index.html">01_observation</a> / b_zeroInflated</div>
 <h1>b_zeroInflated</h1>
 <div class=claim>A mixture: a share of the zero months come from a process that reports nothing at all, and the rest of the record — zeros included — comes from the same negative binomial as before. The share is estimated rather than assumed, and if it comes out near zero the fork has answered itself.</div>
+<h2>Answers</h2>
+<p>The mixing weight fitted at **0.035**, and the combination scored **24.129** mean CRPS
+     against the promoted main path&#x27;s 23.698. Three and a half per cent of months attributed
+     to a process that reports nothing is the fork answering itself: the negative binomial&#x27;s
+     variance function was already carrying the zeros.</p>
 <h2>Results</h2>
 <details><summary>2 other combination(s)</summary>
 <h3>observation_zeroInflated</h3>

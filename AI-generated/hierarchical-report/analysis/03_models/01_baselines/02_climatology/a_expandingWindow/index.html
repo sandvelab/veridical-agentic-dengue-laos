@@ -34,6 +34,8 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../../../index.html">analysis</a> / <a href="../../../index.html">03_models</a> / <a href="../../index.html">01_baselines</a> / <a href="../index.html">02_climatology</a> / a_expandingWindow</div>
 <h1>a_expandingWindow</h1>
 <div class=claim>Estimate each province&#x27;s calendar-month distribution from everything observed by the time the forecast is made — the expanding historic window chap-core hands to predict — so the baseline uses the same information the persistence baseline anchors on.</div>
+<h2>Answers</h2>
+<p>Mean CRPS **24.337** over the same 371 cells, 28 seconds for the backtest. Byte-identical across two independent runs. The model&#x27;s environment resolves to the same six packages as the persistence baseline&#x27;s, so the two differ in what they compute and in nothing else.</p>
 <h2>Results</h2>
 <h3>main</h3>
 <ul>

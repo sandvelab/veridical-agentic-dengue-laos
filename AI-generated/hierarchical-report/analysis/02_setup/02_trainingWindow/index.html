@@ -34,6 +34,12 @@ summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class=crumb><a href="../../index.html">analysis</a> / <a href="../index.html">02_setup</a> / 02_trainingWindow</div>
 <h1>02_trainingWindow</h1>
 <div class=claim>How much of the record should models be allowed to learn from, given that the share of zero-valued months falls monotonically across the period and the early years may describe a different reporting regime?</div>
+<h2>Answers</h2>
+<p>**The sibling is built and run.** Starting at 2004-01, the calendar midpoint, discards half the record and costs **0.0219 of skill** (+0.1266 against the main path&#x27;s +0.1485) while leaving the 371 evaluated cells identical — the comparability the paragraph below predicts, checked by the sibling rather than assumed. See `b_from2004/claim.md`.</p>
+<p>All 2 592 rows reach the models: no year is discarded on the main path. Because chap-core
+lays its splits out backwards from the last period of the file, a sibling that truncates the
+early years would change what the models learn from and leave the 371 evaluated cells
+identical — which is what makes this fork&#x27;s children directly comparable.</p>
 <h2>Children <span class=tag>alternatives</span></h2>
 <p class=meta>Only the main path is run by this node. The others are run by the stability node.</p>
 <ul>
