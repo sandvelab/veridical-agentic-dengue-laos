@@ -3004,3 +3004,25 @@ carries only the stable fact that the project is complete. The run-time statemen
 corrected from "about six hours" to the 14.87 h of the clean-room run of 2026-09-05, which
 had the external check in the tree. Every relative link was checked to resolve. Ledger row
 36 and a §4b entry.
+
+## T38 — outside the plan: the README puts the way of working first (2026-09-27)
+
+### What happened
+
+The human, having asked what claim C19 and the write-up's "one structural regret" meant and
+whether the tree serves stability, asked for a few sentences in `README.md` explaining the
+tree of claims, its two parent-child relations and their purpose, and a note near the top
+that a reader can clone the repository and ask an agent about anything unclear. On review
+they asked that no product be named, that the paragraph on the tree not recording the order
+of the search be dropped, and that the overlapping veridicality bullet be shortened. The
+agent asked whether a section on how the write-up is produced from the claims was wanted;
+the human asked for it, and asked that everything about the case be framed as illustrative
+of the kind of conclusion such a setup produces, the way of working being the point.
+
+The relations are described from `AGENTS.md` §2 and §8 (numbered sub-analyses all run;
+lettered alternatives, one main path, the rest runnable); that the stability node reads the
+forks from the tree, from `analysis/05_stability/claim.md`; the claim fields, from the
+collection's header; the sidecar's three bases, from the sidecar's header; and that
+`/validate` checks every claim resolves to an existing result, from `check_invariants.py`.
+The sidecar mapping itself is not script-checked, and the README does not say it is. Every
+relative link was checked to resolve. Ledger row 37 and a §4b entry.

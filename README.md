@@ -6,11 +6,26 @@ by Chap's own cross-validated backtest — **together with the complete record o
 came about**: every execution, environment, judgment call and rejected alternative, and how
 far the conclusion survives the alternatives.
 
+**The point of this repository is the way of working, not the forecast.** The dengue case
+is a worked illustration: a real, representative research problem, carried through so that
+the setup around it — the tree of claims, the recorded judgment calls, the stability
+analysis, the provenance chain — can be shown doing its job. What the case concludes is
+reported for concreteness, as an example of the kind of qualified conclusion such a setup
+produces.
+
 **The project is finished and this is its public release** (2026-09-07). The analysis has
 run, the held-out year has been opened and scored, the external check on two further
 countries has run, and the write-up is done. Everything below is browsable here on GitHub.
 
-## The results — where to look
+**This repository holds far more detail than any page of it can explain**: every node,
+result, judgment call and the reasoning behind it is in the files. If anything you read is
+unclear, clone the repository, start an agentic AI assistant in the root of the clone, and
+ask it. It can explain a concept, say why a choice was made, trace a number to the file it
+came from, or relate two results to each other. The instructions it reads on starting
+(`AGENTS.md`, `readme-at-start.md`) orient it to the project, and it answers by reading the
+record rather than from memory. Asking questions changes nothing in the record.
+
+## Where to look
 
 | To see | Open |
 |---|---|
@@ -31,25 +46,29 @@ open `AI-generated/hierarchical-report/index.html` in a browser — it is commit
 GitHub shows HTML as source rather than as a page. Both views are generated snapshots,
 stamped with the date and commit they were built from.
 
-### The headline, in brief
+### The kind of conclusion this produces — the case in brief
 
-- **The reported model is a linear opinion pool** over two model families of our own and
-  the two required baselines. Its skill against the reference model (WHO EWARS-csd, at its
-  own defaults) is **+0.1485** on the development backtest — mean CRPS 18.817 against
-  22.098 — and **+0.0868** on the held-out year 2010, beating both baselines on each
-  ([`conclusion.json`](analysis/results/main/conclusion.json),
+These figures illustrate what a project run this way ends up saying. What matters is less
+the numbers than their shape: a reported value that comes with the distribution around it,
+a held-out check, an external check and a stated noise floor.
+
+- **A reported value.** The model the case reports is a linear opinion pool over two model
+  families of our own and the two required baselines. Its skill against the reference model
+  (WHO EWARS-csd, at its own defaults) is **+0.1485** on the development backtest (mean CRPS
+  18.817 against 22.098) and **+0.0868** on the held-out year 2010, beating both baselines
+  on each ([`conclusion.json`](analysis/results/main/conclusion.json),
   [held out](analysis/results/main__holdout/conclusion.json)).
-- **That number is one of a distribution.** Across 32 analyses fixed before any ran, skill
-  spans −0.0724 to +0.2320 on development, where the reported one sits 13th, and −0.5038 to
+- **The distribution it belongs to.** Across 32 analyses fixed before any ran, skill spans
+  −0.0724 to +0.2320 on development, where the reported one sits 13th, and −0.5038 to
   +0.2026 on 2010, where it sits 18th
   ([`distribution.json`](analysis/05_stability/results/distribution.json),
   [held out](analysis/05_stability/results/holdout_distribution.json)). The model family is
   what the conclusion is sensitive to; the choices inside a family mostly are not.
-- **The development-to-final-year drop replicates** on Thailand and Vietnam
-  ([`external_vs_laos.json`](analysis/06_external/results/external_vs_laos.json)).
-- **None of it reaches statistical significance and none is claimed.** The reference model
-  is unseeded, and its own re-run spread is reported beside every comparison that divides
-  by it.
+- **An external check.** The development-to-final-year drop replicates on Thailand and
+  Vietnam ([`external_vs_laos.json`](analysis/06_external/results/external_vs_laos.json)).
+- **Stated limits.** None of it reaches statistical significance and none is claimed. The
+  reference model is unseeded, and its own re-run spread is reported beside every
+  comparison that divides by it.
 
 ## What this repository is for
 
@@ -69,16 +88,39 @@ session. The repository's shape answers each of these structurally — the right
 easy thing, and the wrong thing is detectable. [`MOTIVATION.md`](MOTIVATION.md) gives the
 full argument.
 
+## How the analysis is organised: a tree of claims
+
+Each folder under [`analysis/`](analysis/README.md) is a node that states one **claim**, an
+analytical aim, in its `claim.md`, alongside the scripts, results and provenance that answer
+it. The root node is the project's question, and each child narrows it. A node's `claim.md`
+declares which of two relations its children stand in:
+
+- **Sub-analyses** (numbered `01_…`, `02_…`): the children are the parts of one approach
+  (prepare the data, build the models, score them), and all of them run, in order. Together
+  they answer the parent.
+- **Alternatives** (lettered `a_…`, `b_…`): the children are competing, equally defensible
+  answers to one judgment call, such as which provinces to include, which model family to
+  use, or how to weight the pool. Exactly one is marked as the main path, and that is what
+  the reported analysis runs. The others stay in the tree, complete and runnable.
+
+This one structure serves both aims of the project. For **reproducibility**, following the
+main path at every alternatives node gives a single executable chain from raw data to the
+reported number (`analysis/run.sh`), and every result on it carries its provenance. For
+**veridicality**, the alternatives nodes are an explicit, machine-readable list of the
+project's judgment calls. The stability node reads them from the tree and re-runs the
+conclusion with each one switched. That turns "would an equally reasonable analyst have
+reached the same conclusion?" into a computed distribution rather than an assertion. Each
+node's answer is recorded as a claim tied to the result file behind it, and the write-up is
+assembled from those claims.
+
 ## How veridicality is ensured
 
 Reproducibility says what was done; veridicality asks whether the conclusion would survive a
 differently-but-equally-reasonably conducted analysis.
 
-- **The analysis is a tree of questions, not a pipeline of steps.** Each node in
-  [`analysis/`](analysis/README.md) is an analytical aim. Where a judgment call was made, the
-  alternatives are siblings — one on the main path, the rest kept in the tree, complete and
-  runnable: 71 nodes, 17 forks, 23 paths not taken. `analysis/run.sh` still reproduces
-  exactly the reported analysis.
+- **The analysis is a tree of questions, not a pipeline of steps** (see above): 71 nodes, 17
+  forks, 23 paths not taken, and `analysis/run.sh` still reproduces exactly the reported
+  analysis.
 - **The stability analysis is part of the tree.** `05_stability` runs every fork taken alone
   and eight pairs chosen by a rule fixed in advance — 32 analyses — and reports the
   conclusion as the distribution over them, with each fork's effect measured against the
@@ -99,9 +141,8 @@ differently-but-equally-reasonably conducted analysis.
 - **No number reaches a claim except through a file.** Every reported figure is read by a
   script from the files Chap wrote, never from terminal output, and every result carries a
   `provenance/` record naming the script, its digest, the inputs and the commit.
-- **Text is downstream of claims, which are downstream of results.** Every sentence of the
-  write-up maps to a claim in the collection, every claim to a result file, every result to
-  the command that produced it.
+- **Text is downstream of claims, which are downstream of results** (see *How the write-up
+  is produced from the claims* below).
 - **The environment is pinned at three layers**: a declarative specification, an exact lock
   of 174 packages (CPython 3.13.0, `chap-core` 2.1.0), and a Docker image. The reference
   model is pinned by image digest, the data by source-repository commit and checksum.
@@ -118,6 +159,25 @@ differently-but-equally-reasonably conducted analysis.
 The qualification travels with the claim: our models reproduce bit for bit, **the reference
 model does not** — it is an unseeded container, so every figure dividing by it is a draw,
 and the reports say which ones moved.
+
+## How the write-up is produced from the claims
+
+Writing is two steps, kept apart on purpose. First, each finding is recorded as a **claim**
+in the [claim collection](Human-AI-collaboration/claims/claims.md): a statement of one or
+two sentences, with the result file that grounds it, the node that produced it, the scope
+within which it holds, the alternatives that bear on it, and who made the call
+(`human-set`, `agent-on-human-assessment` or `agent-autonomous`). What the stability
+analysis showed is recorded as claims like any other. Second, the
+[write-up](Human-AI-collaboration/manuscript/26-09-05_illustratingCase.md) is written from
+the collection and from nothing else: a passage may assert only what a claim supports. A
+[provenance sidecar](Human-AI-collaboration/manuscript/26-09-05_illustratingCase_sidecar.md)
+beside it maps every passage to the claims it rests on. Where a passage rests on no claim,
+the sidecar says instead whether it describes the design, describes the project's own
+record, or is a labelled judgment. Any sentence can therefore be followed to a command:
+sentence → claim → result file → provenance record → commit. `/validate` checks that every
+claim points at a result that exists. Keeping the steps apart stops a fluent sentence from
+running ahead of its number. That is the failure an agent writing from its own context is
+most prone to.
 
 ## What is in the repository
 
