@@ -1,0 +1,1192 @@
+<!doctype html><meta charset=utf-8>
+<title>main__vnmFinal</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<div class=crumb><a href="../../index.html">Analysis report</a> / <a href="../../analysis/index.html">analysis</a> / detail / main__vnmFinal</div>
+<h1>main__vnmFinal</h1>
+<p class=meta>National, then province, then month, then the values. Every figure on this page is displayed from the file the analysis wrote; nothing here is recomputed.</p>
+<h2>The conclusion under this combination</h2>
+<p class=claim>Skill score against the reference model: <strong>-0.0862</strong> — mean CRPS 83.913 for <strong>ensemble</strong> against the reference&rsquo;s 77.252, over 756 cells in 63 provinces and 4 splits of the vnmFinal data.</p>
+<div class=scroll><table><tr>
+<th class=""></th>
+<th class="n">value</th>
+</tr>
+<tr>
+<td class="">beats the reference</td>
+<td class="n">False</td>
+</tr>
+<tr>
+<td class="">beats both required baselines</td>
+<td class="n">True</td>
+</tr>
+<tr>
+<td class="">10–90 coverage, ours (nominal 0.80)</td>
+<td class="n">0.893</td>
+</tr>
+<tr>
+<td class="">10–90 coverage, reference</td>
+<td class="n">0.814</td>
+</tr>
+<tr>
+<td class="">paired mean difference vs reference</td>
+<td class="n">6.661</td>
+</tr>
+<tr>
+<td class="">its standard error, clustered by split</td>
+<td class="n">6.837</td>
+</tr>
+<tr>
+<td class="">what this backtest can resolve at all</td>
+<td class="n">0.513</td>
+</tr>
+</table></div>
+<h2>National <span class=tag>unweighted</span></h2>
+<p class=meta>The mean each model is reported at, over every evaluated cell.</p>
+<div class=scroll><table><tr>
+<th class="">model</th>
+<th class="n">mean CRPS</th>
+<th class="n">MAE</th>
+<th class="n">10–90</th>
+<th class="n">25–75</th>
+<th class="n">cells</th>
+<th class="n">provinces</th>
+<th class="n">splits</th>
+</tr>
+<tr>
+<td class="">reference_r2</td>
+<td class="n">76.978</td>
+<td class="n">102.040</td>
+<td class="n">0.811</td>
+<td class="n">0.628</td>
+<td class="n">756</td>
+<td class="n">63</td>
+<td class="n">4</td>
+</tr>
+<tr>
+<td class="">reference_r1</td>
+<td class="n">77.202</td>
+<td class="n">102.674</td>
+<td class="n">0.823</td>
+<td class="n">0.628</td>
+<td class="n">756</td>
+<td class="n">63</td>
+<td class="n">4</td>
+</tr>
+<tr>
+<td class="">reference</td>
+<td class="n">77.252</td>
+<td class="n">102.719</td>
+<td class="n">0.814</td>
+<td class="n">0.625</td>
+<td class="n">756</td>
+<td class="n">63</td>
+<td class="n">4</td>
+</tr>
+<tr>
+<td class="">reference_r4</td>
+<td class="n">77.338</td>
+<td class="n">103.040</td>
+<td class="n">0.810</td>
+<td class="n">0.614</td>
+<td class="n">756</td>
+<td class="n">63</td>
+<td class="n">4</td>
+</tr>
+<tr>
+<td class="">reference_r3</td>
+<td class="n">77.491</td>
+<td class="n">103.122</td>
+<td class="n">0.812</td>
+<td class="n">0.630</td>
+<td class="n">756</td>
+<td class="n">63</td>
+<td class="n">4</td>
+</tr>
+<tr class=ours>
+<td class="">ensemble</td>
+<td class="n">83.913</td>
+<td class="n">115.220</td>
+<td class="n">0.893</td>
+<td class="n">0.716</td>
+<td class="n">756</td>
+<td class="n">63</td>
+<td class="n">4</td>
+</tr>
+<tr class=ours>
+<td class="">climatology</td>
+<td class="n">99.341</td>
+<td class="n">125.308</td>
+<td class="n">0.684</td>
+<td class="n">0.513</td>
+<td class="n">756</td>
+<td class="n">63</td>
+<td class="n">4</td>
+</tr>
+<tr class=ours>
+<td class="">persistence</td>
+<td class="n">104.543</td>
+<td class="n">125.950</td>
+<td class="n">0.653</td>
+<td class="n">0.467</td>
+<td class="n">756</td>
+<td class="n">63</td>
+<td class="n">4</td>
+</tr>
+</table></div>
+<p class=meta>Bold is a model of ours. <a href="../../../../analysis/04_score/02_aggregate/a_unweighted/results/main__vnmFinal/metrics_summary.csv">metrics_summary.csv</a></p>
+<h3>The same mean, cut two other ways</h3>
+<p class=meta>by split</p>
+<div class=scroll><table><tr>
+<th class="">model</th>
+<th class="n">201001</th>
+<th class="n">201004</th>
+<th class="n">201007</th>
+<th class="n">201010</th>
+</tr>
+<tr>
+<td class="">climatology</td>
+<td class="n">29.187</td>
+<td class="n">39.273</td>
+<td class="n">188.294</td>
+<td class="n">140.608</td>
+</tr>
+<tr>
+<td class="">ensemble</td>
+<td class="n">30.118</td>
+<td class="n">30.850</td>
+<td class="n">178.144</td>
+<td class="n">96.539</td>
+</tr>
+<tr>
+<td class="">persistence</td>
+<td class="n">64.439</td>
+<td class="n">26.954</td>
+<td class="n">184.010</td>
+<td class="n">142.769</td>
+</tr>
+<tr>
+<td class="">reference</td>
+<td class="n">33.218</td>
+<td class="n">32.551</td>
+<td class="n">147.956</td>
+<td class="n">95.284</td>
+</tr>
+<tr>
+<td class="">reference_r1</td>
+<td class="n">33.213</td>
+<td class="n">32.498</td>
+<td class="n">147.758</td>
+<td class="n">95.340</td>
+</tr>
+<tr>
+<td class="">reference_r2</td>
+<td class="n">33.200</td>
+<td class="n">32.430</td>
+<td class="n">147.174</td>
+<td class="n">95.106</td>
+</tr>
+<tr>
+<td class="">reference_r3</td>
+<td class="n">33.126</td>
+<td class="n">32.746</td>
+<td class="n">148.230</td>
+<td class="n">95.860</td>
+</tr>
+<tr>
+<td class="">reference_r4</td>
+<td class="n">33.332</td>
+<td class="n">32.531</td>
+<td class="n">148.660</td>
+<td class="n">94.829</td>
+</tr>
+</table></div>
+<p class=meta>by horizon, months ahead</p>
+<div class=scroll><table><tr>
+<th class="">model</th>
+<th class="n">1</th>
+<th class="n">2</th>
+<th class="n">3</th>
+</tr>
+<tr>
+<td class="">climatology</td>
+<td class="n">102.908</td>
+<td class="n">95.545</td>
+<td class="n">99.568</td>
+</tr>
+<tr>
+<td class="">ensemble</td>
+<td class="n">78.097</td>
+<td class="n">83.549</td>
+<td class="n">90.092</td>
+</tr>
+<tr>
+<td class="">persistence</td>
+<td class="n">70.755</td>
+<td class="n">108.632</td>
+<td class="n">134.242</td>
+</tr>
+<tr>
+<td class="">reference</td>
+<td class="n">74.855</td>
+<td class="n">75.228</td>
+<td class="n">81.673</td>
+</tr>
+<tr>
+<td class="">reference_r1</td>
+<td class="n">74.870</td>
+<td class="n">75.189</td>
+<td class="n">81.548</td>
+</tr>
+<tr>
+<td class="">reference_r2</td>
+<td class="n">74.381</td>
+<td class="n">74.834</td>
+<td class="n">81.717</td>
+</tr>
+<tr>
+<td class="">reference_r3</td>
+<td class="n">75.404</td>
+<td class="n">75.507</td>
+<td class="n">81.562</td>
+</tr>
+<tr>
+<td class="">reference_r4</td>
+<td class="n">74.765</td>
+<td class="n">75.383</td>
+<td class="n">81.865</td>
+</tr>
+</table></div>
+<h2>By province</h2>
+<p class=meta>Each province&rsquo;s own mean, and one click to the months it averages.</p>
+<div class=scroll><table><tr>
+<th class="">province</th>
+<th class="">name</th>
+<th class="n">cells</th>
+<th class="n">cases observed</th>
+<th class="n">climatology</th>
+<th class="n">ensemble</th>
+<th class="n">persistence</th>
+<th class="n">reference</th>
+<th class="n">reference_r1</th>
+<th class="n">reference_r2</th>
+<th class="n">reference_r3</th>
+<th class="n">reference_r4</th>
+</tr>
+<tr>
+<td class=""><a href="VN-01.html">VN-01</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">0</td>
+<td class="n">0.002</td>
+<td class="n">0.055</td>
+<td class="n">0.000</td>
+<td class="n">0.031</td>
+<td class="n">0.031</td>
+<td class="n">0.032</td>
+<td class="n">0.031</td>
+<td class="n">0.031</td>
+</tr>
+<tr>
+<td class=""><a href="VN-02.html">VN-02</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">0</td>
+<td class="n">0.007</td>
+<td class="n">0.072</td>
+<td class="n">0.002</td>
+<td class="n">0.019</td>
+<td class="n">0.017</td>
+<td class="n">0.020</td>
+<td class="n">0.021</td>
+<td class="n">0.019</td>
+</tr>
+<tr>
+<td class=""><a href="VN-03.html">VN-03</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">0</td>
+<td class="n">0.010</td>
+<td class="n">0.070</td>
+<td class="n">0.001</td>
+<td class="n">0.049</td>
+<td class="n">0.047</td>
+<td class="n">0.051</td>
+<td class="n">0.048</td>
+<td class="n">0.050</td>
+</tr>
+<tr>
+<td class=""><a href="VN-04.html">VN-04</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">0</td>
+<td class="n">0.021</td>
+<td class="n">0.071</td>
+<td class="n">0.003</td>
+<td class="n">0.020</td>
+<td class="n">0.021</td>
+<td class="n">0.020</td>
+<td class="n">0.020</td>
+<td class="n">0.019</td>
+</tr>
+<tr>
+<td class=""><a href="VN-05.html">VN-05</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">1</td>
+<td class="n">0.078</td>
+<td class="n">0.188</td>
+<td class="n">0.313</td>
+<td class="n">0.422</td>
+<td class="n">0.412</td>
+<td class="n">0.420</td>
+<td class="n">0.440</td>
+<td class="n">0.416</td>
+</tr>
+<tr>
+<td class=""><a href="VN-06.html">VN-06</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">0</td>
+<td class="n">0.003</td>
+<td class="n">0.052</td>
+<td class="n">0.000</td>
+<td class="n">0.024</td>
+<td class="n">0.021</td>
+<td class="n">0.027</td>
+<td class="n">0.023</td>
+<td class="n">0.024</td>
+</tr>
+<tr>
+<td class=""><a href="VN-07.html">VN-07</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">0</td>
+<td class="n">0.000</td>
+<td class="n">0.063</td>
+<td class="n">0.000</td>
+<td class="n">0.062</td>
+<td class="n">0.070</td>
+<td class="n">0.060</td>
+<td class="n">0.058</td>
+<td class="n">0.059</td>
+</tr>
+<tr>
+<td class=""><a href="VN-09.html">VN-09</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">0</td>
+<td class="n">0.055</td>
+<td class="n">0.122</td>
+<td class="n">0.017</td>
+<td class="n">0.027</td>
+<td class="n">0.028</td>
+<td class="n">0.028</td>
+<td class="n">0.026</td>
+<td class="n">0.028</td>
+</tr>
+<tr>
+<td class=""><a href="VN-13.html">VN-13</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">144</td>
+<td class="n">10.228</td>
+<td class="n">7.730</td>
+<td class="n">7.617</td>
+<td class="n">9.986</td>
+<td class="n">10.010</td>
+<td class="n">9.931</td>
+<td class="n">10.033</td>
+<td class="n">9.969</td>
+</tr>
+<tr>
+<td class=""><a href="VN-14.html">VN-14</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">33</td>
+<td class="n">2.502</td>
+<td class="n">1.856</td>
+<td class="n">2.318</td>
+<td class="n">2.952</td>
+<td class="n">2.950</td>
+<td class="n">2.877</td>
+<td class="n">3.008</td>
+<td class="n">2.973</td>
+</tr>
+<tr>
+<td class=""><a href="VN-18.html">VN-18</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">12</td>
+<td class="n">0.868</td>
+<td class="n">0.665</td>
+<td class="n">0.692</td>
+<td class="n">0.514</td>
+<td class="n">0.510</td>
+<td class="n">0.513</td>
+<td class="n">0.511</td>
+<td class="n">0.522</td>
+</tr>
+<tr>
+<td class=""><a href="VN-20.html">VN-20</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">84</td>
+<td class="n">5.316</td>
+<td class="n">5.057</td>
+<td class="n">10.750</td>
+<td class="n">4.556</td>
+<td class="n">4.559</td>
+<td class="n">4.471</td>
+<td class="n">4.543</td>
+<td class="n">4.650</td>
+</tr>
+<tr>
+<td class=""><a href="VN-21.html">VN-21</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">0</td>
+<td class="n">6.587</td>
+<td class="n">4.573</td>
+<td class="n">3.539</td>
+<td class="n">1.274</td>
+<td class="n">1.244</td>
+<td class="n">1.313</td>
+<td class="n">1.269</td>
+<td class="n">1.272</td>
+</tr>
+<tr>
+<td class=""><a href="VN-22.html">VN-22</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">0</td>
+<td class="n">24.171</td>
+<td class="n">9.468</td>
+<td class="n">4.913</td>
+<td class="n">1.429</td>
+<td class="n">1.414</td>
+<td class="n">1.408</td>
+<td class="n">1.445</td>
+<td class="n">1.449</td>
+</tr>
+<tr>
+<td class=""><a href="VN-23.html">VN-23</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">5</td>
+<td class="n">11.598</td>
+<td class="n">3.997</td>
+<td class="n">2.467</td>
+<td class="n">1.102</td>
+<td class="n">1.072</td>
+<td class="n">1.100</td>
+<td class="n">1.132</td>
+<td class="n">1.104</td>
+</tr>
+<tr>
+<td class=""><a href="VN-24.html">VN-24</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">657</td>
+<td class="n">34.240</td>
+<td class="n">35.073</td>
+<td class="n">89.147</td>
+<td class="n">34.233</td>
+<td class="n">34.385</td>
+<td class="n">34.128</td>
+<td class="n">34.329</td>
+<td class="n">34.089</td>
+</tr>
+<tr>
+<td class=""><a href="VN-25.html">VN-25</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">268</td>
+<td class="n">20.180</td>
+<td class="n">13.324</td>
+<td class="n">20.519</td>
+<td class="n">11.033</td>
+<td class="n">11.098</td>
+<td class="n">11.057</td>
+<td class="n">10.948</td>
+<td class="n">11.030</td>
+</tr>
+<tr>
+<td class=""><a href="VN-26.html">VN-26</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">2,795</td>
+<td class="n">189.996</td>
+<td class="n">160.290</td>
+<td class="n">231.397</td>
+<td class="n">111.030</td>
+<td class="n">110.034</td>
+<td class="n">108.043</td>
+<td class="n">112.481</td>
+<td class="n">113.562</td>
+</tr>
+<tr>
+<td class=""><a href="VN-27.html">VN-27</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">3,078</td>
+<td class="n">180.771</td>
+<td class="n">148.772</td>
+<td class="n">165.700</td>
+<td class="n">135.559</td>
+<td class="n">135.856</td>
+<td class="n">137.181</td>
+<td class="n">135.031</td>
+<td class="n">134.168</td>
+</tr>
+<tr>
+<td class=""><a href="VN-28.html">VN-28</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">1,031</td>
+<td class="n">65.530</td>
+<td class="n">63.344</td>
+<td class="n">89.467</td>
+<td class="n">61.854</td>
+<td class="n">61.900</td>
+<td class="n">61.965</td>
+<td class="n">61.500</td>
+<td class="n">62.049</td>
+</tr>
+<tr>
+<td class=""><a href="VN-29.html">VN-29</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">5,667</td>
+<td class="n">380.880</td>
+<td class="n">263.364</td>
+<td class="n">184.787</td>
+<td class="n">202.291</td>
+<td class="n">204.877</td>
+<td class="n">198.700</td>
+<td class="n">202.732</td>
+<td class="n">202.856</td>
+</tr>
+<tr>
+<td class=""><a href="VN-30.html">VN-30</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">3,565</td>
+<td class="n">223.771</td>
+<td class="n">195.917</td>
+<td class="n">236.055</td>
+<td class="n">182.224</td>
+<td class="n">183.285</td>
+<td class="n">181.464</td>
+<td class="n">182.487</td>
+<td class="n">181.662</td>
+</tr>
+<tr>
+<td class=""><a href="VN-31.html">VN-31</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">3,934</td>
+<td class="n">225.595</td>
+<td class="n">164.476</td>
+<td class="n">163.584</td>
+<td class="n">111.352</td>
+<td class="n">113.546</td>
+<td class="n">108.450</td>
+<td class="n">111.880</td>
+<td class="n">111.533</td>
+</tr>
+<tr>
+<td class=""><a href="VN-32.html">VN-32</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">4,305</td>
+<td class="n">212.425</td>
+<td class="n">181.603</td>
+<td class="n">220.160</td>
+<td class="n">172.702</td>
+<td class="n">169.894</td>
+<td class="n">174.835</td>
+<td class="n">171.936</td>
+<td class="n">174.142</td>
+</tr>
+<tr>
+<td class=""><a href="VN-33.html">VN-33</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">6,443</td>
+<td class="n">401.653</td>
+<td class="n">375.287</td>
+<td class="n">532.319</td>
+<td class="n">360.004</td>
+<td class="n">358.986</td>
+<td class="n">360.583</td>
+<td class="n">360.820</td>
+<td class="n">359.629</td>
+</tr>
+<tr>
+<td class=""><a href="VN-34.html">VN-34</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">6,926</td>
+<td class="n">325.191</td>
+<td class="n">266.520</td>
+<td class="n">302.035</td>
+<td class="n">194.095</td>
+<td class="n">193.966</td>
+<td class="n">192.157</td>
+<td class="n">195.389</td>
+<td class="n">194.867</td>
+</tr>
+<tr>
+<td class=""><a href="VN-35.html">VN-35</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">4,409</td>
+<td class="n">337.214</td>
+<td class="n">263.095</td>
+<td class="n">261.213</td>
+<td class="n">200.703</td>
+<td class="n">199.863</td>
+<td class="n">201.503</td>
+<td class="n">198.635</td>
+<td class="n">202.811</td>
+</tr>
+<tr>
+<td class=""><a href="VN-36.html">VN-36</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">1,554</td>
+<td class="n">66.089</td>
+<td class="n">63.112</td>
+<td class="n">113.629</td>
+<td class="n">40.754</td>
+<td class="n">40.713</td>
+<td class="n">41.346</td>
+<td class="n">40.521</td>
+<td class="n">40.437</td>
+</tr>
+<tr>
+<td class=""><a href="VN-37.html">VN-37</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">995</td>
+<td class="n">26.921</td>
+<td class="n">25.539</td>
+<td class="n">27.258</td>
+<td class="n">32.878</td>
+<td class="n">32.219</td>
+<td class="n">32.546</td>
+<td class="n">34.014</td>
+<td class="n">32.734</td>
+</tr>
+<tr>
+<td class=""><a href="VN-39.html">VN-39</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">6,827</td>
+<td class="n">230.724</td>
+<td class="n">256.806</td>
+<td class="n">385.266</td>
+<td class="n">251.823</td>
+<td class="n">252.809</td>
+<td class="n">247.316</td>
+<td class="n">252.875</td>
+<td class="n">254.291</td>
+</tr>
+<tr>
+<td class=""><a href="VN-40.html">VN-40</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">2,217</td>
+<td class="n">59.433</td>
+<td class="n">56.770</td>
+<td class="n">75.076</td>
+<td class="n">54.036</td>
+<td class="n">52.841</td>
+<td class="n">54.839</td>
+<td class="n">53.550</td>
+<td class="n">54.912</td>
+</tr>
+<tr>
+<td class=""><a href="VN-41.html">VN-41</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">2,879</td>
+<td class="n">74.719</td>
+<td class="n">112.886</td>
+<td class="n">243.644</td>
+<td class="n">150.986</td>
+<td class="n">150.215</td>
+<td class="n">152.288</td>
+<td class="n">149.425</td>
+<td class="n">152.015</td>
+</tr>
+<tr>
+<td class=""><a href="VN-43.html">VN-43</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">758</td>
+<td class="n">31.851</td>
+<td class="n">31.650</td>
+<td class="n">74.218</td>
+<td class="n">50.934</td>
+<td class="n">49.987</td>
+<td class="n">50.861</td>
+<td class="n">51.435</td>
+<td class="n">51.454</td>
+</tr>
+<tr>
+<td class=""><a href="VN-44.html">VN-44</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">5,518</td>
+<td class="n">140.915</td>
+<td class="n">127.565</td>
+<td class="n">176.377</td>
+<td class="n">131.565</td>
+<td class="n">131.890</td>
+<td class="n">129.596</td>
+<td class="n">133.732</td>
+<td class="n">131.044</td>
+</tr>
+<tr>
+<td class=""><a href="VN-45.html">VN-45</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">4,430</td>
+<td class="n">82.043</td>
+<td class="n">107.534</td>
+<td class="n">193.160</td>
+<td class="n">109.784</td>
+<td class="n">109.438</td>
+<td class="n">109.353</td>
+<td class="n">109.683</td>
+<td class="n">110.662</td>
+</tr>
+<tr>
+<td class=""><a href="VN-46.html">VN-46</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">4,721</td>
+<td class="n">113.546</td>
+<td class="n">127.967</td>
+<td class="n">205.172</td>
+<td class="n">198.507</td>
+<td class="n">198.639</td>
+<td class="n">197.878</td>
+<td class="n">198.767</td>
+<td class="n">198.745</td>
+</tr>
+<tr>
+<td class=""><a href="VN-47.html">VN-47</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">5,943</td>
+<td class="n">175.218</td>
+<td class="n">158.973</td>
+<td class="n">206.039</td>
+<td class="n">137.728</td>
+<td class="n">136.098</td>
+<td class="n">137.923</td>
+<td class="n">138.698</td>
+<td class="n">138.195</td>
+</tr>
+<tr>
+<td class=""><a href="VN-49.html">VN-49</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">452</td>
+<td class="n">38.363</td>
+<td class="n">25.538</td>
+<td class="n">21.909</td>
+<td class="n">16.769</td>
+<td class="n">16.903</td>
+<td class="n">16.848</td>
+<td class="n">16.372</td>
+<td class="n">16.953</td>
+</tr>
+<tr>
+<td class=""><a href="VN-50.html">VN-50</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">504</td>
+<td class="n">188.094</td>
+<td class="n">78.572</td>
+<td class="n">46.050</td>
+<td class="n">33.883</td>
+<td class="n">33.632</td>
+<td class="n">34.109</td>
+<td class="n">34.468</td>
+<td class="n">33.324</td>
+</tr>
+<tr>
+<td class=""><a href="VN-51.html">VN-51</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">1,961</td>
+<td class="n">45.668</td>
+<td class="n">45.598</td>
+<td class="n">55.016</td>
+<td class="n">44.381</td>
+<td class="n">44.290</td>
+<td class="n">44.167</td>
+<td class="n">44.426</td>
+<td class="n">44.640</td>
+</tr>
+<tr>
+<td class=""><a href="VN-52.html">VN-52</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">5,395</td>
+<td class="n">246.825</td>
+<td class="n">176.401</td>
+<td class="n">183.697</td>
+<td class="n">180.267</td>
+<td class="n">179.611</td>
+<td class="n">177.820</td>
+<td class="n">181.008</td>
+<td class="n">182.628</td>
+</tr>
+<tr>
+<td class=""><a href="VN-53.html">VN-53</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">0</td>
+<td class="n">0.003</td>
+<td class="n">0.058</td>
+<td class="n">0.001</td>
+<td class="n">0.029</td>
+<td class="n">0.027</td>
+<td class="n">0.031</td>
+<td class="n">0.029</td>
+<td class="n">0.029</td>
+</tr>
+<tr>
+<td class=""><a href="VN-54.html">VN-54</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">725</td>
+<td class="n">54.683</td>
+<td class="n">57.400</td>
+<td class="n">141.194</td>
+<td class="n">52.709</td>
+<td class="n">52.821</td>
+<td class="n">52.474</td>
+<td class="n">52.861</td>
+<td class="n">52.681</td>
+</tr>
+<tr>
+<td class=""><a href="VN-55.html">VN-55</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">1,716</td>
+<td class="n">43.372</td>
+<td class="n">43.605</td>
+<td class="n">48.453</td>
+<td class="n">45.687</td>
+<td class="n">45.535</td>
+<td class="n">45.336</td>
+<td class="n">45.722</td>
+<td class="n">46.155</td>
+</tr>
+<tr>
+<td class=""><a href="VN-56.html">VN-56</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">933</td>
+<td class="n">74.219</td>
+<td class="n">79.890</td>
+<td class="n">167.133</td>
+<td class="n">86.424</td>
+<td class="n">86.662</td>
+<td class="n">85.910</td>
+<td class="n">86.960</td>
+<td class="n">86.163</td>
+</tr>
+<tr>
+<td class=""><a href="VN-57.html">VN-57</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">3,083</td>
+<td class="n">104.350</td>
+<td class="n">74.134</td>
+<td class="n">38.081</td>
+<td class="n">76.615</td>
+<td class="n">77.322</td>
+<td class="n">76.412</td>
+<td class="n">75.900</td>
+<td class="n">76.826</td>
+</tr>
+<tr>
+<td class=""><a href="VN-58.html">VN-58</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">1,019</td>
+<td class="n">56.291</td>
+<td class="n">36.427</td>
+<td class="n">42.428</td>
+<td class="n">47.440</td>
+<td class="n">46.904</td>
+<td class="n">47.025</td>
+<td class="n">47.902</td>
+<td class="n">47.930</td>
+</tr>
+<tr>
+<td class=""><a href="VN-59.html">VN-59</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">14,012</td>
+<td class="n">912.734</td>
+<td class="n">706.919</td>
+<td class="n">473.050</td>
+<td class="n">582.169</td>
+<td class="n">582.472</td>
+<td class="n">583.574</td>
+<td class="n">586.187</td>
+<td class="n">576.441</td>
+</tr>
+<tr>
+<td class=""><a href="VN-61.html">VN-61</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">0</td>
+<td class="n">0.022</td>
+<td class="n">0.138</td>
+<td class="n">0.009</td>
+<td class="n">0.099</td>
+<td class="n">0.109</td>
+<td class="n">0.094</td>
+<td class="n">0.102</td>
+<td class="n">0.091</td>
+</tr>
+<tr>
+<td class=""><a href="VN-63.html">VN-63</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">15</td>
+<td class="n">1.012</td>
+<td class="n">1.154</td>
+<td class="n">2.026</td>
+<td class="n">1.581</td>
+<td class="n">1.561</td>
+<td class="n">1.600</td>
+<td class="n">1.585</td>
+<td class="n">1.576</td>
+</tr>
+<tr>
+<td class=""><a href="VN-66.html">VN-66</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">1</td>
+<td class="n">0.100</td>
+<td class="n">0.185</td>
+<td class="n">0.082</td>
+<td class="n">0.332</td>
+<td class="n">0.330</td>
+<td class="n">0.333</td>
+<td class="n">0.339</td>
+<td class="n">0.328</td>
+</tr>
+<tr>
+<td class=""><a href="VN-67.html">VN-67</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">265</td>
+<td class="n">17.001</td>
+<td class="n">16.813</td>
+<td class="n">22.557</td>
+<td class="n">24.486</td>
+<td class="n">24.027</td>
+<td class="n">24.679</td>
+<td class="n">24.968</td>
+<td class="n">24.270</td>
+</tr>
+<tr>
+<td class=""><a href="VN-68.html">VN-68</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">85</td>
+<td class="n">6.645</td>
+<td class="n">4.001</td>
+<td class="n">3.388</td>
+<td class="n">8.898</td>
+<td class="n">9.080</td>
+<td class="n">8.974</td>
+<td class="n">8.758</td>
+<td class="n">8.779</td>
+</tr>
+<tr>
+<td class=""><a href="VN-69.html">VN-69</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">8</td>
+<td class="n">0.597</td>
+<td class="n">0.650</td>
+<td class="n">0.864</td>
+<td class="n">3.033</td>
+<td class="n">2.940</td>
+<td class="n">3.152</td>
+<td class="n">3.027</td>
+<td class="n">3.012</td>
+</tr>
+<tr>
+<td class=""><a href="VN-70.html">VN-70</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">0</td>
+<td class="n">0.478</td>
+<td class="n">0.493</td>
+<td class="n">0.143</td>
+<td class="n">0.107</td>
+<td class="n">0.107</td>
+<td class="n">0.109</td>
+<td class="n">0.098</td>
+<td class="n">0.114</td>
+</tr>
+<tr>
+<td class=""><a href="VN-71.html">VN-71</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">0</td>
+<td class="n">0.012</td>
+<td class="n">0.071</td>
+<td class="n">0.001</td>
+<td class="n">0.016</td>
+<td class="n">0.016</td>
+<td class="n">0.016</td>
+<td class="n">0.018</td>
+<td class="n">0.014</td>
+</tr>
+<tr>
+<td class=""><a href="VN-72.html">VN-72</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">2,216</td>
+<td class="n">142.223</td>
+<td class="n">109.764</td>
+<td class="n">141.558</td>
+<td class="n">97.755</td>
+<td class="n">97.305</td>
+<td class="n">96.915</td>
+<td class="n">97.767</td>
+<td class="n">99.031</td>
+</tr>
+<tr>
+<td class=""><a href="VN-73.html">VN-73</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">1,052</td>
+<td class="n">12.259</td>
+<td class="n">20.777</td>
+<td class="n">35.063</td>
+<td class="n">24.984</td>
+<td class="n">24.775</td>
+<td class="n">24.590</td>
+<td class="n">25.305</td>
+<td class="n">25.267</td>
+</tr>
+<tr>
+<td class=""><a href="VN-CT.html">VN-CT</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">1,819</td>
+<td class="n">79.442</td>
+<td class="n">67.500</td>
+<td class="n">73.459</td>
+<td class="n">111.109</td>
+<td class="n">110.511</td>
+<td class="n">111.325</td>
+<td class="n">112.169</td>
+<td class="n">110.433</td>
+</tr>
+<tr>
+<td class=""><a href="VN-DN.html">VN-DN</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">4,464</td>
+<td class="n">277.256</td>
+<td class="n">193.590</td>
+<td class="n">242.659</td>
+<td class="n">156.837</td>
+<td class="n">157.975</td>
+<td class="n">155.232</td>
+<td class="n">159.107</td>
+<td class="n">155.033</td>
+</tr>
+<tr>
+<td class=""><a href="VN-HN.html">VN-HN</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">3,152</td>
+<td class="n">132.860</td>
+<td class="n">107.020</td>
+<td class="n">213.724</td>
+<td class="n">120.553</td>
+<td class="n">118.973</td>
+<td class="n">118.639</td>
+<td class="n">124.064</td>
+<td class="n">120.534</td>
+</tr>
+<tr>
+<td class=""><a href="VN-HP.html">VN-HP</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">87</td>
+<td class="n">5.210</td>
+<td class="n">5.765</td>
+<td class="n">12.059</td>
+<td class="n">19.422</td>
+<td class="n">19.357</td>
+<td class="n">19.605</td>
+<td class="n">19.335</td>
+<td class="n">19.389</td>
+</tr>
+<tr>
+<td class=""><a href="VN-SG.html">VN-SG</a></td>
+<td class=""></td>
+<td class="n">12</td>
+<td class="n">6,547</td>
+<td class="n">158.385</td>
+<td class="n">200.127</td>
+<td class="n">392.742</td>
+<td class="n">172.754</td>
+<td class="n">175.540</td>
+<td class="n">174.331</td>
+<td class="n">169.966</td>
+<td class="n">171.178</td>
+</tr>
+</table></div>
+<h2>Where these numbers come from</h2><ul>
+<li><a href="../../../../analysis/04_score/01_collect/results/main__vnmFinal/metrics_cell.csv">metrics_cell.csv</a> <span class=meta>— per-cell scores, every model</span></li>
+<li><a href="../../../../analysis/04_score/01_collect/results/main__vnmFinal/models.csv">models.csv</a> <span class=meta>— the models that were scored, and under which combination</span></li>
+<li><a href="../../../../analysis/04_score/03_compare/results/main__vnmFinal/leaderboard.csv">leaderboard.csv</a> <span class=meta>— the leaderboard</span></li>
+<li><a href="../../../../analysis/04_score/03_compare/results/main__vnmFinal/paired_summary.csv">paired_summary.csv</a> <span class=meta>— the paired comparison against the reference</span></li>
+</ul>

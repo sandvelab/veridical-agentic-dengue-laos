@@ -1,0 +1,376 @@
+<!doctype html><meta charset=utf-8>
+<title>05_stability</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<div class=crumb><a href="../index.html">analysis</a> / 05_stability</div>
+<h1>05_stability</h1>
+<div class=claim>How far does the project&#x27;s conclusion survive the reasonable alternatives the main path did not take? The node enumerates every judgment call the tree carries as a fork, costs the analyses that take them instead, and runs that set so the reported result is a distribution over analyses that all looked defensible rather than the one that was run.</div>
+<h2>Claims resting on this node</h2>
+<p class=meta>From the claim collection. Nothing enters the manuscript that is not there.</p>
+<div class=claimblock>
+<span class=cid>C1</span> The conclusion this project reports is one member of a distribution over thirty-two analyses that all looked reasonable, fixed before any of them ran. The reported skill score against the reference model is +0.1485; across the set it runs from -0.0724 to +0.2320, with a median of +0.1469, and the reported analysis sits thirteenth of thirty-two.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/distribution.json">distribution.json</a> · <a href="../../../../analysis/05_stability/results/distribution_rows.csv">distribution_rows.csv</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C2</span> Our model beats the reference model on 27 of the 32 analyses and both required baselines on 27, and the failures are structured rather than scattered. The five analyses where the reference wins are exactly the five that replace our model or refit its weights; the five where a required baseline wins are exactly the five that weight the headline mean by cases.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/distribution.json">distribution.json</a> · <a href="../../../../analysis/05_stability/results/distribution_rows.csv">distribution_rows.csv</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C3</span> The choice of model family is what the conclusion is sensitive to, and the choices made inside a family are not. Swapping the reported linear opinion pool for candidate 1 costs 0.2209 of skill and for candidate 2 0.0884, while the eight forks inside those two families move it by at most 0.0081, and the eleven combinations they perturb span 18.638 to 18.933 mean CRPS -- a range of 0.295 against the reference model&#x27;s own 0.565 re-run spread.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/sensitivity_by_fork.csv">sensitivity_by_fork.csv</a> · <a href="../../../../analysis/05_stability/results/fig_fork_sensitivity.csv">fig_fork_sensitivity.csv</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C4</span> Six of the tree&#x27;s seventeen judgment calls move the reported conclusion further than the reference model moves on its own, and eleven do not. The yardstick is measured rather than chosen: the reference is unseeded and was scored four times, and our model&#x27;s skill score against those four repeats spans 0.0218. Above that band sit the model family (0.2209), the pool&#x27;s weighting (0.1820), the weighting of the headline mean (0.0835), the province filter (0.0376), the persistence construction (0.0279) and the training window (0.0219, which is the band itself).
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/sensitivity_by_fork.csv">sensitivity_by_fork.csv</a> · <a href="../../../../analysis/05_stability/results/distribution.json">distribution.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C5</span> The cheapest analysis in the perturbation manifest is the one the conclusion is most sensitive to among the choices that leave our model alone. Re-weighting the headline mean re-runs no model at all -- thirteen seconds against twenty minutes -- and moves the reported skill by 0.0835, four times as far as any of the five setup forks that re-run every model on the leaderboard.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/sensitivity_by_fork.csv">sensitivity_by_fork.csv</a> · <a href="../../../../analysis/05_stability/results/manifest.csv">manifest.csv</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C6</span> Under case weighting a required baseline beats the model this project reports, and it does so in every combination where case weighting appears -- five of the thirty-two analyses, all five case-weighted. The pool is too wide on the quiet months and too narrow on the outbreak months, which no single weighting of the mean shows on its own.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/distribution.json">distribution.json</a> · <a href="../../../../analysis/05_stability/results/distribution_rows.csv">distribution_rows.csv</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C7</span> Fork effects do not compose, so a one-at-a-time stability report cannot be added up. Across the eight pairs the interaction runs from -0.1033 to +0.0424, and the extreme is larger than either main effect behind it: dropping the two provinces with no evaluable cell is worth +0.0376 alone and weighting the mean by cases +0.0835 alone, and together they come to +0.0177 against an additive +0.1211, because both work by re-weighting what the mean is over.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/fig_pair_interaction.csv">fig_pair_interaction.csv</a> · <a href="../../../../analysis/05_stability/results/conclusions.csv">conclusions.csv</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C8</span> Calibration moves much further across the perturbation set than the score does. Interval coverage at 10-90 runs from 0.458 to 0.920 against a nominal 0.80 while the skill score stays positive on 27 of the 32 analyses, and both extremes involve a re-weighted mean. The rule that a badly calibrated CRPS winner has not won therefore bites hardest exactly where the CRPS looks best.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/distribution.json">distribution.json</a> · <a href="../../../../analysis/05_stability/results/distribution_rows.csv">distribution_rows.csv</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C9</span> The reported analysis stands on the worse of two published constructions of a baseline the plan requires, and the model it reports is better off for that. Wrapping the persistence point in a fitted negative binomial scores 20.698 mean CRPS against the main path&#x27;s 24.879 and beats the reference model at 22.098; with that sharper member in the pool, the pool&#x27;s margin over its own best member falls from 1.954 to 1.264 CRPS. It was not promoted, because phase C was closed and the manifest frozen before the row ran.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/conclusions.csv">conclusions.csv</a> · <a href="../../../../analysis/05_stability/results/sensitivity_by_fork.csv">sensitivity_by_fork.csv</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C10</span> Compute was not the constraint on the stability work and was not close to it. The whole development manifest -- twenty-four one-at-a-time analyses and eight pairs -- ran in 3.66 hours against a 12-hour budget, nothing was cut, and most of the time was the reference model&#x27;s four unseeded repeats running through an amd64 image under emulation for the one model the plan forbids perturbing. What bound the work was implementation effort: nine of the twenty-four alternatives were sentences in a claim file rather than paths in the tree when the manifest was planned.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/cost_planned_vs_actual.json">cost_planned_vs_actual.json</a> · <a href="../../../../analysis/05_stability/results/run_status.csv">run_status.csv</a> · <a href="../../../../analysis/05_stability/results/manifest_notes.json">manifest_notes.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C11</span> A cost model that predicts the total to within a per cent can be uninformative about every individual row. Over the whole manifest the planned total is 7469 seconds against an actual 7469, a ratio of 1.00, while per-row ratios run from 0.51 to 1.91 -- because the model summed each row&#x27;s parts as measured under the main path and could not know that a row changes how much work a part does. The manifest&#x27;s cut order is ranked on those estimates, so it carries no information; nothing was cut, so nothing rests on it.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/cost_planned_vs_actual.json">cost_planned_vs_actual.json</a> · <a href="../../../../analysis/05_stability/results/cost_planned_vs_actual.csv">cost_planned_vs_actual.csv</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C12</span> The set of analyses to be run on the held-out year is fixed before the year is opened: thirty-three rows, each the development row under a holdout name, with the development conclusion it is to be reported beside carried row by row. Freezing the set but assembling the development half of the comparison afterwards would leave the comparison selectable after the fact even though neither half was.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/manifest_holdout.csv">manifest_holdout.csv</a> · <a href="../../../../analysis/05_stability/results/holdout_freeze.json">holdout_freeze.json</a> &nbsp;·&nbsp; agent-on-human-assessment</span>
+</div>
+<div class=claimblock>
+<span class=cid>C13</span> The held-out year was opened once, and the set of analyses evaluated on it was fixed before it was opened. Thirty-two rows -- every row of the development set that has a conclusion -- ran on 2010 through the same scripts their development twins ran, none failed, and each row&#x27;s development conclusion was frozen into the manifest beside it so the pairing could not be assembled after the seal came off.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/manifest_holdout.csv">manifest_holdout.csv</a> · <a href="../../../../analysis/05_stability/results/holdout_freeze.json">holdout_freeze.json</a> · <a href="../../../../analysis/05_stability/results/run_status_holdout.csv">run_status_holdout.csv</a> · <a href="../../../../analysis/01_data/01_partition/results/phase_e_opening.json">phase_e_opening.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C15</span> The distribution of conclusions over the frozen set is more than twice as wide on the held-out year as on the development period: -0.5038 to +0.2026 against -0.0724 to +0.2320. Six of the thirty-two analyses fall below zero on 2010, where none did on development, and the reported analysis moves from thirteenth of thirty-two to eighteenth.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/holdout_distribution.json">holdout_distribution.json</a> · <a href="../../../../analysis/05_stability/results/distribution.json">distribution.json</a> · <a href="../../../../analysis/05_stability/results/holdout_vs_development.json">holdout_vs_development.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C16</span> Twenty-eight of the thirty-two analyses scored worse on the year they had not seen, with a median drop of 0.056 in skill. The four that scored better were all analyses that had been below the reference model on development.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/holdout_vs_development.csv">holdout_vs_development.csv</a> · <a href="../../../../analysis/05_stability/results/holdout_vs_development.json">holdout_vs_development.json</a> · <a href="../../../../analysis/05_stability/results/fig_holdout_vs_development.csv">fig_holdout_vs_development.csv</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C17</span> Ranking these analyses on the development set is a weak guide to how they rank on a year they have not seen. The Spearman rank correlation between the development and holdout skill scores across the thirty-two is +0.396. The ranking of the judgment calls transfers better, at +0.679, with fourteen of seventeen forks agreeing on whether they move the conclusion beyond their own dataset&#x27;s noise band.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/holdout_vs_development.json">holdout_vs_development.json</a> · <a href="../../../../analysis/05_stability/results/fork_sensitivity_both.csv">fork_sensitivity_both.csv</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C19</span> The province filter is the largest single judgment call in the project on the held-out year, at 0.2696 of skill, having been fourth at 0.0376 on development. Over the same change the model family halves, from 0.2209 to 0.0949, and the pool&#x27;s own weighting fork collapses from 0.1820 to 0.0121 and falls below the noise band.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/fork_sensitivity_both.csv">fork_sensitivity_both.csv</a> · <a href="../../../../analysis/05_stability/results/holdout_sensitivity_by_fork.csv">holdout_sensitivity_by_fork.csv</a> · <a href="../../../../analysis/05_stability/results/fig_fork_sensitivity_both.csv">fig_fork_sensitivity_both.csv</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C20</span> The reported model&#x27;s over-dispersion on development does not survive the change of year. Its 10-90 interval coverage is 0.863 against a nominal 0.80 on the development backtest, the widest in the project, and 0.755 on the held-out year; across the frozen set coverage runs 0.458 to 0.920 on development and 0.210 to 0.854 on 2010.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/holdout_distribution.json">holdout_distribution.json</a> · <a href="../../../../analysis/05_stability/results/distribution.json">distribution.json</a> · <a href="../../../../analysis/results/main__holdout/conclusion.json">conclusion.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C21</span> The forks do not compose on the held-out year either. Across the eight frozen pairs the largest interaction is -0.2876, on the same row that carries the largest single move, and it is larger than either main effect behind it.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/holdout_distribution.json">holdout_distribution.json</a> · <a href="../../../../analysis/05_stability/results/holdout_conclusions.csv">holdout_conclusions.csv</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C39</span> The cost model was tested as a prediction for the first time on the held-out half and it held at the total: 8 602 seconds actual against 7 468 planned, a ratio of 1.15 over 32 rows, where the development half&#x27;s 1.00 was measured over runs that had already happened. The worst row is again the one that changes how much work a part does -- refitting at every split, at 1.97 -- so the total being right a second time does not make any individual estimate right, and the cut order those estimates rank still carries no information.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/holdout_cost_planned_vs_actual.json">holdout_cost_planned_vs_actual.json</a> · <a href="../../../../analysis/05_stability/results/cost_planned_vs_actual.json">cost_planned_vs_actual.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C41</span> The pool&#x27;s second path is available on eleven of the fifty-one combinations that run it, and the forty it is missing from are missing it for a structural reason rather than an accidental one. The reconstruction compares the pool with its members&#x27; own separate evaluations, and this tree evaluates a member on its own only under the family fork&#x27;s own combination -- so a row that moves a fork inside a member has no separate run of that member under the configuration the pool gave it, and no order of execution would produce one. Across the eleven, the residual between the rebuilt pool and the pool that ran is 0.016 to 0.136 CRPS, largest on the held-out rows where every score is about four times the size.
+<br><span class=meta>grounds: <a href="../../../../analysis/05_stability/results/pool_reconstruction.json">pool_reconstruction.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<h2>Results</h2>
+<ul>
+<li><a href="../../../../analysis/05_stability/results/conclusions.csv">conclusions.csv</a> <span class=meta>(12,903 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/conclusions_notes.json">conclusions_notes.json</a> <span class=meta>(1,113 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/cost_planned_vs_actual.csv">cost_planned_vs_actual.csv</a> <span class=meta>(1,330 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/cost_planned_vs_actual.json">cost_planned_vs_actual.json</a> <span class=meta>(1,037 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/distribution.json">distribution.json</a> <span class=meta>(7,063 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/distribution_rows.csv">distribution_rows.csv</a> <span class=meta>(10,092 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/fig_fork_sensitivity.csv">fig_fork_sensitivity.csv</a> <span class=meta>(2,162 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/fig_fork_sensitivity.png">fig_fork_sensitivity.png</a> <span class=meta>(106,098 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/fig_fork_sensitivity_both.csv">fig_fork_sensitivity_both.csv</a> <span class=meta>(1,968 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/fig_fork_sensitivity_both.png">fig_fork_sensitivity_both.png</a> <span class=meta>(115,605 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/fig_fork_sensitivity_preaggregation.csv">fig_fork_sensitivity_preaggregation.csv</a> <span class=meta>(2,305 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/fig_holdout_vs_development.csv">fig_holdout_vs_development.csv</a> <span class=meta>(3,158 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/fig_holdout_vs_development.png">fig_holdout_vs_development.png</a> <span class=meta>(94,107 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/fig_pair_interaction.csv">fig_pair_interaction.csv</a> <span class=meta>(1,142 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/fig_pair_interaction.png">fig_pair_interaction.png</a> <span class=meta>(156,954 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/fig_pair_interaction_preaggregation.csv">fig_pair_interaction_preaggregation.csv</a> <span class=meta>(2,186 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/fig_skill_distribution.csv">fig_skill_distribution.csv</a> <span class=meta>(2,371 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/fig_skill_distribution.png">fig_skill_distribution.png</a> <span class=meta>(199,443 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/fork_sensitivity_both.csv">fork_sensitivity_both.csv</a> <span class=meta>(2,546 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/forks.csv">forks.csv</a> <span class=meta>(1,974 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/holdout_conclusions.csv">holdout_conclusions.csv</a> <span class=meta>(13,136 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/holdout_conclusions_notes.json">holdout_conclusions_notes.json</a> <span class=meta>(1,173 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/holdout_cost_planned_vs_actual.csv">holdout_cost_planned_vs_actual.csv</a> <span class=meta>(2,187 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/holdout_cost_planned_vs_actual.json">holdout_cost_planned_vs_actual.json</a> <span class=meta>(786 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/holdout_distribution.json">holdout_distribution.json</a> <span class=meta>(7,301 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/holdout_distribution_rows.csv">holdout_distribution_rows.csv</a> <span class=meta>(10,081 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/holdout_fig_fork_sensitivity.csv">holdout_fig_fork_sensitivity.csv</a> <span class=meta>(2,304 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/holdout_fig_fork_sensitivity.png">holdout_fig_fork_sensitivity.png</a> <span class=meta>(107,487 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/holdout_fig_fork_sensitivity_preaggregation.csv">holdout_fig_fork_sensitivity_preaggregation.csv</a> <span class=meta>(2,504 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/holdout_fig_skill_distribution.csv">holdout_fig_skill_distribution.csv</a> <span class=meta>(2,647 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/holdout_fig_skill_distribution.png">holdout_fig_skill_distribution.png</a> <span class=meta>(220,978 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/holdout_freeze.json">holdout_freeze.json</a> <span class=meta>(4,331 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/holdout_freeze_check.json">holdout_freeze_check.json</a> <span class=meta>(2,827 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/holdout_sensitivity_by_fork.csv">holdout_sensitivity_by_fork.csv</a> <span class=meta>(3,003 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/holdout_vs_development.csv">holdout_vs_development.csv</a> <span class=meta>(10,795 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/holdout_vs_development.json">holdout_vs_development.json</a> <span class=meta>(6,002 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/manifest.csv">manifest.csv</a> <span class=meta>(9,428 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/manifest_holdout.csv">manifest_holdout.csv</a> <span class=meta>(10,257 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/manifest_notes.json">manifest_notes.json</a> <span class=meta>(4,034 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/manifest_selection.json">manifest_selection.json</a> <span class=meta>(2,796 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/manifest_selection_check.json">manifest_selection_check.json</a> <span class=meta>(1,666 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/pool_reconstruction.json">pool_reconstruction.json</a> <span class=meta>(76,547 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/run_status.csv">run_status.csv</a> <span class=meta>(4,225 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/run_status_holdout.csv">run_status_holdout.csv</a> <span class=meta>(4,969 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/sensitivity_by_fork.csv">sensitivity_by_fork.csv</a> <span class=meta>(2,861 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/step_costs.json">step_costs.json</a> <span class=meta>(619 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/tier2_rule.md">tier2_rule.md</a> <span class=meta>(1,437 B)</span></li>
+</ul>
+<details><summary>1 other combination(s)</summary>
+<h3>logs</h3>
+<ul>
+<li><a href="../../../../analysis/05_stability/results/logs/aggregate_caseWeighted.log">aggregate_caseWeighted.log</a> <span class=meta>(2,160 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/aggregate_caseWeighted__holdout.log">aggregate_caseWeighted__holdout.log</a> <span class=meta>(2,270 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/aggregate_populationWeighted.log">aggregate_populationWeighted.log</a> <span class=meta>(2,235 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/aggregate_populationWeighted__holdout.log">aggregate_populationWeighted__holdout.log</a> <span class=meta>(2,353 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/autoregressive_lag3.log">autoregressive_lag3.log</a> <span class=meta>(5,827 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/autoregressive_lag3__holdout.log">autoregressive_lag3__holdout.log</a> <span class=meta>(6,173 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/climatology_frozenWindow.log">climatology_frozenWindow.log</a> <span class=meta>(8,420 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/climatology_frozenWindow__holdout.log">climatology_frozenWindow__holdout.log</a> <span class=meta>(6,614 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/covariates_lagged.log">covariates_lagged.log</a> <span class=meta>(5,800 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/covariates_lagged__holdout.log">covariates_lagged__holdout.log</a> <span class=meta>(6,146 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/covariates_rich.log">covariates_rich.log</a> <span class=meta>(5,778 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/covariates_rich__holdout.log">covariates_rich__holdout.log</a> <span class=meta>(6,124 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/family_boosted.log">family_boosted.log</a> <span class=meta>(3,533 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/family_boosted__holdout.log">family_boosted__holdout.log</a> <span class=meta>(3,739 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/family_hierNB.log">family_hierNB.log</a> <span class=meta>(4,631 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/family_hierNB__aggregate_caseWeighted.log">family_hierNB__aggregate_caseWeighted.log</a> <span class=meta>(5,230 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/family_hierNB__aggregate_caseWeighted__holdout.log">family_hierNB__aggregate_caseWeighted__holdout.log</a> <span class=meta>(5,484 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/family_hierNB__holdout.log">family_hierNB__holdout.log</a> <span class=meta>(4,884 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/features_richCalendar.log">features_richCalendar.log</a> <span class=meta>(5,864 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/features_richCalendar__holdout.log">features_richCalendar__holdout.log</a> <span class=meta>(6,210 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/fitTime_refitAtPredict.log">fitTime_refitAtPredict.log</a> <span class=meta>(5,955 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/fitTime_refitAtPredict__holdout.log">fitTime_refitAtPredict__holdout.log</a> <span class=meta>(6,298 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/head_quantileEnsemble.log">head_quantileEnsemble.log</a> <span class=meta>(5,927 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/head_quantileEnsemble__holdout.log">head_quantileEnsemble__holdout.log</a> <span class=meta>(6,272 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/main.log">main.log</a> <span class=meta>(314 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/main__holdout.log">main__holdout.log</a> <span class=meta>(9,707 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/observation_negBinomial.log">observation_negBinomial.log</a> <span class=meta>(5,950 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/observation_negBinomial__holdout.log">observation_negBinomial__holdout.log</a> <span class=meta>(6,296 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/observation_zeroInflated.log">observation_zeroInflated.log</a> <span class=meta>(5,984 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/observation_zeroInflated__holdout.log">observation_zeroInflated__holdout.log</a> <span class=meta>(6,330 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/persistence_negBinomialFloor.log">persistence_negBinomialFloor.log</a> <span class=meta>(5,103 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/persistence_negBinomialFloor__holdout.log">persistence_negBinomialFloor__holdout.log</a> <span class=meta>(6,738 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/popColumn_backCast.log">popColumn_backCast.log</a> <span class=meta>(6,396 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/popColumn_backCast__holdout.log">popColumn_backCast__holdout.log</a> <span class=meta>(8,247 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/population_covariate.log">population_covariate.log</a> <span class=meta>(5,912 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/population_covariate__holdout.log">population_covariate__holdout.log</a> <span class=meta>(6,258 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/population_ignored.log">population_ignored.log</a> <span class=meta>(5,828 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/population_ignored__holdout.log">population_ignored__holdout.log</a> <span class=meta>(6,173 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/provinces_mergeVientiane.log">provinces_mergeVientiane.log</a> <span class=meta>(6,667 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/provinces_mergeVientiane__aggregate_caseWeighted.log">provinces_mergeVientiane__aggregate_caseWeighted.log</a> <span class=meta>(8,932 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/provinces_mergeVientiane__aggregate_caseWeighted__holdout.log">provinces_mergeVientiane__aggregate_caseWeighted__holdout.log</a> <span class=meta>(9,334 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/provinces_mergeVientiane__family_hierNB.log">provinces_mergeVientiane__family_hierNB.log</a> <span class=meta>(8,132 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/provinces_mergeVientiane__family_hierNB__holdout.log">provinces_mergeVientiane__family_hierNB__holdout.log</a> <span class=meta>(8,421 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/provinces_mergeVientiane__holdout.log">provinces_mergeVientiane__holdout.log</a> <span class=meta>(8,590 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/provinces_mergeVientiane__weighting_crpsWeighted.log">provinces_mergeVientiane__weighting_crpsWeighted.log</a> <span class=meta>(10,084 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/provinces_mergeVientiane__weighting_crpsWeighted__holdout.log">provinces_mergeVientiane__weighting_crpsWeighted__holdout.log</a> <span class=meta>(10,485 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/provinces_reportingOnly.log">provinces_reportingOnly.log</a> <span class=meta>(6,617 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/provinces_reportingOnly__aggregate_caseWeighted.log">provinces_reportingOnly__aggregate_caseWeighted.log</a> <span class=meta>(8,956 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/provinces_reportingOnly__aggregate_caseWeighted__holdout.log">provinces_reportingOnly__aggregate_caseWeighted__holdout.log</a> <span class=meta>(9,284 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/provinces_reportingOnly__family_hierNB.log">provinces_reportingOnly__family_hierNB.log</a> <span class=meta>(8,039 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/provinces_reportingOnly__family_hierNB__holdout.log">provinces_reportingOnly__family_hierNB__holdout.log</a> <span class=meta>(8,370 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/provinces_reportingOnly__holdout.log">provinces_reportingOnly__holdout.log</a> <span class=meta>(8,504 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/provinces_reportingOnly__weighting_crpsWeighted.log">provinces_reportingOnly__weighting_crpsWeighted.log</a> <span class=meta>(10,105 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/provinces_reportingOnly__weighting_crpsWeighted__holdout.log">provinces_reportingOnly__weighting_crpsWeighted__holdout.log</a> <span class=meta>(10,434 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/retrain_everySplit.log">retrain_everySplit.log</a> <span class=meta>(9,795 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/retrain_everySplit__holdout.log">retrain_everySplit__holdout.log</a> <span class=meta>(8,349 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/trainingWindow_from2004.log">trainingWindow_from2004.log</a> <span class=meta>(10,038 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/trainingWindow_from2004__holdout.log">trainingWindow_from2004__holdout.log</a> <span class=meta>(8,517 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/weighting_crpsWeighted.log">weighting_crpsWeighted.log</a> <span class=meta>(5,331 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/weighting_crpsWeighted__aggregate_caseWeighted.log">weighting_crpsWeighted__aggregate_caseWeighted.log</a> <span class=meta>(7,167 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/weighting_crpsWeighted__aggregate_caseWeighted__holdout.log">weighting_crpsWeighted__aggregate_caseWeighted__holdout.log</a> <span class=meta>(7,493 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/weighting_crpsWeighted__holdout.log">weighting_crpsWeighted__holdout.log</a> <span class=meta>(6,877 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/yearVariance_shared.log">yearVariance_shared.log</a> <span class=meta>(5,816 B)</span></li>
+<li><a href="../../../../analysis/05_stability/results/logs/yearVariance_shared__holdout.log">yearVariance_shared__holdout.log</a> <span class=meta>(6,162 B)</span></li>
+</ul>
+</details>
+<h2>Scripts</h2><ul>
+<li><a href="../../../../analysis/05_stability/scripts/collect_conclusions.py">collect_conclusions.py</a> <span class=meta>(10,964 B)</span></li>
+<li><a href="../../../../analysis/05_stability/scripts/compare_planned_cost.py">compare_planned_cost.py</a> <span class=meta>(7,039 B)</span></li>
+<li><a href="../../../../analysis/05_stability/scripts/fig_fork_sensitivity.py">fig_fork_sensitivity.py</a> <span class=meta>(776 B)</span></li>
+<li><a href="../../../../analysis/05_stability/scripts/fig_fork_sensitivity_both.py">fig_fork_sensitivity_both.py</a> <span class=meta>(4,974 B)</span></li>
+<li><a href="../../../../analysis/05_stability/scripts/fig_holdout_vs_development.py">fig_holdout_vs_development.py</a> <span class=meta>(4,971 B)</span></li>
+<li><a href="../../../../analysis/05_stability/scripts/fig_pair_interaction.py">fig_pair_interaction.py</a> <span class=meta>(5,220 B)</span></li>
+<li><a href="../../../../analysis/05_stability/scripts/fig_skill_distribution.py">fig_skill_distribution.py</a> <span class=meta>(794 B)</span></li>
+<li><a href="../../../../analysis/05_stability/scripts/freeze_holdout_manifest.py">freeze_holdout_manifest.py</a> <span class=meta>(26,346 B)</span></li>
+<li><a href="../../../../analysis/05_stability/scripts/holdout_fig_fork_sensitivity.py">holdout_fig_fork_sensitivity.py</a> <span class=meta>(752 B)</span></li>
+<li><a href="../../../../analysis/05_stability/scripts/holdout_fig_skill_distribution.py">holdout_fig_skill_distribution.py</a> <span class=meta>(972 B)</span></li>
+<li><a href="../../../../analysis/05_stability/scripts/lib/driver.py">lib/driver.py</a> <span class=meta>(9,525 B)</span></li>
+<li><a href="../../../../analysis/05_stability/scripts/lib/inventory.py">lib/inventory.py</a> <span class=meta>(8,934 B)</span></li>
+<li><a href="../../../../analysis/05_stability/scripts/lib/stability_figures.py">lib/stability_figures.py</a> <span class=meta>(11,770 B)</span></li>
+<li><a href="../../../../analysis/05_stability/scripts/measure_step_costs.py">measure_step_costs.py</a> <span class=meta>(4,542 B)</span></li>
+<li><a href="../../../../analysis/05_stability/scripts/pair_holdout_development.py">pair_holdout_development.py</a> <span class=meta>(23,696 B)</span></li>
+<li><a href="../../../../analysis/05_stability/scripts/plan_manifest.py">plan_manifest.py</a> <span class=meta>(45,719 B)</span></li>
+<li><a href="../../../../analysis/05_stability/scripts/reconstruct_pools.py">reconstruct_pools.py</a> <span class=meta>(9,995 B)</span></li>
+<li><a href="../../../../analysis/05_stability/scripts/report_distribution.py">report_distribution.py</a> <span class=meta>(19,204 B)</span></li>
+<li><a href="../../../../analysis/05_stability/scripts/run_manifest.py">run_manifest.py</a> <span class=meta>(15,731 B)</span></li>
+</ul>
+<h2>Provenance</h2><ul>
+<li><a href="../../../../analysis/05_stability/provenance/collect_conclusions.md">collect_conclusions.md</a> <span class=meta>(5,627 B)</span></li>
+<li><a href="../../../../analysis/05_stability/provenance/compare_planned_cost.md">compare_planned_cost.md</a> <span class=meta>(7,468 B)</span></li>
+<li><a href="../../../../analysis/05_stability/provenance/fig_fork_sensitivity.md">fig_fork_sensitivity.md</a> <span class=meta>(9,210 B)</span></li>
+<li><a href="../../../../analysis/05_stability/provenance/fig_fork_sensitivity_both.md">fig_fork_sensitivity_both.md</a> <span class=meta>(1,886 B)</span></li>
+<li><a href="../../../../analysis/05_stability/provenance/fig_holdout_vs_development.md">fig_holdout_vs_development.md</a> <span class=meta>(1,880 B)</span></li>
+<li><a href="../../../../analysis/05_stability/provenance/fig_pair_interaction.md">fig_pair_interaction.md</a> <span class=meta>(2,943 B)</span></li>
+<li><a href="../../../../analysis/05_stability/provenance/fig_skill_distribution.md">fig_skill_distribution.md</a> <span class=meta>(8,461 B)</span></li>
+<li><a href="../../../../analysis/05_stability/provenance/freeze_holdout_manifest.md">freeze_holdout_manifest.md</a> <span class=meta>(12,513 B)</span></li>
+<li><a href="../../../../analysis/05_stability/provenance/measure_step_costs.md">measure_step_costs.md</a> <span class=meta>(3,520 B)</span></li>
+<li><a href="../../../../analysis/05_stability/provenance/pair_holdout_development.md">pair_holdout_development.md</a> <span class=meta>(8,348 B)</span></li>
+<li><a href="../../../../analysis/05_stability/provenance/plan_manifest.md">plan_manifest.md</a> <span class=meta>(20,442 B)</span></li>
+<li><a href="../../../../analysis/05_stability/provenance/reconstruct_pools.md">reconstruct_pools.md</a> <span class=meta>(5,942 B)</span></li>
+<li><a href="../../../../analysis/05_stability/provenance/report_distribution.md">report_distribution.md</a> <span class=meta>(7,804 B)</span></li>
+<li><a href="../../../../analysis/05_stability/provenance/run_manifest.md">run_manifest.md</a> <span class=meta>(26,063 B)</span></li>
+</ul>
+<h2>run.sh</h2>
+<pre>#!/usr/bin/env bash
+# Main script for node: 05_stability
+# Generated shape -- edit the &quot;own scripts&quot; block; the child calls are maintained
+# by `node.py rebuild`, which enforces the alternatives/sub-analyses semantics.
+set -euo pipefail
+cd &quot;$(dirname &quot;$0&quot;)&quot;
+REPO_ROOT=&quot;$(cd &quot;../..&quot; &amp;&amp; pwd)&quot;
+# Node scripts run under the pinned analysis environment (AGENTS.md §2), not under
+# .venv, which is the repository&#x27;s own machinery. A node needing something beyond it
+# declares env/ and overrides PYTHON below.
+PYTHON=&quot;$REPO_ROOT/environment/chapenv/bin/python&quot;
+
+
+# Own scripts -- in dependency order, not the alphabetical order `node.py rebuild`
+# writes. The order is the phase&#x27;s own: cost the pipeline, plan the set, run tier 1,
+# read what it concluded, let the frozen rule pick tier 2 from that, run those, read the
+# whole set, and report it.
+#
+# `plan_manifest.py` and `collect_conclusions.py` each appear twice, and that is what
+# makes this node reproducible from nothing rather than from the results already on
+# disk. Tier 2 is selected by `tier2_rule.md` from tier 1&#x27;s conclusions, so on a cold
+# run the first planning pass can only leave eight unresolved slots; the second pass,
+# after tier 1 has run and been collected, fills them by the rule. Both passes are the
+# same script and the same rule -- what differs is that the second has a tier 1 to read.
+&quot;$PYTHON&quot; &quot;scripts/measure_step_costs.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/plan_manifest.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/run_manifest.py&quot; --tier 1
+&quot;$PYTHON&quot; &quot;scripts/collect_conclusions.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/plan_manifest.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/run_manifest.py&quot; --tier 2
+&quot;$PYTHON&quot; &quot;scripts/collect_conclusions.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/compare_planned_cost.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/report_distribution.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/fig_skill_distribution.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/fig_fork_sensitivity.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/fig_pair_interaction.py&quot;
+# Freezes the phase-E set the first time and verifies it every time after, writing
+# results/holdout_freeze_check.json and nothing else. It exits non-zero if the frozen set
+# is one this tree can no longer reproduce, which stops the run before the holdout half
+# below can be told it ran something it did not.
+&quot;$PYTHON&quot; &quot;scripts/freeze_holdout_manifest.py&quot;
+
+# Phase E. The frozen set, on the held-out year, and then the two datasets side by side.
+# The driver is given the manifest it may not change. `run.sh` re-plans the development
+# manifest above on every run, because the tree is what that manifest is derived from and
+# `/validate invariants` requires the two to agree. It does *not* re-freeze the holdout
+# one: batch 15 established that both came back byte-identical, and batch 18 established
+# that this was a property of the tree not having changed rather than of anything
+# enforcing it — one added fork child turned thirty-three frozen rows into thirty-four.
+# Since batch 24 the frozen file is authoritative and the last step of the development
+# half above verifies it instead of rebuilding it, so the set this runs is the one fixed
+# before the year was opened rather than one this invocation decided.
+#
+# A row already recorded as run is not run again (plan §3). The seal takes two conditions
+# and needs both: the row is recorded as `ran` in the versioned `run_status_holdout.csv`,
+# and the gitignored `.holdout_opened`, at this node&#x27;s root, says this tree is the one that
+# opened the year. A clean checkout carries the first and not the second, so the whole set
+# runs, which is what keeps `analysis/run.sh` a reproduction of phase E rather than a
+# description of it. Batch 18&#x27;s clean-room check found that the versioned condition alone
+# had made it the description: every row was skipped and the outputs came back identical.
+&quot;$PYTHON&quot; &quot;scripts/run_manifest.py&quot; --dataset holdout
+&quot;$PYTHON&quot; &quot;scripts/collect_conclusions.py&quot; --dataset holdout
+&quot;$PYTHON&quot; &quot;scripts/compare_planned_cost.py&quot; --dataset holdout
+&quot;$PYTHON&quot; &quot;scripts/report_distribution.py&quot; --dataset holdout
+&quot;$PYTHON&quot; &quot;scripts/pair_holdout_development.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/holdout_fig_skill_distribution.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/holdout_fig_fork_sensitivity.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/fig_holdout_vs_development.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/fig_fork_sensitivity_both.py&quot;
+
+# Last, because it is the one step that can only be right once everything else has run.
+# `c_ensemble/scripts/check_pool.py` rebuilds each pool from its members&#x27; own separate
+# evaluations, and a candidate family is evaluated separately only under the family fork&#x27;s
+# own combination -- a stability row. So on a run from nothing the main path&#x27;s pool is
+# checked before its members exist, records that the reconstruction could not be done, and
+# nothing revisits it: the archived `main__holdout` called its own reconstruction
+# impossible when what it recorded was that batch 16 ran the rows in manifest order. This
+# gives every pool row the answer it would have had under any other order, by asking
+# `check_pool`&#x27;s own rule which evaluations it should name and re-running it where the file
+# names others. It rewrites nothing that is already right, so on a tree that has not moved
+# it costs seconds. Same shape as the two second passes above, one node further out.
+&quot;$PYTHON&quot; &quot;scripts/reconstruct_pools.py&quot;
+
+# The driver joined this list in batch 15, which is what makes `analysis/run.sh`
+# reproduce the stability result as well as the reported one. It was held out of it from
+# batch 12 to batch 14 because rows with no scripts and rows whose defects made them
+# report the wrong thing would have been written into the tree every time anyone ran the
+# analysis. Every row can now run, so the reason is gone.
+#
+# The cost of that: `analysis/run.sh` is about four hours rather than about twenty
+# minutes, and most of it is the reference model&#x27;s four unseeded repeats through an
+# amd64 image under emulation. `readme-at-start.md` says so.
+#
+# Batch 16 added the phase-E half above, on the same argument: the holdout distribution
+# is a reported result, and `run.sh` is what reproduces reported results. From cold it
+# is about six hours.
+</pre>

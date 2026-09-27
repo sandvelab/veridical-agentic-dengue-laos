@@ -1,0 +1,66 @@
+<!doctype html><meta charset=utf-8>
+<title>01_data</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<div class=crumb><a href="../index.html">analysis</a> / 01_data</div>
+<h1>01_data</h1>
+<div class=claim>What does the Lao admin-1 monthly dengue dataset contain, and on what part of it may development happen? The node separates the held-out final year from the development period before anything characterises the data, then describes the development period only. It also holds the two sibling datasets the external check runs on, because between them its children are the only nodes licensed to read anything under `Archive/`.</div>
+<h2>Claims resting on this node</h2>
+<p class=meta>From the claim collection. Nothing enters the manuscript that is not there.</p>
+<div class=claimblock>
+<span class=cid>C33</span> Three statements in the dataset&#x27;s own schema do not describe the file it ships with. The schema states 2 575 rows where the file carries 2 808 -- the stated figure is the count of rows whose target is not null. It declares rainfall as a monthly total in millimetres, which would put a province&#x27;s whole year at a few tens of millimetres; read as a mean daily rate the same column puts the year in the thousands, a factor of 30.4 apart, and the second reading is the one the file supports. And the population column, declared against a 2020 reference, sums to 4.96 million where the national total that year was 7.35 million, matching the country around 1995.
+<br><span class=meta>grounds: <a href="../../../../analysis/01_data/01_partition/results/rowcount_reconciliation.json">rowcount_reconciliation.json</a> · <a href="../../../../analysis/01_data/02_characterise/results/covariate_units_check.json">covariate_units_check.json</a> · <a href="../../../../analysis/02_setup/01_population/b_backCast/results/popColumn_backCast/setup_spec.json">setup_spec.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<h2>Children <span class=tag>sub-analyses</span></h2>
+<ul>
+<li><a href="01_partition/index.html">01_partition</a><br><span class=meta>Does the archived source file partition exactly into a development period (1998-01 to 2009-12) and a held-out year (2010), and is each part well-formed? This is the only node in the project that reads the full file.</span></li>
+<li><a href="02_characterise/index.html">02_characterise</a><br><span class=meta>What is in the development period: how complete is it per province and per year, how are dengue counts distributed, what seasonality do they show, and how do the climate covariates behave? Which of its features are analytic problems that phase D must perturb rather than preprocessing details?</span></li>
+<li><a href="03_siblings/index.html">03_siblings</a><br><span class=meta>What do the two sibling harmonised datasets — Thailand and Vietnam — contain, and on what</span></li>
+</ul>
+<h2>run.sh</h2>
+<pre>#!/usr/bin/env bash
+# Main script for node: 01_data
+# Generated shape -- edit the &quot;own scripts&quot; block; the child calls are maintained
+# by `node.py rebuild`, which enforces the alternatives/sub-analyses semantics.
+set -euo pipefail
+cd &quot;$(dirname &quot;$0&quot;)&quot;
+REPO_ROOT=&quot;$(cd &quot;../..&quot; &amp;&amp; pwd)&quot;
+# Node scripts run under the pinned analysis environment (AGENTS.md §2), not under
+# .venv, which is the repository&#x27;s own machinery. A node needing something beyond it
+# declares env/ and overrides PYTHON below.
+PYTHON=&quot;$REPO_ROOT/environment/chapenv/bin/python&quot;
+
+# Sub-analyses: every child runs, in order.
+bash &quot;01_partition/run.sh&quot;
+bash &quot;02_characterise/run.sh&quot;
+bash &quot;03_siblings/run.sh&quot;
+</pre>

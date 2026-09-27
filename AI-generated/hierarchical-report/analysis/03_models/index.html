@@ -1,0 +1,75 @@
+<!doctype html><meta charset=utf-8>
+<title>03_models</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<div class=crumb><a href="../index.html">analysis</a> / 03_models</div>
+<h1>03_models</h1>
+<div class=claim>What forecast does each model make on that common ground? The node holds every model the project scores — our baselines, our candidates and the external reference — so that all of them traverse the identical evaluation path.</div>
+<h2>Claims resting on this node</h2>
+<p class=meta>From the claim collection. Nothing enters the manuscript that is not there.</p>
+<div class=claimblock>
+<span class=cid>C29</span> The reported model is cheaper to run than the model it beats. One eight-split evaluation of the pool takes 59.5 seconds natively; one repeat of the reference takes between 241 and 285 seconds through an amd64 image under emulation, and the reported reference figure needs four of them, at 1 070 seconds.
+<br><span class=meta>grounds: <a href="../../../../analysis/03_models/03_candidate/c_ensemble/results/main/run_cost.json">run_cost.json</a> · <a href="../../../../analysis/03_models/02_reference/results/main/run_cost.json">run_cost.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C37</span> Every model this project wrote reproduces byte-identically when it is run again -- per-cell scores, model listing and fitted object, for all seven of them. The reference model cannot be made to do this: it calls its sampler without ever setting a seed and the service exposes no seed, so its variability is quantified by repetition instead of removed.
+<br><span class=meta>grounds: <a href="../../../../AI-generated/determinism-checks/model_determinism.json">model_determinism.json</a> · <a href="../../../../analysis/03_models/02_reference/results/main/model_spec.json">model_spec.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<h2>Children <span class=tag>sub-analyses</span></h2>
+<ul>
+<li><a href="01_baselines/index.html">01_baselines</a><br><span class=meta>How well does the problem&#x27;s own inertia forecast it? Two baselines the plan requires: what the series did last, and what the series usually does in this calendar month.</span></li>
+<li><a href="02_reference/index.html">02_reference</a><br><span class=meta>What does the field&#x27;s own model score on this dataset? WHO EWARS-csd as published at chapkit_ewars_model, at its own default configuration, pinned by image digest and never tuned by us. It is unseeded, so it is run repeatedly and its spread carried rather than hidden.</span></li>
+<li><a href="03_candidate/index.html">03_candidate</a><br><span class=meta>Which model family should our candidate be? Each child is one family — one possible answer to the same question of what forecast our model makes — so exactly one of them is ever the reported model, and the others are re-run in the stability work rather than discarded.</span></li>
+</ul>
+<h2>Scripts</h2><ul>
+<li><a href="../../../../analysis/03_models/scripts/lib/assemble_config.py">lib/assemble_config.py</a> <span class=meta>(8,496 B)</span></li>
+<li><a href="../../../../analysis/03_models/scripts/lib/chap_eval.py">lib/chap_eval.py</a> <span class=meta>(9,109 B)</span></li>
+<li><a href="../../../../analysis/03_models/scripts/lib/pool_shape.py">lib/pool_shape.py</a> <span class=meta>(9,745 B)</span></li>
+</ul>
+<h2>run.sh</h2>
+<pre>#!/usr/bin/env bash
+# Main script for node: 03_models
+# Generated shape -- edit the &quot;own scripts&quot; block; the child calls are maintained
+# by `node.py rebuild`, which enforces the alternatives/sub-analyses semantics.
+set -euo pipefail
+cd &quot;$(dirname &quot;$0&quot;)&quot;
+REPO_ROOT=&quot;$(cd &quot;../..&quot; &amp;&amp; pwd)&quot;
+# Node scripts run under the pinned analysis environment (AGENTS.md §2), not under
+# .venv, which is the repository&#x27;s own machinery. A node needing something beyond it
+# declares env/ and overrides PYTHON below.
+PYTHON=&quot;$REPO_ROOT/environment/chapenv/bin/python&quot;
+
+# Sub-analyses: every child runs, in order.
+bash &quot;01_baselines/run.sh&quot;
+bash &quot;02_reference/run.sh&quot;
+bash &quot;03_candidate/run.sh&quot;
+</pre>

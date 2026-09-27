@@ -1,0 +1,60 @@
+<!doctype html><meta charset=utf-8>
+<title>03_candidate</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<div class=crumb><a href="../../index.html">analysis</a> / <a href="../index.html">03_models</a> / 03_candidate</div>
+<h1>03_candidate</h1>
+<div class=claim>Which model family should our candidate be? Each child is one family — one possible answer to the same question of what forecast our model makes — so exactly one of them is ever the reported model, and the others are re-run in the stability work rather than discarded.</div>
+<h2>Children <span class=tag>alternatives</span></h2>
+<p class=meta>Only the main path is run by this node. The others are run by the stability node.</p>
+<ul>
+<li><a href="a_hierNB/index.html">a_hierNB</a> <span class="tag not-taken">not taken</span><br><span class=meta>…a hierarchical negative-binomial GLM: monthly province counts as negative-binomial draws around a log-linear mean built from a population offset, a shared annual seasonality and lagged climate covariates, with province and province-year effects pooled toward a common level. The node&#x27;s six children are the choices that shape it; the node itself assembles those choices into one model configuration and sends the model through the same chap eval path as every other model in the project.</span></li>
+<li><a href="b_boosted/index.html">b_boosted</a> <span class="tag not-taken">not taken</span><br><span class=meta>…gradient-boosted trees with a probabilistic head: the conditional distribution of a province-month&#x27;s count built in two pieces, a boosted-tree fit for where the count sits and a separately estimated head for how wide the distribution around it is. The node&#x27;s two children are the choices that shape it; the node itself assembles them into one model configuration and sends the model through the same chap eval path as every other model in the project.</span></li>
+<li><a href="c_ensemble/index.html">c_ensemble</a> <span class="tag main-path">main path</span><br><span class=meta>…a weighted combination of the models this project already has: the two candidate families and the two required baselines, pooled into one predictive distribution rather than chosen between. The node&#x27;s one child is the choice of weights; the node itself assembles the members, sends the pooled model through the same chap eval path as every other model, and so asks whether combining beats selecting.</span></li>
+</ul>
+<h2>run.sh</h2>
+<pre>#!/usr/bin/env bash
+# Main script for node: 03_candidate
+# Generated shape -- edit the &quot;own scripts&quot; block; the child calls are maintained
+# by `node.py rebuild`, which enforces the alternatives/sub-analyses semantics.
+set -euo pipefail
+cd &quot;$(dirname &quot;$0&quot;)&quot;
+REPO_ROOT=&quot;$(cd &quot;../../..&quot; &amp;&amp; pwd)&quot;
+# Node scripts run under the pinned analysis environment (AGENTS.md §2), not under
+# .venv, which is the repository&#x27;s own machinery. A node needing something beyond it
+# declares env/ and overrides PYTHON below.
+PYTHON=&quot;$REPO_ROOT/environment/chapenv/bin/python&quot;
+
+# Alternatives: only the main path is run here.
+# Not taken: a_hierNB, b_boosted
+bash &quot;c_ensemble/run.sh&quot;
+</pre>

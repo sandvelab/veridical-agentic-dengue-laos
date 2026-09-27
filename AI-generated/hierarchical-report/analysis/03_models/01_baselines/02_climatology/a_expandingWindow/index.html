@@ -1,0 +1,308 @@
+<!doctype html><meta charset=utf-8>
+<title>a_expandingWindow</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<div class=crumb><a href="../../../../index.html">analysis</a> / <a href="../../../index.html">03_models</a> / <a href="../../index.html">01_baselines</a> / <a href="../index.html">02_climatology</a> / a_expandingWindow</div>
+<h1>a_expandingWindow</h1>
+<div class=claim>Estimate each province&#x27;s calendar-month distribution from everything observed by the time the forecast is made — the expanding historic window chap-core hands to predict — so the baseline uses the same information the persistence baseline anchors on.</div>
+<h2>Results</h2>
+<h3>main</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main/eval.log">eval.log</a> <span class=meta>(3,401 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main/eval.nc">eval.nc</a> <span class=meta>(9,831,948 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main/fitted_model.json">fitted_model.json</a> <span class=meta>(31,608 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main/model_spec.json">model_spec.json</a> <span class=meta>(1,608 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main/run_cost.json">run_cost.json</a> <span class=meta>(233 B)</span></li>
+</ul>
+<h3>main__holdout</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__holdout/eval.log">eval.log</a> <span class=meta>(3,446 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__holdout/eval.nc">eval.nc</a> <span class=meta>(4,934,692 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(36,797 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__holdout/model_spec.json">model_spec.json</a> <span class=meta>(1,752 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__holdout/run_cost.json">run_cost.json</a> <span class=meta>(242 B)</span></li>
+</ul>
+<details><summary>28 other combination(s)</summary>
+<h3>main__tha</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__tha/eval.log">eval.log</a> <span class=meta>(3,957 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__tha/eval.nc">eval.nc</a> <span class=meta>(43,864,919 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__tha/fitted_model.json">fitted_model.json</a> <span class=meta>(144,817 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__tha/model_spec.json">model_spec.json</a> <span class=meta>(1,740 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__tha/run_cost.json">run_cost.json</a> <span class=meta>(238 B)</span></li>
+</ul>
+<h3>main__thaFinal</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__thaFinal/eval.log">eval.log</a> <span class=meta>(3,982 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__thaFinal/eval.nc">eval.nc</a> <span class=meta>(21,968,641 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__thaFinal/fitted_model.json">fitted_model.json</a> <span class=meta>(171,282 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__thaFinal/model_spec.json">model_spec.json</a> <span class=meta>(1,755 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__thaFinal/run_cost.json">run_cost.json</a> <span class=meta>(243 B)</span></li>
+</ul>
+<h3>main__vnm</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__vnm/eval.log">eval.log</a> <span class=meta>(3,682 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__vnm/eval.nc">eval.nc</a> <span class=meta>(36,365,876 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__vnm/fitted_model.json">fitted_model.json</a> <span class=meta>(120,262 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__vnm/model_spec.json">model_spec.json</a> <span class=meta>(1,740 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__vnm/run_cost.json">run_cost.json</a> <span class=meta>(238 B)</span></li>
+</ul>
+<h3>main__vnmFinal</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__vnmFinal/eval.log">eval.log</a> <span class=meta>(3,707 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__vnmFinal/eval.nc">eval.nc</a> <span class=meta>(18,215,788 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__vnmFinal/fitted_model.json">fitted_model.json</a> <span class=meta>(142,348 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__vnmFinal/model_spec.json">model_spec.json</a> <span class=meta>(1,755 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/main__vnmFinal/run_cost.json">run_cost.json</a> <span class=meta>(243 B)</span></li>
+</ul>
+<h3>persistence_negBinomialFloor</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/persistence_negBinomialFloor/eval.log">eval.log</a> <span class=meta>(3,473 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/persistence_negBinomialFloor/eval.nc">eval.nc</a> <span class=meta>(9,831,948 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/persistence_negBinomialFloor/fitted_model.json">fitted_model.json</a> <span class=meta>(31,608 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/persistence_negBinomialFloor/model_spec.json">model_spec.json</a> <span class=meta>(1,749 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/persistence_negBinomialFloor/run_cost.json">run_cost.json</a> <span class=meta>(257 B)</span></li>
+</ul>
+<h3>persistence_negBinomialFloor__holdout</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/persistence_negBinomialFloor__holdout/eval.log">eval.log</a> <span class=meta>(3,518 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/persistence_negBinomialFloor__holdout/eval.nc">eval.nc</a> <span class=meta>(4,934,692 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/persistence_negBinomialFloor__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(36,797 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/persistence_negBinomialFloor__holdout/model_spec.json">model_spec.json</a> <span class=meta>(1,776 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/persistence_negBinomialFloor__holdout/run_cost.json">run_cost.json</a> <span class=meta>(266 B)</span></li>
+</ul>
+<h3>popColumn_backCast</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/popColumn_backCast/eval.log">eval.log</a> <span class=meta>(3,471 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/popColumn_backCast/eval.nc">eval.nc</a> <span class=meta>(9,831,948 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/popColumn_backCast/fitted_model.json">fitted_model.json</a> <span class=meta>(31,608 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/popColumn_backCast/model_spec.json">model_spec.json</a> <span class=meta>(1,769 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/popColumn_backCast/run_cost.json">run_cost.json</a> <span class=meta>(247 B)</span></li>
+</ul>
+<h3>popColumn_backCast__holdout</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/popColumn_backCast__holdout/eval.log">eval.log</a> <span class=meta>(3,516 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/popColumn_backCast__holdout/eval.nc">eval.nc</a> <span class=meta>(4,934,692 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/popColumn_backCast__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(36,797 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/popColumn_backCast__holdout/model_spec.json">model_spec.json</a> <span class=meta>(1,796 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/popColumn_backCast__holdout/run_cost.json">run_cost.json</a> <span class=meta>(256 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane/eval.log">eval.log</a> <span class=meta>(3,343 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane/eval.nc">eval.nc</a> <span class=meta>(9,831,948 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane/fitted_model.json">fitted_model.json</a> <span class=meta>(31,608 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane/model_spec.json">model_spec.json</a> <span class=meta>(1,789 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane/run_cost.json">run_cost.json</a> <span class=meta>(253 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__aggregate_caseWeighted/eval.log">eval.log</a> <span class=meta>(3,463 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__aggregate_caseWeighted/eval.nc">eval.nc</a> <span class=meta>(9,831,948 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__aggregate_caseWeighted/fitted_model.json">fitted_model.json</a> <span class=meta>(31,608 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__aggregate_caseWeighted/model_spec.json">model_spec.json</a> <span class=meta>(1,861 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__aggregate_caseWeighted/run_cost.json">run_cost.json</a> <span class=meta>(277 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/eval.log">eval.log</a> <span class=meta>(3,508 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/eval.nc">eval.nc</a> <span class=meta>(4,934,692 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(36,797 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/model_spec.json">model_spec.json</a> <span class=meta>(1,888 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/run_cost.json">run_cost.json</a> <span class=meta>(286 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__family_hierNB</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__family_hierNB/eval.log">eval.log</a> <span class=meta>(3,418 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__family_hierNB/eval.nc">eval.nc</a> <span class=meta>(9,831,948 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__family_hierNB/fitted_model.json">fitted_model.json</a> <span class=meta>(31,608 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__family_hierNB/model_spec.json">model_spec.json</a> <span class=meta>(1,834 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__family_hierNB/run_cost.json">run_cost.json</a> <span class=meta>(268 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__family_hierNB__holdout</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__family_hierNB__holdout/eval.log">eval.log</a> <span class=meta>(3,463 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__family_hierNB__holdout/eval.nc">eval.nc</a> <span class=meta>(4,934,692 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__family_hierNB__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(36,797 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__family_hierNB__holdout/model_spec.json">model_spec.json</a> <span class=meta>(1,861 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__family_hierNB__holdout/run_cost.json">run_cost.json</a> <span class=meta>(277 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__holdout</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__holdout/eval.log">eval.log</a> <span class=meta>(3,388 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__holdout/eval.nc">eval.nc</a> <span class=meta>(4,934,692 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(36,797 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__holdout/model_spec.json">model_spec.json</a> <span class=meta>(1,816 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__holdout/run_cost.json">run_cost.json</a> <span class=meta>(262 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__weighting_crpsWeighted</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__weighting_crpsWeighted/eval.log">eval.log</a> <span class=meta>(3,463 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__weighting_crpsWeighted/eval.nc">eval.nc</a> <span class=meta>(9,831,948 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__weighting_crpsWeighted/fitted_model.json">fitted_model.json</a> <span class=meta>(31,608 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__weighting_crpsWeighted/model_spec.json">model_spec.json</a> <span class=meta>(1,861 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__weighting_crpsWeighted/run_cost.json">run_cost.json</a> <span class=meta>(277 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__weighting_crpsWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/eval.log">eval.log</a> <span class=meta>(3,508 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/eval.nc">eval.nc</a> <span class=meta>(4,934,692 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(36,797 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/model_spec.json">model_spec.json</a> <span class=meta>(1,888 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/run_cost.json">run_cost.json</a> <span class=meta>(286 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly/eval.log">eval.log</a> <span class=meta>(3,329 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly/eval.nc">eval.nc</a> <span class=meta>(9,255,171 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly/fitted_model.json">fitted_model.json</a> <span class=meta>(30,139 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly/model_spec.json">model_spec.json</a> <span class=meta>(1,785 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly/run_cost.json">run_cost.json</a> <span class=meta>(252 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__aggregate_caseWeighted/eval.log">eval.log</a> <span class=meta>(3,449 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__aggregate_caseWeighted/eval.nc">eval.nc</a> <span class=meta>(9,255,171 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__aggregate_caseWeighted/fitted_model.json">fitted_model.json</a> <span class=meta>(30,139 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__aggregate_caseWeighted/model_spec.json">model_spec.json</a> <span class=meta>(1,857 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__aggregate_caseWeighted/run_cost.json">run_cost.json</a> <span class=meta>(276 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/eval.log">eval.log</a> <span class=meta>(3,494 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/eval.nc">eval.nc</a> <span class=meta>(4,645,211 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(35,328 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/model_spec.json">model_spec.json</a> <span class=meta>(1,884 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/run_cost.json">run_cost.json</a> <span class=meta>(285 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__family_hierNB</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__family_hierNB/eval.log">eval.log</a> <span class=meta>(3,404 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__family_hierNB/eval.nc">eval.nc</a> <span class=meta>(9,255,171 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__family_hierNB/fitted_model.json">fitted_model.json</a> <span class=meta>(30,139 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__family_hierNB/model_spec.json">model_spec.json</a> <span class=meta>(1,830 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__family_hierNB/run_cost.json">run_cost.json</a> <span class=meta>(267 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__family_hierNB__holdout</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__family_hierNB__holdout/eval.log">eval.log</a> <span class=meta>(3,449 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__family_hierNB__holdout/eval.nc">eval.nc</a> <span class=meta>(4,645,211 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__family_hierNB__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(35,328 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__family_hierNB__holdout/model_spec.json">model_spec.json</a> <span class=meta>(1,857 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__family_hierNB__holdout/run_cost.json">run_cost.json</a> <span class=meta>(276 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__holdout</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__holdout/eval.log">eval.log</a> <span class=meta>(3,374 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__holdout/eval.nc">eval.nc</a> <span class=meta>(4,645,211 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(35,328 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__holdout/model_spec.json">model_spec.json</a> <span class=meta>(1,812 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__holdout/run_cost.json">run_cost.json</a> <span class=meta>(261 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__weighting_crpsWeighted</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__weighting_crpsWeighted/eval.log">eval.log</a> <span class=meta>(3,449 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__weighting_crpsWeighted/eval.nc">eval.nc</a> <span class=meta>(9,255,171 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__weighting_crpsWeighted/fitted_model.json">fitted_model.json</a> <span class=meta>(30,139 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__weighting_crpsWeighted/model_spec.json">model_spec.json</a> <span class=meta>(1,857 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__weighting_crpsWeighted/run_cost.json">run_cost.json</a> <span class=meta>(276 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__weighting_crpsWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/eval.log">eval.log</a> <span class=meta>(3,494 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/eval.nc">eval.nc</a> <span class=meta>(4,645,211 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(35,328 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/model_spec.json">model_spec.json</a> <span class=meta>(1,884 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/run_cost.json">run_cost.json</a> <span class=meta>(285 B)</span></li>
+</ul>
+<h3>retrain_everySplit</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/retrain_everySplit/eval.log">eval.log</a> <span class=meta>(3,471 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/retrain_everySplit/eval.nc">eval.nc</a> <span class=meta>(9,831,948 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/retrain_everySplit/fitted_model.json">fitted_model.json</a> <span class=meta>(36,125 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/retrain_everySplit/model_spec.json">model_spec.json</a> <span class=meta>(1,773 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/retrain_everySplit/run_cost.json">run_cost.json</a> <span class=meta>(247 B)</span></li>
+</ul>
+<h3>retrain_everySplit__holdout</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/retrain_everySplit__holdout/eval.log">eval.log</a> <span class=meta>(3,516 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/retrain_everySplit__holdout/eval.nc">eval.nc</a> <span class=meta>(4,934,692 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/retrain_everySplit__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(38,911 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/retrain_everySplit__holdout/model_spec.json">model_spec.json</a> <span class=meta>(1,800 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/retrain_everySplit__holdout/run_cost.json">run_cost.json</a> <span class=meta>(256 B)</span></li>
+</ul>
+<h3>trainingWindow_from2004</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/trainingWindow_from2004/eval.log">eval.log</a> <span class=meta>(3,496 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/trainingWindow_from2004/eval.nc">eval.nc</a> <span class=meta>(9,824,588 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/trainingWindow_from2004/fitted_model.json">fitted_model.json</a> <span class=meta>(14,773 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/trainingWindow_from2004/model_spec.json">model_spec.json</a> <span class=meta>(1,782 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/trainingWindow_from2004/run_cost.json">run_cost.json</a> <span class=meta>(252 B)</span></li>
+</ul>
+<h3>trainingWindow_from2004__holdout</h3>
+<ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/trainingWindow_from2004__holdout/eval.log">eval.log</a> <span class=meta>(3,541 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/trainingWindow_from2004__holdout/eval.nc">eval.nc</a> <span class=meta>(4,934,692 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/trainingWindow_from2004__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(19,963 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/trainingWindow_from2004__holdout/model_spec.json">model_spec.json</a> <span class=meta>(1,809 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/results/trainingWindow_from2004__holdout/run_cost.json">run_cost.json</a> <span class=meta>(261 B)</span></li>
+</ul>
+</details>
+<h2>Scripts</h2><ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/scripts/climatology_model/MLproject">climatology_model/MLproject</a> <span class=meta>(955 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/scripts/climatology_model/README.md">climatology_model/README.md</a> <span class=meta>(3,002 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/scripts/climatology_model/predict.py">climatology_model/predict.py</a> <span class=meta>(4,230 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/scripts/climatology_model/pyproject.toml">climatology_model/pyproject.toml</a> <span class=meta>(756 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/scripts/climatology_model/train.py">climatology_model/train.py</a> <span class=meta>(4,360 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/scripts/climatology_model/uv.lock">climatology_model/uv.lock</a> <span class=meta>(8,480 B)</span></li>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/scripts/run_climatology.py">run_climatology.py</a> <span class=meta>(1,163 B)</span></li>
+</ul>
+<h2>Provenance</h2><ul>
+<li><a href="../../../../../../../analysis/03_models/01_baselines/02_climatology/a_expandingWindow/provenance/run_climatology.md">run_climatology.md</a> <span class=meta>(12,966 B)</span></li>
+</ul>
+<h2>run.sh</h2>
+<pre>#!/usr/bin/env bash
+# Main script for node: a_expandingWindow
+# Generated shape -- edit the &quot;own scripts&quot; block; the child calls are maintained
+# by `node.py rebuild`, which enforces the alternatives/sub-analyses semantics.
+set -euo pipefail
+cd &quot;$(dirname &quot;$0&quot;)&quot;
+REPO_ROOT=&quot;$(cd &quot;../../../../..&quot; &amp;&amp; pwd)&quot;
+# Node scripts run under the pinned analysis environment (AGENTS.md §2), not under
+# .venv, which is the repository&#x27;s own machinery. A node needing something beyond it
+# declares env/ and overrides PYTHON below.
+PYTHON=&quot;$REPO_ROOT/environment/chapenv/bin/python&quot;
+
+
+# Own scripts
+&quot;$PYTHON&quot; &quot;scripts/run_climatology.py&quot;
+</pre>

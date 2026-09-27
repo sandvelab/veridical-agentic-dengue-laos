@@ -1,0 +1,488 @@
+<!doctype html><meta charset=utf-8>
+<title>02_reference</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<div class=crumb><a href="../../index.html">analysis</a> / <a href="../index.html">03_models</a> / 02_reference</div>
+<h1>02_reference</h1>
+<div class=claim>What does the field&#x27;s own model score on this dataset? WHO EWARS-csd as published at chapkit_ewars_model, at its own default configuration, pinned by image digest and never tuned by us. It is unseeded, so it is run repeatedly and its spread carried rather than hidden.</div>
+<h2>Claims resting on this node</h2>
+<p class=meta>From the claim collection. Nothing enters the manuscript that is not there.</p>
+<div class=claimblock>
+<span class=cid>C24</span> The reference model cannot be seeded, and its own re-run spread is the floor on what this backtest can attribute to a model at all. Four repeats score 21.820, 21.917, 22.272 and 22.385 mean CRPS, and the largest paired difference between two of them is 0.565 CRPS. Anything smaller than that belongs to the reference&#x27;s sampler rather than to any model.
+<br><span class=meta>grounds: <a href="../../../../../analysis/04_score/03_compare/results/main/reference_repeat_noise.csv">reference_repeat_noise.csv</a> · <a href="../../../../../analysis/03_models/02_reference/results/main/model_spec.json">model_spec.json</a> · <a href="../../../../../analysis/04_score/03_compare/results/main/comparison_notes.json">comparison_notes.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<h2>Results</h2>
+<h3>main</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(38,981 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(42,821 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(40,261 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(41,797 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main/model_spec.json">model_spec.json</a> <span class=meta>(2,197 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main/run_cost.json">run_cost.json</a> <span class=meta>(344 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>main__holdout</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__holdout/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__holdout/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(18,002 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__holdout/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__holdout/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(16,722 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__holdout/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__holdout/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(16,466 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__holdout/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__holdout/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(17,490 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__holdout/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__holdout/model_spec.json">model_spec.json</a> <span class=meta>(2,264 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__holdout/run_cost.json">run_cost.json</a> <span class=meta>(348 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__holdout/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<details><summary>26 other combination(s)</summary>
+<h3>main__tha</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__tha/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__tha/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(44,657 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__tha/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(43,865,885 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__tha/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(37,745 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__tha/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(43,865,885 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__tha/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(37,233 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__tha/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(43,865,885 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__tha/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(37,745 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__tha/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(43,865,885 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__tha/model_spec.json">model_spec.json</a> <span class=meta>(2,256 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__tha/run_cost.json">run_cost.json</a> <span class=meta>(349 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__tha/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>main__thaFinal</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__thaFinal/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__thaFinal/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(23,146 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__thaFinal/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(21,969,607 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__thaFinal/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(23,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__thaFinal/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(21,969,607 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__thaFinal/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(23,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__thaFinal/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(21,969,607 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__thaFinal/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(22,122 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__thaFinal/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(21,969,607 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__thaFinal/model_spec.json">model_spec.json</a> <span class=meta>(2,266 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__thaFinal/run_cost.json">run_cost.json</a> <span class=meta>(353 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__thaFinal/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>main__vnm</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnm/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnm/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(38,238 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnm/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(36,366,842 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnm/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(41,054 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnm/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(36,366,842 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnm/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(39,774 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnm/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(36,366,842 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnm/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(37,470 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnm/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(36,366,842 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnm/model_spec.json">model_spec.json</a> <span class=meta>(2,256 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnm/run_cost.json">run_cost.json</a> <span class=meta>(349 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnm/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>main__vnmFinal</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnmFinal/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnmFinal/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(22,615 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnmFinal/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(18,216,754 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnmFinal/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(23,127 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnmFinal/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(18,216,754 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnmFinal/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(22,871 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnmFinal/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(18,216,754 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnmFinal/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(23,383 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnmFinal/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(18,216,754 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnmFinal/model_spec.json">model_spec.json</a> <span class=meta>(2,266 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnmFinal/run_cost.json">run_cost.json</a> <span class=meta>(353 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/main__vnmFinal/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>popColumn_backCast</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(32,139 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(33,675 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(34,187 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(37,515 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast/model_spec.json">model_spec.json</a> <span class=meta>(2,227 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast/run_cost.json">run_cost.json</a> <span class=meta>(357 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>popColumn_backCast__holdout</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast__holdout/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast__holdout/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(16,024 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast__holdout/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast__holdout/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(17,048 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast__holdout/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast__holdout/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(17,048 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast__holdout/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast__holdout/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(17,816 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast__holdout/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast__holdout/model_spec.json">model_spec.json</a> <span class=meta>(2,294 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast__holdout/run_cost.json">run_cost.json</a> <span class=meta>(362 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/popColumn_backCast__holdout/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(41,995 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(44,555 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(33,035 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(38,667 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane/model_spec.json">model_spec.json</a> <span class=meta>(2,241 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane/run_cost.json">run_cost.json</a> <span class=meta>(363 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(27,267 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(30,595 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(30,083 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(28,803 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted/model_spec.json">model_spec.json</a> <span class=meta>(2,338 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted/run_cost.json">run_cost.json</a> <span class=meta>(387 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(19,600 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(20,368 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(19,344 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(20,624 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/model_spec.json">model_spec.json</a> <span class=meta>(2,356 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/run_cost.json">run_cost.json</a> <span class=meta>(395 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__family_hierNB</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(38,998 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(37,718 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(32,342 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(31,318 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB/model_spec.json">model_spec.json</a> <span class=meta>(2,320 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB/run_cost.json">run_cost.json</a> <span class=meta>(378 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__family_hierNB__holdout</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB__holdout/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB__holdout/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(16,739 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB__holdout/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB__holdout/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(15,971 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB__holdout/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB__holdout/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(18,275 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB__holdout/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB__holdout/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(19,811 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB__holdout/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB__holdout/model_spec.json">model_spec.json</a> <span class=meta>(2,338 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB__holdout/run_cost.json">run_cost.json</a> <span class=meta>(384 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__family_hierNB__holdout/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__holdout</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__holdout/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__holdout/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(19,480 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__holdout/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__holdout/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(20,504 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__holdout/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__holdout/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(19,992 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__holdout/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__holdout/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(18,200 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__holdout/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__holdout/model_spec.json">model_spec.json</a> <span class=meta>(2,308 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__holdout/run_cost.json">run_cost.json</a> <span class=meta>(371 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__holdout/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__weighting_crpsWeighted</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(29,571 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(28,803 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(30,595 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(29,827 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted/model_spec.json">model_spec.json</a> <span class=meta>(2,338 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted/run_cost.json">run_cost.json</a> <span class=meta>(387 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__weighting_crpsWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(17,552 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(18,576 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(19,344 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(19,344 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/model_spec.json">model_spec.json</a> <span class=meta>(2,356 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/run_cost.json">run_cost.json</a> <span class=meta>(392 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(27,389 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(9,256,137 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(33,021 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(9,256,137 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(31,997 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(9,256,137 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(30,973 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(9,256,137 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly/model_spec.json">model_spec.json</a> <span class=meta>(2,287 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly/run_cost.json">run_cost.json</a> <span class=meta>(362 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(29,301 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(9,256,137 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(28,021 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(9,256,137 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(29,045 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(9,256,137 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(27,765 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(9,256,137 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted/model_spec.json">model_spec.json</a> <span class=meta>(2,335 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted/run_cost.json">run_cost.json</a> <span class=meta>(386 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(18,306 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(4,646,177 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(17,026 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(4,646,177 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(19,330 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(4,646,177 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(19,074 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(4,646,177 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/model_spec.json">model_spec.json</a> <span class=meta>(2,353 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/run_cost.json">run_cost.json</a> <span class=meta>(391 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__family_hierNB</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(36,424 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(9,256,137 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(32,328 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(9,256,137 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(34,632 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(9,256,137 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(38,216 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(9,256,137 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB/model_spec.json">model_spec.json</a> <span class=meta>(2,317 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB/run_cost.json">run_cost.json</a> <span class=meta>(377 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__family_hierNB__holdout</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB__holdout/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB__holdout/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(18,261 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB__holdout/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(4,646,177 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB__holdout/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(17,237 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB__holdout/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(4,646,177 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB__holdout/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(18,005 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB__holdout/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(4,646,177 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB__holdout/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(16,213 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB__holdout/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(4,646,177 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB__holdout/model_spec.json">model_spec.json</a> <span class=meta>(2,335 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB__holdout/run_cost.json">run_cost.json</a> <span class=meta>(382 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__family_hierNB__holdout/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__holdout</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__holdout/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__holdout/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(16,906 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__holdout/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(4,646,177 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__holdout/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(16,650 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__holdout/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(4,646,177 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__holdout/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(16,394 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__holdout/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(4,646,177 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__holdout/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(15,626 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__holdout/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(4,646,177 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__holdout/model_spec.json">model_spec.json</a> <span class=meta>(2,305 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__holdout/run_cost.json">run_cost.json</a> <span class=meta>(367 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__holdout/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__weighting_crpsWeighted</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(41,589 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(9,256,137 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(42,869 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(9,256,137 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(39,285 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(9,256,137 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(32,117 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(9,256,137 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted/model_spec.json">model_spec.json</a> <span class=meta>(2,335 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted/run_cost.json">run_cost.json</a> <span class=meta>(386 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__weighting_crpsWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(16,514 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(4,646,177 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(16,258 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(4,646,177 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(16,258 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(4,646,177 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(16,770 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(4,646,177 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/model_spec.json">model_spec.json</a> <span class=meta>(2,353 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/run_cost.json">run_cost.json</a> <span class=meta>(391 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>retrain_everySplit</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(36,321 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(36,321 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(37,601 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(38,881 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(9,832,914 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit/model_spec.json">model_spec.json</a> <span class=meta>(2,280 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit/run_cost.json">run_cost.json</a> <span class=meta>(359 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>retrain_everySplit__holdout</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit__holdout/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit__holdout/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(19,718 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit__holdout/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit__holdout/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(20,486 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit__holdout/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit__holdout/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(21,766 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit__holdout/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit__holdout/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(22,022 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit__holdout/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit__holdout/model_spec.json">model_spec.json</a> <span class=meta>(2,298 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit__holdout/run_cost.json">run_cost.json</a> <span class=meta>(367 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/retrain_everySplit__holdout/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>trainingWindow_from2004</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(26,532 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(9,825,554 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(26,276 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(9,825,554 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(26,276 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(9,825,554 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(26,276 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(9,825,554 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004/model_spec.json">model_spec.json</a> <span class=meta>(2,235 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004/run_cost.json">run_cost.json</a> <span class=meta>(362 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+<h3>trainingWindow_from2004__holdout</h3>
+<ul>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004__holdout/config_schema.json">config_schema.json</a> <span class=meta>(1,111 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004__holdout/eval_repeat_1.log">eval_repeat_1.log</a> <span class=meta>(14,257 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004__holdout/eval_repeat_1.nc">eval_repeat_1.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004__holdout/eval_repeat_2.log">eval_repeat_2.log</a> <span class=meta>(14,513 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004__holdout/eval_repeat_2.nc">eval_repeat_2.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004__holdout/eval_repeat_3.log">eval_repeat_3.log</a> <span class=meta>(14,513 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004__holdout/eval_repeat_3.nc">eval_repeat_3.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004__holdout/eval_repeat_4.log">eval_repeat_4.log</a> <span class=meta>(14,513 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004__holdout/eval_repeat_4.nc">eval_repeat_4.nc</a> <span class=meta>(4,935,658 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004__holdout/model_spec.json">model_spec.json</a> <span class=meta>(2,302 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004__holdout/run_cost.json">run_cost.json</a> <span class=meta>(367 B)</span></li>
+<li><a href="../../../../../analysis/03_models/02_reference/results/trainingWindow_from2004__holdout/service_info.json">service_info.json</a> <span class=meta>(1,063 B)</span></li>
+</ul>
+</details>
+<h2>Scripts</h2><ul>
+<li><a href="../../../../../analysis/03_models/02_reference/scripts/run_reference.py">run_reference.py</a> <span class=meta>(10,212 B)</span></li>
+</ul>
+<h2>Provenance</h2><ul>
+<li><a href="../../../../../analysis/03_models/02_reference/provenance/run_reference.md">run_reference.md</a> <span class=meta>(15,301 B)</span></li>
+</ul>
+<h2>run.sh</h2>
+<pre>#!/usr/bin/env bash
+# Main script for node: 02_reference
+# Generated shape -- edit the &quot;own scripts&quot; block; the child calls are maintained
+# by `node.py rebuild`, which enforces the alternatives/sub-analyses semantics.
+set -euo pipefail
+cd &quot;$(dirname &quot;$0&quot;)&quot;
+REPO_ROOT=&quot;$(cd &quot;../../..&quot; &amp;&amp; pwd)&quot;
+# Node scripts run under the pinned analysis environment (AGENTS.md §2), not under
+# .venv, which is the repository&#x27;s own machinery. A node needing something beyond it
+# declares env/ and overrides PYTHON below.
+PYTHON=&quot;$REPO_ROOT/environment/chapenv/bin/python&quot;
+
+
+# Own scripts
+&quot;$PYTHON&quot; &quot;scripts/run_reference.py&quot;
+</pre>

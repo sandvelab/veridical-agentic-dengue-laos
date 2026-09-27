@@ -1,0 +1,192 @@
+<!doctype html><meta charset=utf-8>
+<title>a_static</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<div class=crumb><a href="../../../index.html">analysis</a> / <a href="../../index.html">02_setup</a> / <a href="../index.html">01_population</a> / a_static</div>
+<h1>a_static</h1>
+<div class=claim>Take the archived population column unchanged: one constant per province across the period, as the source file supplies it.</div>
+<h2>Results</h2>
+<h3>main</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/main/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(229,287 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/main/setup_spec.json">setup_spec.json</a> <span class=meta>(766 B)</span></li>
+</ul>
+<h3>main__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/main__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(248,465 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/main__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(771 B)</span></li>
+</ul>
+<details><summary>24 other combination(s)</summary>
+<h3>main__tha</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/main__tha/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(1,086,608 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/main__tha/setup_spec.json">setup_spec.json</a> <span class=meta>(1,627 B)</span></li>
+</ul>
+<h3>main__thaFinal</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/main__thaFinal/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(1,177,350 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/main__thaFinal/setup_spec.json">setup_spec.json</a> <span class=meta>(1,625 B)</span></li>
+</ul>
+<h3>main__vnm</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/main__vnm/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(824,182 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/main__vnm/setup_spec.json">setup_spec.json</a> <span class=meta>(776 B)</span></li>
+</ul>
+<h3>main__vnmFinal</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/main__vnmFinal/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(893,051 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/main__vnmFinal/setup_spec.json">setup_spec.json</a> <span class=meta>(774 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_mergeVientiane/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(229,287 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_mergeVientiane/setup_spec.json">setup_spec.json</a> <span class=meta>(786 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_mergeVientiane__aggregate_caseWeighted/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(229,287 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_mergeVientiane__aggregate_caseWeighted/setup_spec.json">setup_spec.json</a> <span class=meta>(810 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(248,465 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(815 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__family_hierNB</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_mergeVientiane__family_hierNB/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(229,287 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_mergeVientiane__family_hierNB/setup_spec.json">setup_spec.json</a> <span class=meta>(801 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__family_hierNB__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_mergeVientiane__family_hierNB__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(248,465 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_mergeVientiane__family_hierNB__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(806 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_mergeVientiane__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(248,465 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_mergeVientiane__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(791 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__weighting_crpsWeighted</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_mergeVientiane__weighting_crpsWeighted/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(229,287 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_mergeVientiane__weighting_crpsWeighted/setup_spec.json">setup_spec.json</a> <span class=meta>(810 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__weighting_crpsWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(248,465 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(815 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_reportingOnly/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(229,287 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_reportingOnly/setup_spec.json">setup_spec.json</a> <span class=meta>(785 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_reportingOnly__aggregate_caseWeighted/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(229,287 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_reportingOnly__aggregate_caseWeighted/setup_spec.json">setup_spec.json</a> <span class=meta>(809 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(248,465 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(814 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__family_hierNB</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_reportingOnly__family_hierNB/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(229,287 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_reportingOnly__family_hierNB/setup_spec.json">setup_spec.json</a> <span class=meta>(800 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__family_hierNB__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_reportingOnly__family_hierNB__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(248,465 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_reportingOnly__family_hierNB__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(805 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_reportingOnly__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(248,465 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_reportingOnly__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(790 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__weighting_crpsWeighted</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_reportingOnly__weighting_crpsWeighted/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(229,287 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_reportingOnly__weighting_crpsWeighted/setup_spec.json">setup_spec.json</a> <span class=meta>(809 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__weighting_crpsWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(248,465 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(814 B)</span></li>
+</ul>
+<h3>retrain_everySplit</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/retrain_everySplit/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(229,287 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/retrain_everySplit/setup_spec.json">setup_spec.json</a> <span class=meta>(780 B)</span></li>
+</ul>
+<h3>retrain_everySplit__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/retrain_everySplit__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(248,465 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/retrain_everySplit__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(785 B)</span></li>
+</ul>
+<h3>trainingWindow_from2004</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/trainingWindow_from2004/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(229,287 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/trainingWindow_from2004/setup_spec.json">setup_spec.json</a> <span class=meta>(785 B)</span></li>
+</ul>
+<h3>trainingWindow_from2004__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/trainingWindow_from2004__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(248,465 B)</span></li>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/results/trainingWindow_from2004__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(790 B)</span></li>
+</ul>
+</details>
+<h2>Scripts</h2><ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/scripts/apply_population.py">apply_population.py</a> <span class=meta>(4,795 B)</span></li>
+</ul>
+<h2>Provenance</h2><ul>
+<li><a href="../../../../../../analysis/02_setup/01_population/a_static/provenance/apply_population.md">apply_population.md</a> <span class=meta>(8,673 B)</span></li>
+</ul>
+<h2>run.sh</h2>
+<pre>#!/usr/bin/env bash
+# Main script for node: a_static
+# Generated shape -- edit the &quot;own scripts&quot; block; the child calls are maintained
+# by `node.py rebuild`, which enforces the alternatives/sub-analyses semantics.
+set -euo pipefail
+cd &quot;$(dirname &quot;$0&quot;)&quot;
+REPO_ROOT=&quot;$(cd &quot;../../../..&quot; &amp;&amp; pwd)&quot;
+# Node scripts run under the pinned analysis environment (AGENTS.md §2), not under
+# .venv, which is the repository&#x27;s own machinery. A node needing something beyond it
+# declares env/ and overrides PYTHON below.
+PYTHON=&quot;$REPO_ROOT/environment/chapenv/bin/python&quot;
+
+
+# Own scripts
+&quot;$PYTHON&quot; &quot;scripts/apply_population.py&quot;
+</pre>

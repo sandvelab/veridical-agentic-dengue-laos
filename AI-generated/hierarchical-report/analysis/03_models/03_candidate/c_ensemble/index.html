@@ -1,0 +1,810 @@
+<!doctype html><meta charset=utf-8>
+<title>c_ensemble</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<div class=crumb><a href="../../../index.html">analysis</a> / <a href="../../index.html">03_models</a> / <a href="../index.html">03_candidate</a> / c_ensemble</div>
+<h1>c_ensemble</h1>
+<div class=claim>…a weighted combination of the models this project already has: the two candidate families and the two required baselines, pooled into one predictive distribution rather than chosen between. The node&#x27;s one child is the choice of weights; the node itself assembles the members, sends the pooled model through the same chap eval path as every other model, and so asks whether combining beats selecting.</div>
+<h2>Claims resting on this node</h2>
+<p class=meta>From the claim collection. Nothing enters the manuscript that is not there.</p>
+<div class=claimblock>
+<span class=cid>C25</span> Pooling beats every model that goes into it. The pool scores 18.817 mean CRPS against its best member&#x27;s 20.771 and the mean of its members&#x27; 23.421, with half its weight on the two required baselines, which are the two worst-scoring models in the comparison. The premise registered before the run -- that a pool would land between the best member and the members&#x27; mean -- is wrong: it beat the best member by 1.954 CRPS. The half of that premise about spread holds, and the pool over-covers because of it.
+<br><span class=meta>grounds: <a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main/pool_check.json">pool_check.json</a> · <a href="../../../../../../analysis/results/main/conclusion.json">conclusion.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C30</span> On this dataset the 25-75 coverage figures are not a clean reading of calibration and the 10-90 figures are. 56 % of observed province-months are exactly zero, and at 24 % to 55 % of evaluated cells a member&#x27;s 25-75 quantiles coincide, so its interval is the single point zero and every zero outcome falls inside it whatever the model believes. At 10-90 that share is under 27 % for the members and 0.3 % for the pool.
+<br><span class=meta>grounds: <a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main/pool_check.json">pool_check.json</a> · <a href="../../../../../../analysis/01_data/02_characterise/results/dev_overview.json">dev_overview.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C38</span> The pool holds no model code of its own, and that is checkable rather than asserted. Each member runs through its own Chap entry points, read out of that member&#x27;s own contract directory with every file&#x27;s hash recorded; and the pool rebuilt independently from its members&#x27; stored evaluations scores 18.801 against the 18.817 it scored as run, a difference of 0.016 CRPS, which is the sampling error of which draws each member contributed.
+<br><span class=meta>grounds: <a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main/pool_check.json">pool_check.json</a> · <a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main/members.json">members.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C40</span> The pool&#x27;s independent reconstruction reaches the held-out year, and it says the same thing there. Rebuilt from its members&#x27; own stored evaluations of 2010 and scored with chap-core&#x27;s own CRPS, the reported pool gives 76.646 against the 76.731 it scored -- a residual of 0.085 over 192 cells, the same relative size as the 0.016 over 371 development cells. On that year it beats its best member by 4.767 CRPS: seasonal climatology 81.498, candidate 2 81.679, candidate 1 84.707, persistence 128.052. The prediction registered before any of this ran fails on 2010 in both of its halves. That an equally weighted pool would score worse than its best member is false here as it was on development. That its 10-90 coverage would be at least its largest member&#x27;s held on development and does not hold on the held-out year: 0.755 against candidate 2&#x27;s 0.854, with the other three members at 0.516, 0.464 and 0.417.
+<br><span class=meta>grounds: <a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__holdout/pool_check.json">pool_check.json</a> · <a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main/pool_check.json">pool_check.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<h2>Children <span class=tag>sub-analyses</span></h2>
+<ul>
+<li><a href="01_weighting/index.html">01_weighting</a><br><span class=meta>How much weight does each member of the pool carry? Every member is a model that was fitted and evaluated on this dataset already, and the two answers differ in whether the pool is told anything about how well they did.</span></li>
+</ul>
+<h2>Results</h2>
+<h3>main</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,508 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main/eval.log">eval.log</a> <span class=meta>(3,130 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main/eval.nc">eval.nc</a> <span class=meta>(9,836,480 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main/fitted_model.json">fitted_model.json</a> <span class=meta>(651,832 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main/member_selection.json">member_selection.json</a> <span class=meta>(2,704 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main/members.json">members.json</a> <span class=meta>(7,574 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(315 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main/model_spec.json">model_spec.json</a> <span class=meta>(2,929 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main/pool_check.json">pool_check.json</a> <span class=meta>(4,959 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main/run_cost.json">run_cost.json</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>main__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,589 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__holdout/eval.log">eval.log</a> <span class=meta>(3,193 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,233 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(550,480 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,749 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__holdout/members.json">members.json</a> <span class=meta>(7,601 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(324 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__holdout/model_spec.json">model_spec.json</a> <span class=meta>(2,974 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__holdout/pool_check.json">pool_check.json</a> <span class=meta>(4,961 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__holdout/run_cost.json">run_cost.json</a> <span class=meta>(240 B)</span></li>
+</ul>
+<details><summary>53 other combination(s)</summary>
+<h3>autoregressive_lag3</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,643 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3/eval.log">eval.log</a> <span class=meta>(3,205 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3/eval.nc">eval.nc</a> <span class=meta>(9,836,495 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3/fitted_model.json">fitted_model.json</a> <span class=meta>(653,993 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3/member_selection.json">member_selection.json</a> <span class=meta>(2,719 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3/members.json">members.json</a> <span class=meta>(7,619 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(330 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3/model_spec.json">model_spec.json</a> <span class=meta>(2,974 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3/pool_check.json">pool_check.json</a> <span class=meta>(4,066 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3/run_cost.json">run_cost.json</a> <span class=meta>(245 B)</span></li>
+</ul>
+<h3>autoregressive_lag3__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,724 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3__holdout/eval.log">eval.log</a> <span class=meta>(3,268 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,248 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(552,680 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,764 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3__holdout/members.json">members.json</a> <span class=meta>(7,646 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(339 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,019 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3__holdout/pool_check.json">pool_check.json</a> <span class=meta>(4,110 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/autoregressive_lag3__holdout/run_cost.json">run_cost.json</a> <span class=meta>(255 B)</span></li>
+</ul>
+<h3>climatology_frozenWindow</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,679 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow/eval.log">eval.log</a> <span class=meta>(3,230 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow/eval.nc">eval.nc</a> <span class=meta>(9,836,500 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow/fitted_model.json">fitted_model.json</a> <span class=meta>(651,906 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow/member_selection.json">member_selection.json</a> <span class=meta>(2,798 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow/members.json">members.json</a> <span class=meta>(7,635 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(335 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow/model_spec.json">model_spec.json</a> <span class=meta>(2,989 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow/pool_check.json">pool_check.json</a> <span class=meta>(5,055 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow/run_cost.json">run_cost.json</a> <span class=meta>(250 B)</span></li>
+</ul>
+<h3>climatology_frozenWindow__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,760 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow__holdout/eval.log">eval.log</a> <span class=meta>(3,293 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,253 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(550,554 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,843 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow__holdout/members.json">members.json</a> <span class=meta>(7,662 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(344 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,034 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow__holdout/pool_check.json">pool_check.json</a> <span class=meta>(5,058 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/climatology_frozenWindow__holdout/run_cost.json">run_cost.json</a> <span class=meta>(260 B)</span></li>
+</ul>
+<h3>covariates_lagged</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,620 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged/eval.log">eval.log</a> <span class=meta>(3,195 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged/eval.nc">eval.nc</a> <span class=meta>(9,836,493 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged/fitted_model.json">fitted_model.json</a> <span class=meta>(656,398 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged/member_selection.json">member_selection.json</a> <span class=meta>(2,717 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged/members.json">members.json</a> <span class=meta>(7,717 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(328 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged/model_spec.json">model_spec.json</a> <span class=meta>(2,968 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged/pool_check.json">pool_check.json</a> <span class=meta>(4,064 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged/run_cost.json">run_cost.json</a> <span class=meta>(243 B)</span></li>
+</ul>
+<h3>covariates_lagged__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,701 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged__holdout/eval.log">eval.log</a> <span class=meta>(3,258 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,246 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(555,080 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,762 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged__holdout/members.json">members.json</a> <span class=meta>(7,744 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(337 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,013 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged__holdout/pool_check.json">pool_check.json</a> <span class=meta>(4,098 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_lagged__holdout/run_cost.json">run_cost.json</a> <span class=meta>(253 B)</span></li>
+</ul>
+<h3>covariates_rich</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,600 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich/eval.log">eval.log</a> <span class=meta>(3,185 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich/eval.nc">eval.nc</a> <span class=meta>(9,836,491 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich/fitted_model.json">fitted_model.json</a> <span class=meta>(674,958 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich/member_selection.json">member_selection.json</a> <span class=meta>(2,715 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich/members.json">members.json</a> <span class=meta>(7,790 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(326 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich/model_spec.json">model_spec.json</a> <span class=meta>(2,962 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich/pool_check.json">pool_check.json</a> <span class=meta>(4,063 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich/run_cost.json">run_cost.json</a> <span class=meta>(241 B)</span></li>
+</ul>
+<h3>covariates_rich__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,681 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich__holdout/eval.log">eval.log</a> <span class=meta>(3,248 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,244 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(573,608 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,760 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich__holdout/members.json">members.json</a> <span class=meta>(7,817 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(335 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,007 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich__holdout/pool_check.json">pool_check.json</a> <span class=meta>(4,096 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/covariates_rich__holdout/run_cost.json">run_cost.json</a> <span class=meta>(251 B)</span></li>
+</ul>
+<h3>family_ensemble</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/family_ensemble/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,607 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/family_ensemble/eval.log">eval.log</a> <span class=meta>(3,185 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/family_ensemble/eval.nc">eval.nc</a> <span class=meta>(9,836,491 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/family_ensemble/fitted_model.json">fitted_model.json</a> <span class=meta>(651,865 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/family_ensemble/members.json">members.json</a> <span class=meta>(7,607 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/family_ensemble/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(326 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/family_ensemble/model_spec.json">model_spec.json</a> <span class=meta>(2,962 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/family_ensemble/pool_check.json">pool_check.json</a> <span class=meta>(5,056 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/family_ensemble/run_cost.json">run_cost.json</a> <span class=meta>(241 B)</span></li>
+</ul>
+<h3>features_richCalendar</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,665 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar/eval.log">eval.log</a> <span class=meta>(3,215 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar/eval.nc">eval.nc</a> <span class=meta>(9,836,497 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar/fitted_model.json">fitted_model.json</a> <span class=meta>(634,311 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar/member_selection.json">member_selection.json</a> <span class=meta>(2,721 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar/members.json">members.json</a> <span class=meta>(7,633 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(332 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar/model_spec.json">model_spec.json</a> <span class=meta>(2,980 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar/pool_check.json">pool_check.json</a> <span class=meta>(4,065 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar/run_cost.json">run_cost.json</a> <span class=meta>(247 B)</span></li>
+</ul>
+<h3>features_richCalendar__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,746 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar__holdout/eval.log">eval.log</a> <span class=meta>(3,278 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,250 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(585,679 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,766 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar__holdout/members.json">members.json</a> <span class=meta>(7,660 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(341 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,025 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar__holdout/pool_check.json">pool_check.json</a> <span class=meta>(4,109 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/features_richCalendar__holdout/run_cost.json">run_cost.json</a> <span class=meta>(257 B)</span></li>
+</ul>
+<h3>fitTime_refitAtPredict</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,675 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict/eval.log">eval.log</a> <span class=meta>(3,220 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict/eval.nc">eval.nc</a> <span class=meta>(9,836,498 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict/fitted_model.json">fitted_model.json</a> <span class=meta>(500,538 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict/member_selection.json">member_selection.json</a> <span class=meta>(2,722 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict/members.json">members.json</a> <span class=meta>(7,635 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(333 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict/model_spec.json">model_spec.json</a> <span class=meta>(2,983 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict/pool_check.json">pool_check.json</a> <span class=meta>(4,070 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict/run_cost.json">run_cost.json</a> <span class=meta>(250 B)</span></li>
+</ul>
+<h3>fitTime_refitAtPredict__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,756 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict__holdout/eval.log">eval.log</a> <span class=meta>(3,283 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,251 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(394,699 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,767 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict__holdout/members.json">members.json</a> <span class=meta>(7,662 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(342 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,028 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict__holdout/pool_check.json">pool_check.json</a> <span class=meta>(4,089 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/fitTime_refitAtPredict__holdout/run_cost.json">run_cost.json</a> <span class=meta>(258 B)</span></li>
+</ul>
+<h3>head_quantileEnsemble</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,666 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble/eval.log">eval.log</a> <span class=meta>(3,215 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble/eval.nc">eval.nc</a> <span class=meta>(9,836,497 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble/fitted_model.json">fitted_model.json</a> <span class=meta>(3,525,322 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble/member_selection.json">member_selection.json</a> <span class=meta>(2,721 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble/members.json">members.json</a> <span class=meta>(7,630 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(332 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble/model_spec.json">model_spec.json</a> <span class=meta>(2,980 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble/pool_check.json">pool_check.json</a> <span class=meta>(4,060 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble/run_cost.json">run_cost.json</a> <span class=meta>(248 B)</span></li>
+</ul>
+<h3>head_quantileEnsemble__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,747 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble__holdout/eval.log">eval.log</a> <span class=meta>(3,278 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,250 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(3,990,324 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,766 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble__holdout/members.json">members.json</a> <span class=meta>(7,657 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(341 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,025 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble__holdout/pool_check.json">pool_check.json</a> <span class=meta>(4,099 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/head_quantileEnsemble__holdout/run_cost.json">run_cost.json</a> <span class=meta>(257 B)</span></li>
+</ul>
+<h3>main__tha</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__tha/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,553 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__tha/eval.log">eval.log</a> <span class=meta>(3,696 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__tha/eval.nc">eval.nc</a> <span class=meta>(43,868,422 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__tha/fitted_model.json">fitted_model.json</a> <span class=meta>(2,979,695 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__tha/member_selection.json">member_selection.json</a> <span class=meta>(2,729 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__tha/members.json">members.json</a> <span class=meta>(7,589 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__tha/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(320 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__tha/model_spec.json">model_spec.json</a> <span class=meta>(2,954 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__tha/pool_check.json">pool_check.json</a> <span class=meta>(3,596 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__tha/run_cost.json">run_cost.json</a> <span class=meta>(237 B)</span></li>
+</ul>
+<h3>main__thaFinal</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__thaFinal/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,598 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__thaFinal/eval.log">eval.log</a> <span class=meta>(3,731 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__thaFinal/eval.nc">eval.nc</a> <span class=meta>(21,972,149 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__thaFinal/fitted_model.json">fitted_model.json</a> <span class=meta>(3,275,852 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__thaFinal/member_selection.json">member_selection.json</a> <span class=meta>(2,754 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__thaFinal/members.json">members.json</a> <span class=meta>(7,604 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__thaFinal/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(325 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__thaFinal/model_spec.json">model_spec.json</a> <span class=meta>(2,979 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__thaFinal/pool_check.json">pool_check.json</a> <span class=meta>(3,605 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__thaFinal/run_cost.json">run_cost.json</a> <span class=meta>(244 B)</span></li>
+</ul>
+<h3>main__vnm</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnm/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,553 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnm/eval.log">eval.log</a> <span class=meta>(3,421 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnm/eval.nc">eval.nc</a> <span class=meta>(36,369,379 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnm/fitted_model.json">fitted_model.json</a> <span class=meta>(2,034,227 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnm/member_selection.json">member_selection.json</a> <span class=meta>(2,729 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnm/members.json">members.json</a> <span class=meta>(7,589 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnm/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(320 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnm/model_spec.json">model_spec.json</a> <span class=meta>(2,954 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnm/pool_check.json">pool_check.json</a> <span class=meta>(3,629 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnm/run_cost.json">run_cost.json</a> <span class=meta>(237 B)</span></li>
+</ul>
+<h3>main__vnmFinal</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnmFinal/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,598 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnmFinal/eval.log">eval.log</a> <span class=meta>(3,456 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnmFinal/eval.nc">eval.nc</a> <span class=meta>(18,219,296 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnmFinal/fitted_model.json">fitted_model.json</a> <span class=meta>(1,905,888 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnmFinal/member_selection.json">member_selection.json</a> <span class=meta>(2,754 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnmFinal/members.json">members.json</a> <span class=meta>(7,604 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnmFinal/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(325 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnmFinal/model_spec.json">model_spec.json</a> <span class=meta>(2,979 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnmFinal/pool_check.json">pool_check.json</a> <span class=meta>(3,632 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/main__vnmFinal/run_cost.json">run_cost.json</a> <span class=meta>(242 B)</span></li>
+</ul>
+<h3>observation_negBinomial</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,684 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial/eval.log">eval.log</a> <span class=meta>(3,225 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial/eval.nc">eval.nc</a> <span class=meta>(9,836,499 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial/fitted_model.json">fitted_model.json</a> <span class=meta>(577,209 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial/member_selection.json">member_selection.json</a> <span class=meta>(2,723 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial/members.json">members.json</a> <span class=meta>(7,647 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(334 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial/model_spec.json">model_spec.json</a> <span class=meta>(2,986 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial/pool_check.json">pool_check.json</a> <span class=meta>(4,071 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial/run_cost.json">run_cost.json</a> <span class=meta>(249 B)</span></li>
+</ul>
+<h3>observation_negBinomial__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,765 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial__holdout/eval.log">eval.log</a> <span class=meta>(3,288 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,252 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(473,540 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,768 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial__holdout/members.json">members.json</a> <span class=meta>(7,674 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(343 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,031 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial__holdout/pool_check.json">pool_check.json</a> <span class=meta>(4,088 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_negBinomial__holdout/run_cost.json">run_cost.json</a> <span class=meta>(259 B)</span></li>
+</ul>
+<h3>observation_zeroInflated</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,694 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated/eval.log">eval.log</a> <span class=meta>(3,230 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated/eval.nc">eval.nc</a> <span class=meta>(9,836,500 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated/fitted_model.json">fitted_model.json</a> <span class=meta>(580,477 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated/member_selection.json">member_selection.json</a> <span class=meta>(2,724 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated/members.json">members.json</a> <span class=meta>(7,647 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(335 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated/model_spec.json">model_spec.json</a> <span class=meta>(2,989 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated/pool_check.json">pool_check.json</a> <span class=meta>(4,071 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated/run_cost.json">run_cost.json</a> <span class=meta>(250 B)</span></li>
+</ul>
+<h3>observation_zeroInflated__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,775 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated__holdout/eval.log">eval.log</a> <span class=meta>(3,293 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,253 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(476,905 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,769 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated__holdout/members.json">members.json</a> <span class=meta>(7,674 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(344 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,034 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated__holdout/pool_check.json">pool_check.json</a> <span class=meta>(4,097 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/observation_zeroInflated__holdout/run_cost.json">run_cost.json</a> <span class=meta>(260 B)</span></li>
+</ul>
+<h3>persistence_negBinomialFloor</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,727 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor/eval.log">eval.log</a> <span class=meta>(3,250 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor/eval.nc">eval.nc</a> <span class=meta>(9,836,504 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor/fitted_model.json">fitted_model.json</a> <span class=meta>(443,354 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor/member_selection.json">member_selection.json</a> <span class=meta>(2,826 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor/members.json">members.json</a> <span class=meta>(7,747 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(339 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor/model_spec.json">model_spec.json</a> <span class=meta>(3,001 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor/pool_check.json">pool_check.json</a> <span class=meta>(5,078 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor/run_cost.json">run_cost.json</a> <span class=meta>(254 B)</span></li>
+</ul>
+<h3>persistence_negBinomialFloor__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,808 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor__holdout/eval.log">eval.log</a> <span class=meta>(3,313 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,257 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(301,060 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,871 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor__holdout/members.json">members.json</a> <span class=meta>(7,774 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(348 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,046 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor__holdout/pool_check.json">pool_check.json</a> <span class=meta>(5,065 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/persistence_negBinomialFloor__holdout/run_cost.json">run_cost.json</a> <span class=meta>(264 B)</span></li>
+</ul>
+<h3>popColumn_backCast</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,634 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast/eval.log">eval.log</a> <span class=meta>(3,228 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast/eval.nc">eval.nc</a> <span class=meta>(9,836,494 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast/fitted_model.json">fitted_model.json</a> <span class=meta>(612,603 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast/members.json">members.json</a> <span class=meta>(7,616 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(329 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast/model_spec.json">model_spec.json</a> <span class=meta>(3,001 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast/pool_check.json">pool_check.json</a> <span class=meta>(3,669 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast/run_cost.json">run_cost.json</a> <span class=meta>(244 B)</span></li>
+</ul>
+<h3>popColumn_backCast__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,715 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast__holdout/eval.log">eval.log</a> <span class=meta>(3,291 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,247 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(566,853 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,819 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast__holdout/members.json">members.json</a> <span class=meta>(7,643 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(338 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,046 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast__holdout/pool_check.json">pool_check.json</a> <span class=meta>(3,687 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/popColumn_backCast__holdout/run_cost.json">run_cost.json</a> <span class=meta>(254 B)</span></li>
+</ul>
+<h3>population_covariate</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,655 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate/eval.log">eval.log</a> <span class=meta>(3,210 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate/eval.nc">eval.nc</a> <span class=meta>(9,836,496 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate/fitted_model.json">fitted_model.json</a> <span class=meta>(652,974 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate/member_selection.json">member_selection.json</a> <span class=meta>(2,720 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate/members.json">members.json</a> <span class=meta>(7,628 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(331 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate/model_spec.json">model_spec.json</a> <span class=meta>(2,977 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate/pool_check.json">pool_check.json</a> <span class=meta>(4,067 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate/run_cost.json">run_cost.json</a> <span class=meta>(246 B)</span></li>
+</ul>
+<h3>population_covariate__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,736 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate__holdout/eval.log">eval.log</a> <span class=meta>(3,273 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,249 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(551,690 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,765 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate__holdout/members.json">members.json</a> <span class=meta>(7,655 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(340 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,022 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate__holdout/pool_check.json">pool_check.json</a> <span class=meta>(4,101 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_covariate__holdout/run_cost.json">run_cost.json</a> <span class=meta>(256 B)</span></li>
+</ul>
+<h3>population_ignored</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,635 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored/eval.log">eval.log</a> <span class=meta>(3,200 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored/eval.nc">eval.nc</a> <span class=meta>(9,836,494 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored/fitted_model.json">fitted_model.json</a> <span class=meta>(650,691 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored/member_selection.json">member_selection.json</a> <span class=meta>(2,718 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored/members.json">members.json</a> <span class=meta>(7,618 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(329 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored/model_spec.json">model_spec.json</a> <span class=meta>(2,971 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored/pool_check.json">pool_check.json</a> <span class=meta>(4,066 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored/run_cost.json">run_cost.json</a> <span class=meta>(245 B)</span></li>
+</ul>
+<h3>population_ignored__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,716 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored__holdout/eval.log">eval.log</a> <span class=meta>(3,263 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,247 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(549,232 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,763 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored__holdout/members.json">members.json</a> <span class=meta>(7,645 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(338 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,016 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored__holdout/pool_check.json">pool_check.json</a> <span class=meta>(4,109 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/population_ignored__holdout/run_cost.json">run_cost.json</a> <span class=meta>(254 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,688 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane/eval.log">eval.log</a> <span class=meta>(3,112 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane/eval.nc">eval.nc</a> <span class=meta>(9,836,500 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane/fitted_model.json">fitted_model.json</a> <span class=meta>(589,804 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane/members.json">members.json</a> <span class=meta>(7,634 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(335 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane/model_spec.json">model_spec.json</a> <span class=meta>(3,033 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane/pool_check.json">pool_check.json</a> <span class=meta>(4,097 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane/run_cost.json">run_cost.json</a> <span class=meta>(250 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,904 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted/eval.log">eval.log</a> <span class=meta>(3,280 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted/eval.nc">eval.nc</a> <span class=meta>(9,836,524 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted/fitted_model.json">fitted_model.json</a> <span class=meta>(589,876 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted/member_selection.json">member_selection.json</a> <span class=meta>(2,924 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted/members.json">members.json</a> <span class=meta>(7,706 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(359 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted/model_spec.json">model_spec.json</a> <span class=meta>(3,153 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted/pool_check.json">pool_check.json</a> <span class=meta>(4,217 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted/run_cost.json">run_cost.json</a> <span class=meta>(274 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,985 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/eval.log">eval.log</a> <span class=meta>(3,343 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,277 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(599,639 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,969 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/members.json">members.json</a> <span class=meta>(7,733 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(368 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,198 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/pool_check.json">pool_check.json</a> <span class=meta>(4,264 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/run_cost.json">run_cost.json</a> <span class=meta>(284 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,769 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__holdout/eval.log">eval.log</a> <span class=meta>(3,175 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,253 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(599,567 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,849 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__holdout/members.json">members.json</a> <span class=meta>(7,661 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(344 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,078 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__holdout/pool_check.json">pool_check.json</a> <span class=meta>(4,144 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__holdout/run_cost.json">run_cost.json</a> <span class=meta>(260 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__weighting_crpsWeighted</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,014 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted/eval.log">eval.log</a> <span class=meta>(3,280 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted/eval.nc">eval.nc</a> <span class=meta>(9,836,574 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted/fitted_model.json">fitted_model.json</a> <span class=meta>(592,059 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted/member_selection.json">member_selection.json</a> <span class=meta>(2,924 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted/members.json">members.json</a> <span class=meta>(7,706 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(407 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted/model_spec.json">model_spec.json</a> <span class=meta>(3,212 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted/pool_check.json">pool_check.json</a> <span class=meta>(4,544 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted/run_cost.json">run_cost.json</a> <span class=meta>(274 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__weighting_crpsWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,104 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/eval.log">eval.log</a> <span class=meta>(3,343 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,327 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(601,859 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,969 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/members.json">members.json</a> <span class=meta>(7,733 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(416 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,257 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/pool_check.json">pool_check.json</a> <span class=meta>(4,575 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/run_cost.json">run_cost.json</a> <span class=meta>(284 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,679 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly/eval.log">eval.log</a> <span class=meta>(3,096 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly/eval.nc">eval.nc</a> <span class=meta>(9,259,722 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly/fitted_model.json">fitted_model.json</a> <span class=meta>(591,451 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly/members.json">members.json</a> <span class=meta>(7,631 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(334 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly/model_spec.json">model_spec.json</a> <span class=meta>(3,027 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly/pool_check.json">pool_check.json</a> <span class=meta>(4,087 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly/run_cost.json">run_cost.json</a> <span class=meta>(249 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,895 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted/eval.log">eval.log</a> <span class=meta>(3,264 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted/eval.nc">eval.nc</a> <span class=meta>(9,259,746 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted/fitted_model.json">fitted_model.json</a> <span class=meta>(591,523 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted/member_selection.json">member_selection.json</a> <span class=meta>(2,919 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted/members.json">members.json</a> <span class=meta>(7,703 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(358 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted/model_spec.json">model_spec.json</a> <span class=meta>(3,147 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted/pool_check.json">pool_check.json</a> <span class=meta>(4,207 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted/run_cost.json">run_cost.json</a> <span class=meta>(273 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,976 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/eval.log">eval.log</a> <span class=meta>(3,327 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/eval.nc">eval.nc</a> <span class=meta>(4,649,795 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(539,186 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,964 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/members.json">members.json</a> <span class=meta>(7,730 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(367 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,192 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/pool_check.json">pool_check.json</a> <span class=meta>(4,271 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/run_cost.json">run_cost.json</a> <span class=meta>(283 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,760 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__holdout/eval.log">eval.log</a> <span class=meta>(3,159 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__holdout/eval.nc">eval.nc</a> <span class=meta>(4,649,771 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(539,114 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,844 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__holdout/members.json">members.json</a> <span class=meta>(7,658 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(343 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,072 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__holdout/pool_check.json">pool_check.json</a> <span class=meta>(4,151 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__holdout/run_cost.json">run_cost.json</a> <span class=meta>(259 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__weighting_crpsWeighted</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,004 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted/eval.log">eval.log</a> <span class=meta>(3,264 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted/eval.nc">eval.nc</a> <span class=meta>(9,259,796 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted/fitted_model.json">fitted_model.json</a> <span class=meta>(593,747 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted/member_selection.json">member_selection.json</a> <span class=meta>(2,919 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted/members.json">members.json</a> <span class=meta>(7,703 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(406 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted/model_spec.json">model_spec.json</a> <span class=meta>(3,206 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted/pool_check.json">pool_check.json</a> <span class=meta>(4,565 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted/run_cost.json">run_cost.json</a> <span class=meta>(274 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__weighting_crpsWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,094 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/eval.log">eval.log</a> <span class=meta>(3,327 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/eval.nc">eval.nc</a> <span class=meta>(4,649,845 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(541,410 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,964 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/members.json">members.json</a> <span class=meta>(7,730 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(415 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,251 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/pool_check.json">pool_check.json</a> <span class=meta>(4,578 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/run_cost.json">run_cost.json</a> <span class=meta>(283 B)</span></li>
+</ul>
+<h3>retrain_everySplit</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,634 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit/eval.log">eval.log</a> <span class=meta>(3,228 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit/eval.nc">eval.nc</a> <span class=meta>(9,836,494 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit/fitted_model.json">fitted_model.json</a> <span class=meta>(540,998 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit/members.json">members.json</a> <span class=meta>(7,616 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(329 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit/model_spec.json">model_spec.json</a> <span class=meta>(3,005 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit/pool_check.json">pool_check.json</a> <span class=meta>(3,671 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit/run_cost.json">run_cost.json</a> <span class=meta>(246 B)</span></li>
+</ul>
+<h3>retrain_everySplit__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,715 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit__holdout/eval.log">eval.log</a> <span class=meta>(3,291 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,247 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(624,031 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,819 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit__holdout/members.json">members.json</a> <span class=meta>(7,643 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(338 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,050 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit__holdout/pool_check.json">pool_check.json</a> <span class=meta>(3,693 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/retrain_everySplit__holdout/run_cost.json">run_cost.json</a> <span class=meta>(254 B)</span></li>
+</ul>
+<h3>trainingWindow_from2004</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,679 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004/eval.log">eval.log</a> <span class=meta>(3,263 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004/eval.nc">eval.nc</a> <span class=meta>(9,829,139 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004/fitted_model.json">fitted_model.json</a> <span class=meta>(1,114,989 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004/members.json">members.json</a> <span class=meta>(7,631 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(334 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004/model_spec.json">model_spec.json</a> <span class=meta>(3,024 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004/pool_check.json">pool_check.json</a> <span class=meta>(3,695 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004/run_cost.json">run_cost.json</a> <span class=meta>(249 B)</span></li>
+</ul>
+<h3>trainingWindow_from2004__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,760 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004__holdout/eval.log">eval.log</a> <span class=meta>(3,326 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,252 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(395,903 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,844 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004__holdout/members.json">members.json</a> <span class=meta>(7,658 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(343 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,069 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004__holdout/pool_check.json">pool_check.json</a> <span class=meta>(3,711 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/trainingWindow_from2004__holdout/run_cost.json">run_cost.json</a> <span class=meta>(259 B)</span></li>
+</ul>
+<h3>weighting_crpsWeighted</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted/candidate_spec.json">candidate_spec.json</a> <span class=meta>(4,718 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted/eval.log">eval.log</a> <span class=meta>(3,220 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted/eval.nc">eval.nc</a> <span class=meta>(9,836,538 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted/fitted_model.json">fitted_model.json</a> <span class=meta>(654,067 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted/member_selection.json">member_selection.json</a> <span class=meta>(2,722 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted/members.json">members.json</a> <span class=meta>(7,628 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(381 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted/model_spec.json">model_spec.json</a> <span class=meta>(3,042 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted/pool_check.json">pool_check.json</a> <span class=meta>(5,383 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted/run_cost.json">run_cost.json</a> <span class=meta>(250 B)</span></li>
+</ul>
+<h3>weighting_crpsWeighted__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted/candidate_spec.json">candidate_spec.json</a> <span class=meta>(4,910 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted/eval.log">eval.log</a> <span class=meta>(3,340 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted/eval.nc">eval.nc</a> <span class=meta>(9,836,572 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted/fitted_model.json">fitted_model.json</a> <span class=meta>(654,139 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted/member_selection.json">member_selection.json</a> <span class=meta>(2,746 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted/members.json">members.json</a> <span class=meta>(7,700 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(405 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted/model_spec.json">model_spec.json</a> <span class=meta>(3,114 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted/pool_check.json">pool_check.json</a> <span class=meta>(5,407 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted/run_cost.json">run_cost.json</a> <span class=meta>(272 B)</span></li>
+</ul>
+<h3>weighting_crpsWeighted__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,000 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted__holdout/eval.log">eval.log</a> <span class=meta>(3,403 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,325 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(552,829 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,791 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted__holdout/members.json">members.json</a> <span class=meta>(7,727 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(414 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,159 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted__holdout/pool_check.json">pool_check.json</a> <span class=meta>(5,394 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__aggregate_caseWeighted__holdout/run_cost.json">run_cost.json</a> <span class=meta>(282 B)</span></li>
+</ul>
+<h3>weighting_crpsWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(4,808 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__holdout/eval.log">eval.log</a> <span class=meta>(3,283 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,301 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(552,757 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,767 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__holdout/members.json">members.json</a> <span class=meta>(7,655 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(390 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,087 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__holdout/pool_check.json">pool_check.json</a> <span class=meta>(5,370 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/weighting_crpsWeighted__holdout/run_cost.json">run_cost.json</a> <span class=meta>(258 B)</span></li>
+</ul>
+<h3>yearVariance_shared</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,635 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared/eval.log">eval.log</a> <span class=meta>(3,205 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared/eval.nc">eval.nc</a> <span class=meta>(9,836,495 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared/fitted_model.json">fitted_model.json</a> <span class=meta>(568,955 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared/member_selection.json">member_selection.json</a> <span class=meta>(2,719 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared/members.json">members.json</a> <span class=meta>(7,602 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(330 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared/model_spec.json">model_spec.json</a> <span class=meta>(2,974 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared/pool_check.json">pool_check.json</a> <span class=meta>(4,067 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared/run_cost.json">run_cost.json</a> <span class=meta>(245 B)</span></li>
+</ul>
+<h3>yearVariance_shared__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(5,716 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared__holdout/eval.log">eval.log</a> <span class=meta>(3,268 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared__holdout/eval.nc">eval.nc</a> <span class=meta>(4,939,248 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(464,218 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared__holdout/member_selection.json">member_selection.json</a> <span class=meta>(2,764 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared__holdout/members.json">members.json</a> <span class=meta>(7,629 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(339 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared__holdout/model_spec.json">model_spec.json</a> <span class=meta>(3,019 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared__holdout/pool_check.json">pool_check.json</a> <span class=meta>(4,096 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/results/yearVariance_shared__holdout/run_cost.json">run_cost.json</a> <span class=meta>(255 B)</span></li>
+</ul>
+</details>
+<h2>Scripts</h2><ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/scripts/assemble_candidate_config.py">assemble_candidate_config.py</a> <span class=meta>(3,297 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/scripts/check_pool.py">check_pool.py</a> <span class=meta>(21,680 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/scripts/ensemble_model/MLproject">ensemble_model/MLproject</a> <span class=meta>(4,281 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/scripts/ensemble_model/ensemble.py">ensemble_model/ensemble.py</a> <span class=meta>(17,798 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/scripts/ensemble_model/predict.py">ensemble_model/predict.py</a> <span class=meta>(4,381 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/scripts/ensemble_model/pyproject.toml">ensemble_model/pyproject.toml</a> <span class=meta>(1,690 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/scripts/ensemble_model/train.py">ensemble_model/train.py</a> <span class=meta>(8,517 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/scripts/ensemble_model/uv.lock">ensemble_model/uv.lock</a> <span class=meta>(19,499 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/scripts/prepare_members.py">prepare_members.py</a> <span class=meta>(17,358 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/scripts/run_ensemble.py">run_ensemble.py</a> <span class=meta>(3,332 B)</span></li>
+</ul>
+<h2>Provenance</h2><ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/provenance/assemble_candidate_config.md">assemble_candidate_config.md</a> <span class=meta>(13,586 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/provenance/check_pool.md">check_pool.md</a> <span class=meta>(18,038 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/provenance/prepare_members.md">prepare_members.md</a> <span class=meta>(16,364 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/c_ensemble/provenance/run_ensemble.md">run_ensemble.md</a> <span class=meta>(11,688 B)</span></li>
+</ul>
+<h2>run.sh</h2>
+<pre>#!/usr/bin/env bash
+# Main script for node: c_ensemble
+# Generated shape -- edit the &quot;own scripts&quot; block; the child calls are maintained
+# by `node.py rebuild`, which enforces the alternatives/sub-analyses semantics.
+set -euo pipefail
+cd &quot;$(dirname &quot;$0&quot;)&quot;
+REPO_ROOT=&quot;$(cd &quot;../../../..&quot; &amp;&amp; pwd)&quot;
+# Node scripts run under the pinned analysis environment (AGENTS.md §2), not under
+# .venv, which is the repository&#x27;s own machinery. A node needing something beyond it
+# declares env/ and overrides PYTHON below.
+PYTHON=&quot;$REPO_ROOT/environment/chapenv/bin/python&quot;
+
+# Sub-analyses: every child runs, in order.
+bash &quot;01_weighting/run.sh&quot;
+
+# Own scripts
+&quot;$PYTHON&quot; &quot;scripts/prepare_members.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/assemble_candidate_config.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/run_ensemble.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/check_pool.py&quot;
+</pre>

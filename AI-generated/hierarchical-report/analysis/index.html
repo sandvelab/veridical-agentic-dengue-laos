@@ -1,0 +1,442 @@
+<!doctype html><meta charset=utf-8>
+<title>analysis</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<h1>analysis</h1>
+<div class=claim>Can a spatio-temporal model of monthly dengue case counts across the admin-1 provinces of
+Laos, developed as autonomously as this setup allows, forecast well enough under Chap&#x27;s own
+cross-validated backtest to beat a persistence and a seasonal-climatology baseline on mean
+CRPS — and how far does that answer survive the reasonable alternatives to the judgment
+calls made along the way?
+The question has two halves and neither is subordinate. The forecasting half is settled on
+a held-out year (2010) that is absent from the data development ever sees; the veridical
+half is settled by the alternatives siblings in this tree and by the stability node that
+runs them.</div>
+<h2>Claims resting on this node</h2>
+<p class=meta>From the claim collection. Nothing enters the manuscript that is not there.</p>
+<div class=claimblock>
+<span class=cid>C14</span> The reported model beats the reference model and both required baselines on the held-out year as well as on the development period, at a skill score of +0.0868 against +0.1485. The gap between the two is -0.0617, and it is a gap in a ratio rather than in a raw score: 2010 was a much harder year, and the reference model, which nobody here tuned, scores 84.026 mean CRPS on it against 22.098 on development.
+<br><span class=meta>grounds: <a href="../../../analysis/results/main__holdout/conclusion.json">conclusion.json</a> · <a href="../../../analysis/results/main/conclusion.json">conclusion.json</a> · <a href="../../../analysis/05_stability/results/holdout_vs_development.json">holdout_vs_development.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C22</span> On the development backtest the model this project reports beats the reference model and both required baselines: mean CRPS 18.817 against the reference&#x27;s 22.098, a skill score of +0.1485, and the lower CRPS in six of the eight splits. The model is a linear opinion pool over two candidate families and the two required baselines.
+<br><span class=meta>grounds: <a href="../../../analysis/results/main/conclusion.json">conclusion.json</a> · <a href="../../../analysis/04_score/03_compare/results/main/leaderboard.csv">leaderboard.csv</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<h2>Children <span class=tag>sub-analyses</span></h2>
+<ul>
+<li><a href="01_data/index.html">01_data</a><br><span class=meta>What does the Lao admin-1 monthly dengue dataset contain, and on what part of it may development happen? The node separates the held-out final year from the development period before anything characterises the data, then describes the development period only. It also holds the two sibling datasets the external check runs on, because between them its children are the only nodes licensed to read anything under `Archive/`.</span></li>
+<li><a href="02_setup/index.html">02_setup</a><br><span class=meta>What dataset and evaluation setting do all models — ours, the baselines and the reference — face in common? Everything decided here moves every model together, so a choice taken differently re-scores the whole comparison rather than one side of it.</span></li>
+<li><a href="03_models/index.html">03_models</a><br><span class=meta>What forecast does each model make on that common ground? The node holds every model the project scores — our baselines, our candidates and the external reference — so that all of them traverse the identical evaluation path.</span></li>
+<li><a href="04_score/index.html">04_score</a><br><span class=meta>What does each model score, and how do they compare, at every resolution the platform allows? Scores are collected once at the platform&#x27;s finest resolution and everything reported is an aggregation of that one file.</span></li>
+<li><a href="05_stability/index.html">05_stability</a><br><span class=meta>How far does the project&#x27;s conclusion survive the reasonable alternatives the main path did not take? The node enumerates every judgment call the tree carries as a fork, costs the analyses that take them instead, and runs that set so the reported result is a distribution over analyses that all looked defensible rather than the one that was run.</span></li>
+<li><a href="06_external/index.html">06_external</a><br><span class=meta>Does the reported model, run unchanged on two other countries&#x27; data from the same</span></li>
+</ul>
+<h2>Down to the values</h2>
+<p class=meta>National mean, then province, then month, then the per-cell scores everything above is an average of — one page per combination that was scored.</p><ul>
+<li><a href="../detail/main/index.html">main</a></li>
+<li><a href="../detail/main__holdout/index.html">main__holdout</a></li>
+<li><a href="../detail/aggregate_caseWeighted/index.html">aggregate_caseWeighted</a></li>
+<li><a href="../detail/aggregate_caseWeighted__holdout/index.html">aggregate_caseWeighted__holdout</a></li>
+<li><a href="../detail/aggregate_populationWeighted/index.html">aggregate_populationWeighted</a></li>
+<li><a href="../detail/aggregate_populationWeighted__holdout/index.html">aggregate_populationWeighted__holdout</a></li>
+<li><a href="../detail/autoregressive_lag3/index.html">autoregressive_lag3</a></li>
+<li><a href="../detail/autoregressive_lag3__holdout/index.html">autoregressive_lag3__holdout</a></li>
+<li><a href="../detail/climatology_frozenWindow/index.html">climatology_frozenWindow</a></li>
+<li><a href="../detail/climatology_frozenWindow__holdout/index.html">climatology_frozenWindow__holdout</a></li>
+<li><a href="../detail/covariates_lagged/index.html">covariates_lagged</a></li>
+<li><a href="../detail/covariates_lagged__holdout/index.html">covariates_lagged__holdout</a></li>
+<li><a href="../detail/covariates_rich/index.html">covariates_rich</a></li>
+<li><a href="../detail/covariates_rich__holdout/index.html">covariates_rich__holdout</a></li>
+<li><a href="../detail/family_boosted/index.html">family_boosted</a></li>
+<li><a href="../detail/family_boosted__holdout/index.html">family_boosted__holdout</a></li>
+<li><a href="../detail/family_ensemble/index.html">family_ensemble</a></li>
+<li><a href="../detail/family_hierNB/index.html">family_hierNB</a></li>
+<li><a href="../detail/family_hierNB__aggregate_caseWeighted/index.html">family_hierNB__aggregate_caseWeighted</a></li>
+<li><a href="../detail/family_hierNB__aggregate_caseWeighted__holdout/index.html">family_hierNB__aggregate_caseWeighted__holdout</a></li>
+<li><a href="../detail/family_hierNB__holdout/index.html">family_hierNB__holdout</a></li>
+<li><a href="../detail/features_richCalendar/index.html">features_richCalendar</a></li>
+<li><a href="../detail/features_richCalendar__holdout/index.html">features_richCalendar__holdout</a></li>
+<li><a href="../detail/fitTime_refitAtPredict/index.html">fitTime_refitAtPredict</a></li>
+<li><a href="../detail/fitTime_refitAtPredict__holdout/index.html">fitTime_refitAtPredict__holdout</a></li>
+<li><a href="../detail/head_quantileEnsemble/index.html">head_quantileEnsemble</a></li>
+<li><a href="../detail/head_quantileEnsemble__holdout/index.html">head_quantileEnsemble__holdout</a></li>
+<li><a href="../detail/main__tha/index.html">main__tha</a></li>
+<li><a href="../detail/main__thaFinal/index.html">main__thaFinal</a></li>
+<li><a href="../detail/main__vnm/index.html">main__vnm</a></li>
+<li><a href="../detail/main__vnmFinal/index.html">main__vnmFinal</a></li>
+<li><a href="../detail/observation_negBinomial/index.html">observation_negBinomial</a></li>
+<li><a href="../detail/observation_negBinomial__holdout/index.html">observation_negBinomial__holdout</a></li>
+<li><a href="../detail/observation_zeroInflated/index.html">observation_zeroInflated</a></li>
+<li><a href="../detail/observation_zeroInflated__holdout/index.html">observation_zeroInflated__holdout</a></li>
+<li><a href="../detail/persistence_negBinomialFloor/index.html">persistence_negBinomialFloor</a></li>
+<li><a href="../detail/persistence_negBinomialFloor__holdout/index.html">persistence_negBinomialFloor__holdout</a></li>
+<li><a href="../detail/popColumn_backCast/index.html">popColumn_backCast</a></li>
+<li><a href="../detail/popColumn_backCast__holdout/index.html">popColumn_backCast__holdout</a></li>
+<li><a href="../detail/population_covariate/index.html">population_covariate</a></li>
+<li><a href="../detail/population_covariate__holdout/index.html">population_covariate__holdout</a></li>
+<li><a href="../detail/population_ignored/index.html">population_ignored</a></li>
+<li><a href="../detail/population_ignored__holdout/index.html">population_ignored__holdout</a></li>
+<li><a href="../detail/provinces_mergeVientiane/index.html">provinces_mergeVientiane</a></li>
+<li><a href="../detail/provinces_mergeVientiane__aggregate_caseWeighted/index.html">provinces_mergeVientiane__aggregate_caseWeighted</a></li>
+<li><a href="../detail/provinces_mergeVientiane__aggregate_caseWeighted__holdout/index.html">provinces_mergeVientiane__aggregate_caseWeighted__holdout</a></li>
+<li><a href="../detail/provinces_mergeVientiane__family_hierNB/index.html">provinces_mergeVientiane__family_hierNB</a></li>
+<li><a href="../detail/provinces_mergeVientiane__family_hierNB__holdout/index.html">provinces_mergeVientiane__family_hierNB__holdout</a></li>
+<li><a href="../detail/provinces_mergeVientiane__holdout/index.html">provinces_mergeVientiane__holdout</a></li>
+<li><a href="../detail/provinces_mergeVientiane__weighting_crpsWeighted/index.html">provinces_mergeVientiane__weighting_crpsWeighted</a></li>
+<li><a href="../detail/provinces_mergeVientiane__weighting_crpsWeighted__holdout/index.html">provinces_mergeVientiane__weighting_crpsWeighted__holdout</a></li>
+<li><a href="../detail/provinces_reportingOnly/index.html">provinces_reportingOnly</a></li>
+<li><a href="../detail/provinces_reportingOnly__aggregate_caseWeighted/index.html">provinces_reportingOnly__aggregate_caseWeighted</a></li>
+<li><a href="../detail/provinces_reportingOnly__aggregate_caseWeighted__holdout/index.html">provinces_reportingOnly__aggregate_caseWeighted__holdout</a></li>
+<li><a href="../detail/provinces_reportingOnly__family_hierNB/index.html">provinces_reportingOnly__family_hierNB</a></li>
+<li><a href="../detail/provinces_reportingOnly__family_hierNB__holdout/index.html">provinces_reportingOnly__family_hierNB__holdout</a></li>
+<li><a href="../detail/provinces_reportingOnly__holdout/index.html">provinces_reportingOnly__holdout</a></li>
+<li><a href="../detail/provinces_reportingOnly__weighting_crpsWeighted/index.html">provinces_reportingOnly__weighting_crpsWeighted</a></li>
+<li><a href="../detail/provinces_reportingOnly__weighting_crpsWeighted__holdout/index.html">provinces_reportingOnly__weighting_crpsWeighted__holdout</a></li>
+<li><a href="../detail/retrain_everySplit/index.html">retrain_everySplit</a></li>
+<li><a href="../detail/retrain_everySplit__holdout/index.html">retrain_everySplit__holdout</a></li>
+<li><a href="../detail/trainingWindow_from2004/index.html">trainingWindow_from2004</a></li>
+<li><a href="../detail/trainingWindow_from2004__holdout/index.html">trainingWindow_from2004__holdout</a></li>
+<li><a href="../detail/weighting_crpsWeighted/index.html">weighting_crpsWeighted</a></li>
+<li><a href="../detail/weighting_crpsWeighted__aggregate_caseWeighted/index.html">weighting_crpsWeighted__aggregate_caseWeighted</a></li>
+<li><a href="../detail/weighting_crpsWeighted__aggregate_caseWeighted__holdout/index.html">weighting_crpsWeighted__aggregate_caseWeighted__holdout</a></li>
+<li><a href="../detail/weighting_crpsWeighted__holdout/index.html">weighting_crpsWeighted__holdout</a></li>
+<li><a href="../detail/yearVariance_shared/index.html">yearVariance_shared</a></li>
+<li><a href="../detail/yearVariance_shared__holdout/index.html">yearVariance_shared__holdout</a></li>
+</ul>
+<h2>Results</h2>
+<h3>main</h3>
+<ul>
+<li><a href="../../../analysis/results/main/conclusion.json">conclusion.json</a> <span class=meta>(1,369 B)</span></li>
+</ul>
+<h3>main__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/main__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,337 B)</span></li>
+</ul>
+<details><summary>66 other combination(s)</summary>
+<h3>aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../analysis/results/aggregate_caseWeighted/conclusion.json">conclusion.json</a> <span class=meta>(1,471 B)</span></li>
+</ul>
+<h3>aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/aggregate_caseWeighted__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,472 B)</span></li>
+</ul>
+<h3>aggregate_populationWeighted</h3>
+<ul>
+<li><a href="../../../analysis/results/aggregate_populationWeighted/conclusion.json">conclusion.json</a> <span class=meta>(1,469 B)</span></li>
+</ul>
+<h3>aggregate_populationWeighted__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/aggregate_populationWeighted__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,497 B)</span></li>
+</ul>
+<h3>autoregressive_lag3</h3>
+<ul>
+<li><a href="../../../analysis/results/autoregressive_lag3/conclusion.json">conclusion.json</a> <span class=meta>(1,386 B)</span></li>
+</ul>
+<h3>autoregressive_lag3__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/autoregressive_lag3__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,346 B)</span></li>
+</ul>
+<h3>climatology_frozenWindow</h3>
+<ul>
+<li><a href="../../../analysis/results/climatology_frozenWindow/conclusion.json">conclusion.json</a> <span class=meta>(1,376 B)</span></li>
+</ul>
+<h3>climatology_frozenWindow__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/climatology_frozenWindow__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,357 B)</span></li>
+</ul>
+<h3>covariates_lagged</h3>
+<ul>
+<li><a href="../../../analysis/results/covariates_lagged/conclusion.json">conclusion.json</a> <span class=meta>(1,383 B)</span></li>
+</ul>
+<h3>covariates_lagged__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/covariates_lagged__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,344 B)</span></li>
+</ul>
+<h3>covariates_rich</h3>
+<ul>
+<li><a href="../../../analysis/results/covariates_rich/conclusion.json">conclusion.json</a> <span class=meta>(1,381 B)</span></li>
+</ul>
+<h3>covariates_rich__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/covariates_rich__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,337 B)</span></li>
+</ul>
+<h3>family_boosted</h3>
+<ul>
+<li><a href="../../../analysis/results/family_boosted/conclusion.json">conclusion.json</a> <span class=meta>(1,375 B)</span></li>
+</ul>
+<h3>family_boosted__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/family_boosted__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,356 B)</span></li>
+</ul>
+<h3>family_hierNB</h3>
+<ul>
+<li><a href="../../../analysis/results/family_hierNB/conclusion.json">conclusion.json</a> <span class=meta>(1,376 B)</span></li>
+</ul>
+<h3>family_hierNB__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../analysis/results/family_hierNB__aggregate_caseWeighted/conclusion.json">conclusion.json</a> <span class=meta>(1,402 B)</span></li>
+</ul>
+<h3>family_hierNB__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/family_hierNB__aggregate_caseWeighted__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,393 B)</span></li>
+</ul>
+<h3>family_hierNB__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/family_hierNB__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,343 B)</span></li>
+</ul>
+<h3>features_richCalendar</h3>
+<ul>
+<li><a href="../../../analysis/results/features_richCalendar/conclusion.json">conclusion.json</a> <span class=meta>(1,389 B)</span></li>
+</ul>
+<h3>features_richCalendar__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/features_richCalendar__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,367 B)</span></li>
+</ul>
+<h3>fitTime_refitAtPredict</h3>
+<ul>
+<li><a href="../../../analysis/results/fitTime_refitAtPredict/conclusion.json">conclusion.json</a> <span class=meta>(1,389 B)</span></li>
+</ul>
+<h3>fitTime_refitAtPredict__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/fitTime_refitAtPredict__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,331 B)</span></li>
+</ul>
+<h3>head_quantileEnsemble</h3>
+<ul>
+<li><a href="../../../analysis/results/head_quantileEnsemble/conclusion.json">conclusion.json</a> <span class=meta>(1,384 B)</span></li>
+</ul>
+<h3>head_quantileEnsemble__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/head_quantileEnsemble__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,346 B)</span></li>
+</ul>
+<h3>main__tha</h3>
+<ul>
+<li><a href="../../../analysis/results/main__tha/conclusion.json">conclusion.json</a> <span class=meta>(1,373 B)</span></li>
+</ul>
+<h3>main__thaFinal</h3>
+<ul>
+<li><a href="../../../analysis/results/main__thaFinal/conclusion.json">conclusion.json</a> <span class=meta>(1,363 B)</span></li>
+</ul>
+<h3>main__vnm</h3>
+<ul>
+<li><a href="../../../analysis/results/main__vnm/conclusion.json">conclusion.json</a> <span class=meta>(1,363 B)</span></li>
+</ul>
+<h3>main__vnmFinal</h3>
+<ul>
+<li><a href="../../../analysis/results/main__vnmFinal/conclusion.json">conclusion.json</a> <span class=meta>(1,358 B)</span></li>
+</ul>
+<h3>observation_negBinomial</h3>
+<ul>
+<li><a href="../../../analysis/results/observation_negBinomial/conclusion.json">conclusion.json</a> <span class=meta>(1,388 B)</span></li>
+</ul>
+<h3>observation_negBinomial__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/observation_negBinomial__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,332 B)</span></li>
+</ul>
+<h3>observation_zeroInflated</h3>
+<ul>
+<li><a href="../../../analysis/results/observation_zeroInflated/conclusion.json">conclusion.json</a> <span class=meta>(1,391 B)</span></li>
+</ul>
+<h3>observation_zeroInflated__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/observation_zeroInflated__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,352 B)</span></li>
+</ul>
+<h3>persistence_negBinomialFloor</h3>
+<ul>
+<li><a href="../../../analysis/results/persistence_negBinomialFloor/conclusion.json">conclusion.json</a> <span class=meta>(1,381 B)</span></li>
+</ul>
+<h3>persistence_negBinomialFloor__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/persistence_negBinomialFloor__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,366 B)</span></li>
+</ul>
+<h3>popColumn_backCast</h3>
+<ul>
+<li><a href="../../../analysis/results/popColumn_backCast/conclusion.json">conclusion.json</a> <span class=meta>(1,375 B)</span></li>
+</ul>
+<h3>popColumn_backCast__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/popColumn_backCast__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,353 B)</span></li>
+</ul>
+<h3>population_covariate</h3>
+<ul>
+<li><a href="../../../analysis/results/population_covariate/conclusion.json">conclusion.json</a> <span class=meta>(1,386 B)</span></li>
+</ul>
+<h3>population_covariate__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/population_covariate__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,343 B)</span></li>
+</ul>
+<h3>population_ignored</h3>
+<ul>
+<li><a href="../../../analysis/results/population_ignored/conclusion.json">conclusion.json</a> <span class=meta>(1,386 B)</span></li>
+</ul>
+<h3>population_ignored__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/population_ignored__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,354 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane</h3>
+<ul>
+<li><a href="../../../analysis/results/provinces_mergeVientiane/conclusion.json">conclusion.json</a> <span class=meta>(1,381 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../analysis/results/provinces_mergeVientiane__aggregate_caseWeighted/conclusion.json">conclusion.json</a> <span class=meta>(1,414 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,403 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__family_hierNB</h3>
+<ul>
+<li><a href="../../../analysis/results/provinces_mergeVientiane__family_hierNB/conclusion.json">conclusion.json</a> <span class=meta>(1,400 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__family_hierNB__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/provinces_mergeVientiane__family_hierNB__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,371 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/provinces_mergeVientiane__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,361 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__weighting_crpsWeighted</h3>
+<ul>
+<li><a href="../../../analysis/results/provinces_mergeVientiane__weighting_crpsWeighted/conclusion.json">conclusion.json</a> <span class=meta>(1,416 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__weighting_crpsWeighted__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,375 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly</h3>
+<ul>
+<li><a href="../../../analysis/results/provinces_reportingOnly/conclusion.json">conclusion.json</a> <span class=meta>(1,376 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../analysis/results/provinces_reportingOnly__aggregate_caseWeighted/conclusion.json">conclusion.json</a> <span class=meta>(1,413 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,407 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__family_hierNB</h3>
+<ul>
+<li><a href="../../../analysis/results/provinces_reportingOnly__family_hierNB/conclusion.json">conclusion.json</a> <span class=meta>(1,408 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__family_hierNB__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/provinces_reportingOnly__family_hierNB__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,373 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/provinces_reportingOnly__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,367 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__weighting_crpsWeighted</h3>
+<ul>
+<li><a href="../../../analysis/results/provinces_reportingOnly__weighting_crpsWeighted/conclusion.json">conclusion.json</a> <span class=meta>(1,414 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__weighting_crpsWeighted__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,384 B)</span></li>
+</ul>
+<h3>retrain_everySplit</h3>
+<ul>
+<li><a href="../../../analysis/results/retrain_everySplit/conclusion.json">conclusion.json</a> <span class=meta>(1,369 B)</span></li>
+</ul>
+<h3>retrain_everySplit__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/retrain_everySplit__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,359 B)</span></li>
+</ul>
+<h3>trainingWindow_from2004</h3>
+<ul>
+<li><a href="../../../analysis/results/trainingWindow_from2004/conclusion.json">conclusion.json</a> <span class=meta>(1,376 B)</span></li>
+</ul>
+<h3>trainingWindow_from2004__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/trainingWindow_from2004__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,367 B)</span></li>
+</ul>
+<h3>weighting_crpsWeighted</h3>
+<ul>
+<li><a href="../../../analysis/results/weighting_crpsWeighted/conclusion.json">conclusion.json</a> <span class=meta>(1,393 B)</span></li>
+</ul>
+<h3>weighting_crpsWeighted__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../analysis/results/weighting_crpsWeighted__aggregate_caseWeighted/conclusion.json">conclusion.json</a> <span class=meta>(1,412 B)</span></li>
+</ul>
+<h3>weighting_crpsWeighted__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/weighting_crpsWeighted__aggregate_caseWeighted__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,396 B)</span></li>
+</ul>
+<h3>weighting_crpsWeighted__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/weighting_crpsWeighted__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,339 B)</span></li>
+</ul>
+<h3>yearVariance_shared</h3>
+<ul>
+<li><a href="../../../analysis/results/yearVariance_shared/conclusion.json">conclusion.json</a> <span class=meta>(1,383 B)</span></li>
+</ul>
+<h3>yearVariance_shared__holdout</h3>
+<ul>
+<li><a href="../../../analysis/results/yearVariance_shared__holdout/conclusion.json">conclusion.json</a> <span class=meta>(1,350 B)</span></li>
+</ul>
+</details>
+<h2>Scripts</h2><ul>
+<li><a href="../../../analysis/scripts/conclude.py">conclude.py</a> <span class=meta>(9,440 B)</span></li>
+<li><a href="../../../analysis/scripts/lib/combos.py">lib/combos.py</a> <span class=meta>(14,201 B)</span></li>
+<li><a href="../../../analysis/scripts/lib/palette.py">lib/palette.py</a> <span class=meta>(4,128 B)</span></li>
+<li><a href="../../../analysis/scripts/lib/project_seed.py">lib/project_seed.py</a> <span class=meta>(3,214 B)</span></li>
+</ul>
+<h2>Provenance</h2><ul>
+<li><a href="../../../analysis/provenance/conclude.md">conclude.md</a> <span class=meta>(21,460 B)</span></li>
+</ul>
+<h2>run.sh</h2>
+<pre>#!/usr/bin/env bash
+# Main script for node: analysis
+# Generated shape -- edit the &quot;own scripts&quot; block; the child calls are maintained
+# by `node.py rebuild`, which enforces the alternatives/sub-analyses semantics.
+set -euo pipefail
+cd &quot;$(dirname &quot;$0&quot;)&quot;
+REPO_ROOT=&quot;$(cd &quot;..&quot; &amp;&amp; pwd)&quot;
+# Node scripts run under the pinned analysis environment (AGENTS.md §2), not under
+# .venv, which is the repository&#x27;s own machinery. A node needing something beyond it
+# declares env/ and overrides PYTHON below.
+PYTHON=&quot;$REPO_ROOT/environment/chapenv/bin/python&quot;
+
+# Sub-analyses: every child runs, in order.
+bash &quot;01_data/run.sh&quot;
+bash &quot;02_setup/run.sh&quot;
+bash &quot;03_models/run.sh&quot;
+bash &quot;04_score/run.sh&quot;
+bash &quot;05_stability/run.sh&quot;
+bash &quot;06_external/run.sh&quot;
+
+# Own scripts
+&quot;$PYTHON&quot; &quot;scripts/conclude.py&quot;
+</pre>

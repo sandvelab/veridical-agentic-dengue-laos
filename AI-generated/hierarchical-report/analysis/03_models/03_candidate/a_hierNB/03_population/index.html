@@ -1,0 +1,60 @@
+<!doctype html><meta charset=utf-8>
+<title>03_population</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<div class=crumb><a href="../../../../index.html">analysis</a> / <a href="../../../index.html">03_models</a> / <a href="../../index.html">03_candidate</a> / <a href="../index.html">a_hierNB</a> / 03_population</div>
+<h1>03_population</h1>
+<div class=claim>How does the province population enter the model? The file&#x27;s population figure is one constant per province, and it can serve as a denominator the model forecasts a rate against, as an ordinary covariate, or not at all.</div>
+<h2>Children <span class=tag>alternatives</span></h2>
+<p class=meta>Only the main path is run by this node. The others are run by the stability node.</p>
+<ul>
+<li><a href="a_offset/index.html">a_offset</a> <span class="tag main-path">main path</span><br><span class=meta>As a fixed offset, log population: the model forecasts an incidence rate and multiplies it back up by the province&#x27;s size, so the fit never has to learn how large a province is.</span></li>
+<li><a href="b_covariate/index.html">b_covariate</a> <span class="tag not-taken">not taken</span><br><span class=meta>Population as an estimated coefficient on standardised log population rather than as a fixed offset, so the data decides how reported cases scale with province size instead of the model asserting proportionality.</span></li>
+<li><a href="c_ignored/index.html">c_ignored</a> <span class="tag not-taken">not taken</span><br><span class=meta>Population does not enter the model at all: a province&#x27;s level is carried entirely by its own pooled intercept, which is estimated from its record rather than from its size.</span></li>
+</ul>
+<h2>run.sh</h2>
+<pre>#!/usr/bin/env bash
+# Main script for node: 03_population
+# Generated shape -- edit the &quot;own scripts&quot; block; the child calls are maintained
+# by `node.py rebuild`, which enforces the alternatives/sub-analyses semantics.
+set -euo pipefail
+cd &quot;$(dirname &quot;$0&quot;)&quot;
+REPO_ROOT=&quot;$(cd &quot;../../../../..&quot; &amp;&amp; pwd)&quot;
+# Node scripts run under the pinned analysis environment (AGENTS.md §2), not under
+# .venv, which is the repository&#x27;s own machinery. A node needing something beyond it
+# declares env/ and overrides PYTHON below.
+PYTHON=&quot;$REPO_ROOT/environment/chapenv/bin/python&quot;
+
+# Alternatives: only the main path is run here.
+# Not taken: b_covariate, c_ignored
+bash &quot;a_offset/run.sh&quot;
+</pre>

@@ -1,0 +1,132 @@
+<!doctype html><meta charset=utf-8>
+<title>02_aggregate</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<div class=crumb><a href="../../index.html">analysis</a> / <a href="../index.html">04_score</a> / 02_aggregate</div>
+<h1>02_aggregate</h1>
+<div class=claim>Over what weighting is the headline mean taken? The provinces differ in burden by four orders of magnitude, so an unweighted mean over cells and a mean weighted by population or by cases are three different summaries of the same per-cell file.</div>
+<h2>Children <span class=tag>alternatives</span></h2>
+<p class=meta>Only the main path is run by this node. The others are run by the stability node.</p>
+<ul>
+<li><a href="a_unweighted/index.html">a_unweighted</a> <span class="tag main-path">main path</span><br><span class=meta>Take the plain unweighted mean over evaluable cells, which is what Chap&#x27;s own evaluation reports and what the project&#x27;s success criterion is defined against.</span></li>
+<li><a href="b_populationWeighted/index.html">b_populationWeighted</a> <span class="tag not-taken">not taken</span><br><span class=meta>Weight the headline mean by province population, so a cell counts in proportion to the people it describes. Provincial burdens differ by four orders of magnitude and the unweighted mean is very nearly a statement about the largest few provinces.</span></li>
+<li><a href="c_caseWeighted/index.html">c_caseWeighted</a> <span class="tag not-taken">not taken</span><br><span class=meta>Weight the headline mean by the cases actually observed in each cell, so the summary is dominated by the province-months where dengue was happening. A province reporting four cases in twelve years then stops carrying the same weight as the capital.</span></li>
+</ul>
+<h2>Down to the values</h2>
+<p class=meta>National mean, then province, then month, then the per-cell scores everything above is an average of — one page per combination that was scored.</p><ul>
+<li><a href="../../../detail/main/index.html">main</a></li>
+<li><a href="../../../detail/main__holdout/index.html">main__holdout</a></li>
+<li><a href="../../../detail/aggregate_caseWeighted/index.html">aggregate_caseWeighted</a></li>
+<li><a href="../../../detail/aggregate_caseWeighted__holdout/index.html">aggregate_caseWeighted__holdout</a></li>
+<li><a href="../../../detail/aggregate_populationWeighted/index.html">aggregate_populationWeighted</a></li>
+<li><a href="../../../detail/aggregate_populationWeighted__holdout/index.html">aggregate_populationWeighted__holdout</a></li>
+<li><a href="../../../detail/autoregressive_lag3/index.html">autoregressive_lag3</a></li>
+<li><a href="../../../detail/autoregressive_lag3__holdout/index.html">autoregressive_lag3__holdout</a></li>
+<li><a href="../../../detail/climatology_frozenWindow/index.html">climatology_frozenWindow</a></li>
+<li><a href="../../../detail/climatology_frozenWindow__holdout/index.html">climatology_frozenWindow__holdout</a></li>
+<li><a href="../../../detail/covariates_lagged/index.html">covariates_lagged</a></li>
+<li><a href="../../../detail/covariates_lagged__holdout/index.html">covariates_lagged__holdout</a></li>
+<li><a href="../../../detail/covariates_rich/index.html">covariates_rich</a></li>
+<li><a href="../../../detail/covariates_rich__holdout/index.html">covariates_rich__holdout</a></li>
+<li><a href="../../../detail/family_boosted/index.html">family_boosted</a></li>
+<li><a href="../../../detail/family_boosted__holdout/index.html">family_boosted__holdout</a></li>
+<li><a href="../../../detail/family_ensemble/index.html">family_ensemble</a></li>
+<li><a href="../../../detail/family_hierNB/index.html">family_hierNB</a></li>
+<li><a href="../../../detail/family_hierNB__aggregate_caseWeighted/index.html">family_hierNB__aggregate_caseWeighted</a></li>
+<li><a href="../../../detail/family_hierNB__aggregate_caseWeighted__holdout/index.html">family_hierNB__aggregate_caseWeighted__holdout</a></li>
+<li><a href="../../../detail/family_hierNB__holdout/index.html">family_hierNB__holdout</a></li>
+<li><a href="../../../detail/features_richCalendar/index.html">features_richCalendar</a></li>
+<li><a href="../../../detail/features_richCalendar__holdout/index.html">features_richCalendar__holdout</a></li>
+<li><a href="../../../detail/fitTime_refitAtPredict/index.html">fitTime_refitAtPredict</a></li>
+<li><a href="../../../detail/fitTime_refitAtPredict__holdout/index.html">fitTime_refitAtPredict__holdout</a></li>
+<li><a href="../../../detail/head_quantileEnsemble/index.html">head_quantileEnsemble</a></li>
+<li><a href="../../../detail/head_quantileEnsemble__holdout/index.html">head_quantileEnsemble__holdout</a></li>
+<li><a href="../../../detail/main__tha/index.html">main__tha</a></li>
+<li><a href="../../../detail/main__thaFinal/index.html">main__thaFinal</a></li>
+<li><a href="../../../detail/main__vnm/index.html">main__vnm</a></li>
+<li><a href="../../../detail/main__vnmFinal/index.html">main__vnmFinal</a></li>
+<li><a href="../../../detail/observation_negBinomial/index.html">observation_negBinomial</a></li>
+<li><a href="../../../detail/observation_negBinomial__holdout/index.html">observation_negBinomial__holdout</a></li>
+<li><a href="../../../detail/observation_zeroInflated/index.html">observation_zeroInflated</a></li>
+<li><a href="../../../detail/observation_zeroInflated__holdout/index.html">observation_zeroInflated__holdout</a></li>
+<li><a href="../../../detail/persistence_negBinomialFloor/index.html">persistence_negBinomialFloor</a></li>
+<li><a href="../../../detail/persistence_negBinomialFloor__holdout/index.html">persistence_negBinomialFloor__holdout</a></li>
+<li><a href="../../../detail/popColumn_backCast/index.html">popColumn_backCast</a></li>
+<li><a href="../../../detail/popColumn_backCast__holdout/index.html">popColumn_backCast__holdout</a></li>
+<li><a href="../../../detail/population_covariate/index.html">population_covariate</a></li>
+<li><a href="../../../detail/population_covariate__holdout/index.html">population_covariate__holdout</a></li>
+<li><a href="../../../detail/population_ignored/index.html">population_ignored</a></li>
+<li><a href="../../../detail/population_ignored__holdout/index.html">population_ignored__holdout</a></li>
+<li><a href="../../../detail/provinces_mergeVientiane/index.html">provinces_mergeVientiane</a></li>
+<li><a href="../../../detail/provinces_mergeVientiane__aggregate_caseWeighted/index.html">provinces_mergeVientiane__aggregate_caseWeighted</a></li>
+<li><a href="../../../detail/provinces_mergeVientiane__aggregate_caseWeighted__holdout/index.html">provinces_mergeVientiane__aggregate_caseWeighted__holdout</a></li>
+<li><a href="../../../detail/provinces_mergeVientiane__family_hierNB/index.html">provinces_mergeVientiane__family_hierNB</a></li>
+<li><a href="../../../detail/provinces_mergeVientiane__family_hierNB__holdout/index.html">provinces_mergeVientiane__family_hierNB__holdout</a></li>
+<li><a href="../../../detail/provinces_mergeVientiane__holdout/index.html">provinces_mergeVientiane__holdout</a></li>
+<li><a href="../../../detail/provinces_mergeVientiane__weighting_crpsWeighted/index.html">provinces_mergeVientiane__weighting_crpsWeighted</a></li>
+<li><a href="../../../detail/provinces_mergeVientiane__weighting_crpsWeighted__holdout/index.html">provinces_mergeVientiane__weighting_crpsWeighted__holdout</a></li>
+<li><a href="../../../detail/provinces_reportingOnly/index.html">provinces_reportingOnly</a></li>
+<li><a href="../../../detail/provinces_reportingOnly__aggregate_caseWeighted/index.html">provinces_reportingOnly__aggregate_caseWeighted</a></li>
+<li><a href="../../../detail/provinces_reportingOnly__aggregate_caseWeighted__holdout/index.html">provinces_reportingOnly__aggregate_caseWeighted__holdout</a></li>
+<li><a href="../../../detail/provinces_reportingOnly__family_hierNB/index.html">provinces_reportingOnly__family_hierNB</a></li>
+<li><a href="../../../detail/provinces_reportingOnly__family_hierNB__holdout/index.html">provinces_reportingOnly__family_hierNB__holdout</a></li>
+<li><a href="../../../detail/provinces_reportingOnly__holdout/index.html">provinces_reportingOnly__holdout</a></li>
+<li><a href="../../../detail/provinces_reportingOnly__weighting_crpsWeighted/index.html">provinces_reportingOnly__weighting_crpsWeighted</a></li>
+<li><a href="../../../detail/provinces_reportingOnly__weighting_crpsWeighted__holdout/index.html">provinces_reportingOnly__weighting_crpsWeighted__holdout</a></li>
+<li><a href="../../../detail/retrain_everySplit/index.html">retrain_everySplit</a></li>
+<li><a href="../../../detail/retrain_everySplit__holdout/index.html">retrain_everySplit__holdout</a></li>
+<li><a href="../../../detail/trainingWindow_from2004/index.html">trainingWindow_from2004</a></li>
+<li><a href="../../../detail/trainingWindow_from2004__holdout/index.html">trainingWindow_from2004__holdout</a></li>
+<li><a href="../../../detail/weighting_crpsWeighted/index.html">weighting_crpsWeighted</a></li>
+<li><a href="../../../detail/weighting_crpsWeighted__aggregate_caseWeighted/index.html">weighting_crpsWeighted__aggregate_caseWeighted</a></li>
+<li><a href="../../../detail/weighting_crpsWeighted__aggregate_caseWeighted__holdout/index.html">weighting_crpsWeighted__aggregate_caseWeighted__holdout</a></li>
+<li><a href="../../../detail/weighting_crpsWeighted__holdout/index.html">weighting_crpsWeighted__holdout</a></li>
+<li><a href="../../../detail/yearVariance_shared/index.html">yearVariance_shared</a></li>
+<li><a href="../../../detail/yearVariance_shared__holdout/index.html">yearVariance_shared__holdout</a></li>
+</ul>
+<h2>run.sh</h2>
+<pre>#!/usr/bin/env bash
+# Main script for node: 02_aggregate
+# Generated shape -- edit the &quot;own scripts&quot; block; the child calls are maintained
+# by `node.py rebuild`, which enforces the alternatives/sub-analyses semantics.
+set -euo pipefail
+cd &quot;$(dirname &quot;$0&quot;)&quot;
+REPO_ROOT=&quot;$(cd &quot;../../..&quot; &amp;&amp; pwd)&quot;
+# Node scripts run under the pinned analysis environment (AGENTS.md §2), not under
+# .venv, which is the repository&#x27;s own machinery. A node needing something beyond it
+# declares env/ and overrides PYTHON below.
+PYTHON=&quot;$REPO_ROOT/environment/chapenv/bin/python&quot;
+
+# Alternatives: only the main path is run here.
+# Not taken: b_populationWeighted, c_caseWeighted
+bash &quot;a_unweighted/run.sh&quot;
+</pre>

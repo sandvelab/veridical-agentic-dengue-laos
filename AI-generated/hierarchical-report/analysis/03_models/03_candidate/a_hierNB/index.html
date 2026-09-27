@@ -1,0 +1,449 @@
+<!doctype html><meta charset=utf-8>
+<title>a_hierNB</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<div class=crumb><a href="../../../index.html">analysis</a> / <a href="../../index.html">03_models</a> / <a href="../index.html">03_candidate</a> / a_hierNB</div>
+<h1>a_hierNB</h1>
+<div class=claim>…a hierarchical negative-binomial GLM: monthly province counts as negative-binomial draws around a log-linear mean built from a population offset, a shared annual seasonality and lagged climate covariates, with province and province-year effects pooled toward a common level. The node&#x27;s six children are the choices that shape it; the node itself assembles those choices into one model configuration and sends the model through the same chap eval path as every other model in the project.</div>
+<h2>Claims resting on this node</h2>
+<p class=meta>From the claim collection. Nothing enters the manuscript that is not there.</p>
+<div class=claimblock>
+<span class=cid>C27</span> The model family the project built first never beat the reference model. The hierarchical negative-binomial GLM scores 23.698 mean CRPS against 22.098, a skill score of -0.0724, and it is the lowest of the thirty-two analyses in the development distribution. It does beat both required baselines, and it stays in the reported model as a pool member.
+<br><span class=meta>grounds: <a href="../../../../../../analysis/results/family_hierNB/conclusion.json">conclusion.json</a> · <a href="../../../../../../analysis/05_stability/results/distribution_rows.csv">distribution_rows.csv</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<h2>Children <span class=tag>sub-analyses</span></h2>
+<ul>
+<li><a href="01_observation/index.html">01_observation</a><br><span class=meta>What observation model do the counts get? Monthly province counts on this dataset are heavily over-dispersed and about a third of them are zero, and whether that is one distribution stretched wide or a mixture of two processes is a modelling choice rather than something the data settles.</span></li>
+<li><a href="02_covariates/index.html">02_covariates</a><br><span class=meta>Which climate covariates enter the mean, and at which lags? The file carries rainfall, mean temperature and mean relative humidity, and a transmission signal reaches reported cases only after a delay, so the covariate set and the lag are one joint choice.</span></li>
+<li><a href="03_population/index.html">03_population</a><br><span class=meta>How does the province population enter the model? The file&#x27;s population figure is one constant per province, and it can serve as a denominator the model forecasts a rate against, as an ordinary covariate, or not at all.</span></li>
+<li><a href="04_fitTime/index.html">04_fitTime</a><br><span class=meta>Does the model do its fitting in train or in predict? Chap fits once and then predicts at every split, so a model that refits inside predict sees each split&#x27;s expanded history while one that does not sees only the training period.</span></li>
+<li><a href="05_autoregressive/index.html">05_autoregressive</a><br><span class=meta>Does the model see the recent case history, or only the calendar and the weather? A seasonal regression forecasts the average year; the last observed count is what would tell it whether this year is one of the bad ones.</span></li>
+<li><a href="06_yearVariance/index.html">06_yearVariance</a><br><span class=meta>Is the year-to-year variability of dengue the same relative size in every province? The province-year effect&#x27;s variance sets how wide every forecast is, and one number shared across provinces is a constant multiplicative width for burdens that differ by four orders of magnitude.</span></li>
+</ul>
+<h2>Results</h2>
+<h3>main</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/main/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,562 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/main/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>main__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/main__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,788 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/main__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<details><summary>61 other combination(s)</summary>
+<h3>autoregressive_lag3</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/autoregressive_lag3/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,608 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/autoregressive_lag3/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>autoregressive_lag3__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/autoregressive_lag3__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,834 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/autoregressive_lag3__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>climatology_frozenWindow</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/climatology_frozenWindow/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,942 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/climatology_frozenWindow/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>climatology_frozenWindow__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/climatology_frozenWindow__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,808 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/climatology_frozenWindow__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>covariates_lagged</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/covariates_lagged/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,978 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/covariates_lagged/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(291 B)</span></li>
+</ul>
+<h3>covariates_lagged__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/covariates_lagged__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(7,204 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/covariates_lagged__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(291 B)</span></li>
+</ul>
+<h3>covariates_rich</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/covariates_rich/candidate_spec.json">candidate_spec.json</a> <span class=meta>(7,045 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/covariates_rich/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(355 B)</span></li>
+</ul>
+<h3>covariates_rich__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/covariates_rich__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(7,271 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/covariates_rich__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(355 B)</span></li>
+</ul>
+<h3>family_ensemble</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_ensemble/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,771 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_ensemble/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>family_hierNB</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,733 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB/eval.log">eval.log</a> <span class=meta>(3,580 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB/eval.nc">eval.nc</a> <span class=meta>(9,836,396 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB/fitted_model.json">fitted_model.json</a> <span class=meta>(138,914 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB/model_spec.json">model_spec.json</a> <span class=meta>(2,470 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB/run_cost.json">run_cost.json</a> <span class=meta>(238 B)</span></li>
+</ul>
+<h3>family_hierNB__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__aggregate_caseWeighted/candidate_spec.json">candidate_spec.json</a> <span class=meta>(7,189 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__aggregate_caseWeighted/eval.log">eval.log</a> <span class=meta>(3,700 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__aggregate_caseWeighted/eval.nc">eval.nc</a> <span class=meta>(9,836,396 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__aggregate_caseWeighted/fitted_model.json">fitted_model.json</a> <span class=meta>(138,914 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__aggregate_caseWeighted/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__aggregate_caseWeighted/model_spec.json">model_spec.json</a> <span class=meta>(2,518 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__aggregate_caseWeighted/run_cost.json">run_cost.json</a> <span class=meta>(262 B)</span></li>
+</ul>
+<h3>family_hierNB__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__aggregate_caseWeighted__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(7,415 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__aggregate_caseWeighted__holdout/eval.log">eval.log</a> <span class=meta>(3,763 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__aggregate_caseWeighted__holdout/eval.nc">eval.nc</a> <span class=meta>(4,938,106 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__aggregate_caseWeighted__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(142,811 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__aggregate_caseWeighted__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__aggregate_caseWeighted__holdout/model_spec.json">model_spec.json</a> <span class=meta>(2,554 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__aggregate_caseWeighted__holdout/run_cost.json">run_cost.json</a> <span class=meta>(271 B)</span></li>
+</ul>
+<h3>family_hierNB__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,959 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__holdout/eval.log">eval.log</a> <span class=meta>(3,643 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__holdout/eval.nc">eval.nc</a> <span class=meta>(4,938,106 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(142,811 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__holdout/model_spec.json">model_spec.json</a> <span class=meta>(2,506 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/family_hierNB__holdout/run_cost.json">run_cost.json</a> <span class=meta>(247 B)</span></li>
+</ul>
+<h3>features_richCalendar</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/features_richCalendar/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,579 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/features_richCalendar/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>features_richCalendar__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/features_richCalendar__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,805 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/features_richCalendar__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>fitTime_refitAtPredict</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/fitTime_refitAtPredict/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,731 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/fitTime_refitAtPredict/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(232 B)</span></li>
+</ul>
+<h3>fitTime_refitAtPredict__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/fitTime_refitAtPredict__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,957 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/fitTime_refitAtPredict__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(232 B)</span></li>
+</ul>
+<h3>head_quantileEnsemble</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/head_quantileEnsemble/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,579 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/head_quantileEnsemble/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>head_quantileEnsemble__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/head_quantileEnsemble__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,805 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/head_quantileEnsemble__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>main__tha</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/main__tha/candidate_spec.json">candidate_spec.json</a> <span class=meta>(8,696 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/main__tha/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>main__thaFinal</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/main__thaFinal/candidate_spec.json">candidate_spec.json</a> <span class=meta>(8,820 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/main__thaFinal/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>main__vnm</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/main__vnm/candidate_spec.json">candidate_spec.json</a> <span class=meta>(8,211 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/main__vnm/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>main__vnmFinal</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/main__vnmFinal/candidate_spec.json">candidate_spec.json</a> <span class=meta>(8,335 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/main__vnmFinal/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>observation_negBinomial</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/observation_negBinomial/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,632 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/observation_negBinomial/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(241 B)</span></li>
+</ul>
+<h3>observation_negBinomial__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/observation_negBinomial__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,857 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/observation_negBinomial__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(241 B)</span></li>
+</ul>
+<h3>observation_zeroInflated</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/observation_zeroInflated/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,690 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/observation_zeroInflated/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(237 B)</span></li>
+</ul>
+<h3>observation_zeroInflated__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/observation_zeroInflated__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,916 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/observation_zeroInflated__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(237 B)</span></li>
+</ul>
+<h3>persistence_negBinomialFloor</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/persistence_negBinomialFloor/candidate_spec.json">candidate_spec.json</a> <span class=meta>(7,018 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/persistence_negBinomialFloor/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>persistence_negBinomialFloor__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/persistence_negBinomialFloor__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,812 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/persistence_negBinomialFloor__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>popColumn_backCast</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/popColumn_backCast/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,913 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/popColumn_backCast/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>popColumn_backCast__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/popColumn_backCast__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,802 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/popColumn_backCast__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>population_covariate</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/population_covariate/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,692 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/population_covariate/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(233 B)</span></li>
+</ul>
+<h3>population_covariate__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/population_covariate__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,919 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/population_covariate__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(233 B)</span></li>
+</ul>
+<h3>population_ignored</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/population_ignored/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,699 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/population_ignored/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(231 B)</span></li>
+</ul>
+<h3>population_ignored__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/population_ignored__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,925 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/population_ignored__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(231 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane/candidate_spec.json">candidate_spec.json</a> <span class=meta>(7,062 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__aggregate_caseWeighted/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,606 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__aggregate_caseWeighted/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,832 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__family_hierNB</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__family_hierNB/candidate_spec.json">candidate_spec.json</a> <span class=meta>(7,437 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__family_hierNB/eval.log">eval.log</a> <span class=meta>(3,622 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__family_hierNB/eval.nc">eval.nc</a> <span class=meta>(9,836,396 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__family_hierNB/fitted_model.json">fitted_model.json</a> <span class=meta>(138,909 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__family_hierNB/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__family_hierNB/model_spec.json">model_spec.json</a> <span class=meta>(2,596 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__family_hierNB/run_cost.json">run_cost.json</a> <span class=meta>(264 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__family_hierNB__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__family_hierNB__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(7,663 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__family_hierNB__holdout/eval.log">eval.log</a> <span class=meta>(3,685 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__family_hierNB__holdout/eval.nc">eval.nc</a> <span class=meta>(4,938,106 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__family_hierNB__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(142,830 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__family_hierNB__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__family_hierNB__holdout/model_spec.json">model_spec.json</a> <span class=meta>(2,632 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__family_hierNB__holdout/run_cost.json">run_cost.json</a> <span class=meta>(273 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,808 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__weighting_crpsWeighted</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__weighting_crpsWeighted/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,606 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__weighting_crpsWeighted/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__weighting_crpsWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,832 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly/candidate_spec.json">candidate_spec.json</a> <span class=meta>(7,002 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__aggregate_caseWeighted/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,605 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__aggregate_caseWeighted/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,831 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__family_hierNB</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__family_hierNB/candidate_spec.json">candidate_spec.json</a> <span class=meta>(7,377 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__family_hierNB/eval.log">eval.log</a> <span class=meta>(3,606 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__family_hierNB/eval.nc">eval.nc</a> <span class=meta>(9,259,619 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__family_hierNB/fitted_model.json">fitted_model.json</a> <span class=meta>(136,243 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__family_hierNB/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__family_hierNB/model_spec.json">model_spec.json</a> <span class=meta>(2,591 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__family_hierNB/run_cost.json">run_cost.json</a> <span class=meta>(263 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__family_hierNB__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__family_hierNB__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(7,591 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__family_hierNB__holdout/eval.log">eval.log</a> <span class=meta>(3,669 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__family_hierNB__holdout/eval.nc">eval.nc</a> <span class=meta>(4,648,625 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__family_hierNB__holdout/fitted_model.json">fitted_model.json</a> <span class=meta>(140,166 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__family_hierNB__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__family_hierNB__holdout/model_spec.json">model_spec.json</a> <span class=meta>(2,627 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__family_hierNB__holdout/run_cost.json">run_cost.json</a> <span class=meta>(272 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,807 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__weighting_crpsWeighted</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__weighting_crpsWeighted/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,605 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__weighting_crpsWeighted/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__weighting_crpsWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,831 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>retrain_everySplit</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/retrain_everySplit/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,913 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/retrain_everySplit/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>retrain_everySplit__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/retrain_everySplit__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,802 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/retrain_everySplit__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>trainingWindow_from2004</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/trainingWindow_from2004/candidate_spec.json">candidate_spec.json</a> <span class=meta>(7,004 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/trainingWindow_from2004/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>trainingWindow_from2004__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/trainingWindow_from2004__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,807 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/trainingWindow_from2004__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>weighting_crpsWeighted</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/weighting_crpsWeighted/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,904 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/weighting_crpsWeighted/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>weighting_crpsWeighted__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/weighting_crpsWeighted__aggregate_caseWeighted/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,604 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/weighting_crpsWeighted__aggregate_caseWeighted/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>weighting_crpsWeighted__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/weighting_crpsWeighted__aggregate_caseWeighted__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,830 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/weighting_crpsWeighted__aggregate_caseWeighted__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>weighting_crpsWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/weighting_crpsWeighted__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,806 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/weighting_crpsWeighted__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(230 B)</span></li>
+</ul>
+<h3>yearVariance_shared</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/yearVariance_shared/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,554 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/yearVariance_shared/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(221 B)</span></li>
+</ul>
+<h3>yearVariance_shared__holdout</h3>
+<ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/yearVariance_shared__holdout/candidate_spec.json">candidate_spec.json</a> <span class=meta>(6,780 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/results/yearVariance_shared__holdout/model_configuration.yaml">model_configuration.yaml</a> <span class=meta>(221 B)</span></li>
+</ul>
+</details>
+<h2>Scripts</h2><ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/scripts/assemble_candidate_config.py">assemble_candidate_config.py</a> <span class=meta>(1,599 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/scripts/hier_nb_model/MLproject">hier_nb_model/MLproject</a> <span class=meta>(4,831 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/scripts/hier_nb_model/README.md">hier_nb_model/README.md</a> <span class=meta>(4,510 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/scripts/hier_nb_model/hier_nb.py">hier_nb_model/hier_nb.py</a> <span class=meta>(39,409 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/scripts/hier_nb_model/predict.py">hier_nb_model/predict.py</a> <span class=meta>(5,722 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/scripts/hier_nb_model/pyproject.toml">hier_nb_model/pyproject.toml</a> <span class=meta>(1,038 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/scripts/hier_nb_model/train.py">hier_nb_model/train.py</a> <span class=meta>(3,638 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/scripts/hier_nb_model/uv.lock">hier_nb_model/uv.lock</a> <span class=meta>(11,697 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/scripts/run_hier_nb.py">run_hier_nb.py</a> <span class=meta>(2,423 B)</span></li>
+</ul>
+<h2>Provenance</h2><ul>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/provenance/assemble_candidate_config.md">assemble_candidate_config.md</a> <span class=meta>(17,640 B)</span></li>
+<li><a href="../../../../../../analysis/03_models/03_candidate/a_hierNB/provenance/run_hier_nb.md">run_hier_nb.md</a> <span class=meta>(22,876 B)</span></li>
+</ul>
+<h2>run.sh</h2>
+<pre>#!/usr/bin/env bash
+# Main script for node: a_hierNB
+# Generated shape -- edit the &quot;own scripts&quot; block; the child calls are maintained
+# by `node.py rebuild`, which enforces the alternatives/sub-analyses semantics.
+set -euo pipefail
+cd &quot;$(dirname &quot;$0&quot;)&quot;
+REPO_ROOT=&quot;$(cd &quot;../../../..&quot; &amp;&amp; pwd)&quot;
+# Node scripts run under the pinned analysis environment (AGENTS.md §2), not under
+# .venv, which is the repository&#x27;s own machinery. A node needing something beyond it
+# declares env/ and overrides PYTHON below.
+PYTHON=&quot;$REPO_ROOT/environment/chapenv/bin/python&quot;
+
+# Sub-analyses: every child runs, in order.
+bash &quot;01_observation/run.sh&quot;
+bash &quot;02_covariates/run.sh&quot;
+bash &quot;03_population/run.sh&quot;
+bash &quot;04_fitTime/run.sh&quot;
+bash &quot;05_autoregressive/run.sh&quot;
+bash &quot;06_yearVariance/run.sh&quot;
+
+# Own scripts
+&quot;$PYTHON&quot; &quot;scripts/assemble_candidate_config.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/run_hier_nb.py&quot;
+</pre>

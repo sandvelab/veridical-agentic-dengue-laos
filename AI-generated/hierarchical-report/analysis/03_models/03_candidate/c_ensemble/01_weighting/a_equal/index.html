@@ -1,0 +1,250 @@
+<!doctype html><meta charset=utf-8>
+<title>a_equal</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<div class=crumb><a href="../../../../../index.html">analysis</a> / <a href="../../../../index.html">03_models</a> / <a href="../../../index.html">03_candidate</a> / <a href="../../index.html">c_ensemble</a> / <a href="../index.html">01_weighting</a> / a_equal</div>
+<h1>a_equal</h1>
+<div class=claim>Every member carries the same weight. The pool is told nothing about how well its members did, so no member&#x27;s weight can be a selection made on data the backtest will later score.</div>
+<h2>Results</h2>
+<h3>main</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/main/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,615 B)</span></li>
+</ul>
+<h3>main__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/main__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,633 B)</span></li>
+</ul>
+<details><summary>45 other combination(s)</summary>
+<h3>autoregressive_lag3</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/autoregressive_lag3/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,645 B)</span></li>
+</ul>
+<h3>autoregressive_lag3__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/autoregressive_lag3__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,663 B)</span></li>
+</ul>
+<h3>climatology_frozenWindow</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/climatology_frozenWindow/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,652 B)</span></li>
+</ul>
+<h3>climatology_frozenWindow__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/climatology_frozenWindow__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,670 B)</span></li>
+</ul>
+<h3>covariates_lagged</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/covariates_lagged/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,641 B)</span></li>
+</ul>
+<h3>covariates_lagged__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/covariates_lagged__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,659 B)</span></li>
+</ul>
+<h3>covariates_rich</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/covariates_rich/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,637 B)</span></li>
+</ul>
+<h3>covariates_rich__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/covariates_rich__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,655 B)</span></li>
+</ul>
+<h3>family_ensemble</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/family_ensemble/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,637 B)</span></li>
+</ul>
+<h3>features_richCalendar</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/features_richCalendar/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,649 B)</span></li>
+</ul>
+<h3>features_richCalendar__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/features_richCalendar__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,667 B)</span></li>
+</ul>
+<h3>fitTime_refitAtPredict</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/fitTime_refitAtPredict/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,651 B)</span></li>
+</ul>
+<h3>fitTime_refitAtPredict__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/fitTime_refitAtPredict__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,669 B)</span></li>
+</ul>
+<h3>head_quantileEnsemble</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/head_quantileEnsemble/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,649 B)</span></li>
+</ul>
+<h3>head_quantileEnsemble__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/head_quantileEnsemble__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,667 B)</span></li>
+</ul>
+<h3>main__tha</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/main__tha/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,625 B)</span></li>
+</ul>
+<h3>main__thaFinal</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/main__thaFinal/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,635 B)</span></li>
+</ul>
+<h3>main__vnm</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/main__vnm/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,625 B)</span></li>
+</ul>
+<h3>main__vnmFinal</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/main__vnmFinal/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,635 B)</span></li>
+</ul>
+<h3>observation_negBinomial</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/observation_negBinomial/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,653 B)</span></li>
+</ul>
+<h3>observation_negBinomial__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/observation_negBinomial__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,671 B)</span></li>
+</ul>
+<h3>observation_zeroInflated</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/observation_zeroInflated/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,655 B)</span></li>
+</ul>
+<h3>observation_zeroInflated__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/observation_zeroInflated__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,673 B)</span></li>
+</ul>
+<h3>persistence_negBinomialFloor</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/persistence_negBinomialFloor/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,664 B)</span></li>
+</ul>
+<h3>persistence_negBinomialFloor__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/persistence_negBinomialFloor__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,682 B)</span></li>
+</ul>
+<h3>popColumn_backCast</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/popColumn_backCast/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,643 B)</span></li>
+</ul>
+<h3>popColumn_backCast__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/popColumn_backCast__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,661 B)</span></li>
+</ul>
+<h3>population_covariate</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/population_covariate/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,647 B)</span></li>
+</ul>
+<h3>population_covariate__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/population_covariate__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,665 B)</span></li>
+</ul>
+<h3>population_ignored</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/population_ignored/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,643 B)</span></li>
+</ul>
+<h3>population_ignored__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/population_ignored__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,661 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/provinces_mergeVientiane/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,655 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/provinces_mergeVientiane__aggregate_caseWeighted/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,703 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,721 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/provinces_mergeVientiane__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,673 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/provinces_reportingOnly/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,653 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/provinces_reportingOnly__aggregate_caseWeighted/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,701 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,719 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/provinces_reportingOnly__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,671 B)</span></li>
+</ul>
+<h3>retrain_everySplit</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/retrain_everySplit/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,643 B)</span></li>
+</ul>
+<h3>retrain_everySplit__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/retrain_everySplit__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,661 B)</span></li>
+</ul>
+<h3>trainingWindow_from2004</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/trainingWindow_from2004/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,653 B)</span></li>
+</ul>
+<h3>trainingWindow_from2004__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/trainingWindow_from2004__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,671 B)</span></li>
+</ul>
+<h3>yearVariance_shared</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/yearVariance_shared/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,645 B)</span></li>
+</ul>
+<h3>yearVariance_shared__holdout</h3>
+<ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/results/yearVariance_shared__holdout/model_option_spec.json">model_option_spec.json</a> <span class=meta>(2,663 B)</span></li>
+</ul>
+</details>
+<h2>Scripts</h2><ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/scripts/choose_weighting.py">choose_weighting.py</a> <span class=meta>(7,859 B)</span></li>
+</ul>
+<h2>Provenance</h2><ul>
+<li><a href="../../../../../../../../analysis/03_models/03_candidate/c_ensemble/01_weighting/a_equal/provenance/choose_weighting.md">choose_weighting.md</a> <span class=meta>(11,962 B)</span></li>
+</ul>
+<h2>run.sh</h2>
+<pre>#!/usr/bin/env bash
+# Main script for node: a_equal
+# Generated shape -- edit the &quot;own scripts&quot; block; the child calls are maintained
+# by `node.py rebuild`, which enforces the alternatives/sub-analyses semantics.
+set -euo pipefail
+cd &quot;$(dirname &quot;$0&quot;)&quot;
+REPO_ROOT=&quot;$(cd &quot;../../../../../..&quot; &amp;&amp; pwd)&quot;
+# Node scripts run under the pinned analysis environment (AGENTS.md §2), not under
+# .venv, which is the repository&#x27;s own machinery. A node needing something beyond it
+# declares env/ and overrides PYTHON below.
+PYTHON=&quot;$REPO_ROOT/environment/chapenv/bin/python&quot;
+
+
+# Own scripts
+&quot;$PYTHON&quot; &quot;scripts/choose_weighting.py&quot;
+</pre>

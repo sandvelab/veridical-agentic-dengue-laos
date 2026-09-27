@@ -1,0 +1,130 @@
+<!doctype html><meta charset=utf-8>
+<title>06_external</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<div class=crumb><a href="../index.html">analysis</a> / 06_external</div>
+<h1>06_external</h1>
+<div class=claim>Does the reported model, run unchanged on two other countries&#x27; data from the same
+harmonisation, hold the margin it holds on Laos — and does the drop from the development
+backtest to the final year replicate?
+The plan&#x27;s §4 named `tha` and `vnm` as an optional external check and the human confirmed
+it on 2026-08-31, ahead of the release, so that the case write-up could use it. It is here
+because phase E&#x27;s largest open question cannot be answered from inside this project: the
+holdout spread is measured on one year through four splits, and nothing in the Lao data can
+say whether its width is about 2010, about one-year backtests, or about an agent optimising
+freely against a development set. Two more countries, on the same months under the same two
+schemes, are two more measurements of the same difference.
+**Nothing here is developed, tuned or selected.** No fork moves in any of these rows: each
+runs the reported analysis — every setup fork at its main child, both required baselines,
+the reference model&#x27;s four unseeded repeats, the linear opinion pool and the scoring chain
+— with the file underneath replaced. The step lists come from the same driver the
+perturbation set runs through, because a check that ran different code would measure the
+code and not the model.</div>
+<h2>Claims resting on this node</h2>
+<p class=meta>From the claim collection. Nothing enters the manuscript that is not there.</p>
+<div class=claimblock>
+<span class=cid>C42</span> The development-to-final-year drop measured on Laos replicates on both sibling countries, so it is not about 2010 alone. Run unchanged on the Thai and Vietnamese files of the same harmonisation, on the same months and under the same two schemes, the reported model&#x27;s skill score against the reference falls from +0.0856 to +0.0197 on Thailand and from +0.0852 to -0.0862 on Vietnam, against Laos&#x27;s +0.1485 to +0.0868. All three drops -- -0.0659, -0.1714 and -0.0617 -- are larger than the two reference re-run bands they are measured against, taken together.
+<br><span class=meta>grounds: <a href="../../../../analysis/06_external/results/external_vs_laos.json">external_vs_laos.json</a> · <a href="../../../../analysis/06_external/results/external_conclusions.csv">external_conclusions.csv</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C43</span> The country the model was developed on is the country it scores highest on, and the two it never saw agree with each other almost exactly. On the development arrangement the reported model&#x27;s skill score is +0.1485 on Laos, +0.0856 on Thailand and +0.0852 on Vietnam: the two siblings differ from each other by 0.0004 and from Laos by 0.063, which is about the size of the whole development-to-final-year drop on Laos.
+<br><span class=meta>grounds: <a href="../../../../analysis/06_external/results/external_conclusions.csv">external_conclusions.csv</a> · <a href="../../../../analysis/06_external/results/fig_external_skill.csv">fig_external_skill.csv</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C44</span> What the backtest can resolve is a property of the country rather than of the evaluation. The reference model is unseeded and is scored four times on every dataset; the largest paired difference between two of its repeats is 0.032 CRPS on Thailand&#x27;s development backtest, 0.565 on Laos&#x27;s and 7.082 on Vietnam&#x27;s -- a factor of 219 on one model at one configuration. So Vietnam&#x27;s +0.0852 margin sits inside the reference&#x27;s own re-run spread and cannot be attributed to a model at all, while Thailand&#x27;s near-identical +0.0856 is about thirty-six times its band.
+<br><span class=meta>grounds: <a href="../../../../analysis/06_external/results/external_conclusions.csv">external_conclusions.csv</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C45</span> The reported model&#x27;s over-dispersion is not a Lao artefact and gets worse on the sibling countries. Its 10-90 interval coverage against a nominal 0.80 is 0.863 on Lao development, 0.941 on Vietnam&#x27;s and 0.967 on Thailand&#x27;s, and 0.755, 0.893 and 0.875 on the three final years. It beats both required baselines on all six analyses and the reference model on five of the six, losing only on Vietnam&#x27;s final year.
+<br><span class=meta>grounds: <a href="../../../../analysis/06_external/results/external_conclusions.csv">external_conclusions.csv</a> · <a href="../../../../analysis/06_external/results/external_vs_laos.json">external_vs_laos.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<div class=claimblock>
+<span class=cid>C47</span> The cost model&#x27;s total was wrong on the external check in the direction its two earlier tests were right. Planned 3.14 hours against 1.81 actual, a ratio of 0.58, where phase D&#x27;s development half came out at 1.00 and its frozen holdout half at 1.15; per row it runs 0.39 to 1.20. The unit is seconds per evaluated cell measured on the Lao holdout, and it does not transfer to datasets four to ten times the size -- so the total being right twice was a property of estimating a set against itself, and the cut order such estimates rank still carries no information.
+<br><span class=meta>grounds: <a href="../../../../analysis/06_external/results/external_cost_planned_vs_actual.json">external_cost_planned_vs_actual.json</a> · <a href="../../../../analysis/06_external/results/external_plan.json">external_plan.json</a> · <a href="../../../../analysis/05_stability/results/holdout_cost_planned_vs_actual.json">holdout_cost_planned_vs_actual.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<h2>Results</h2>
+<ul>
+<li><a href="../../../../analysis/06_external/results/external_conclusions.csv">external_conclusions.csv</a> <span class=meta>(4,062 B)</span></li>
+<li><a href="../../../../analysis/06_external/results/external_cost_planned_vs_actual.json">external_cost_planned_vs_actual.json</a> <span class=meta>(780 B)</span></li>
+<li><a href="../../../../analysis/06_external/results/external_plan.json">external_plan.json</a> <span class=meta>(1,680 B)</span></li>
+<li><a href="../../../../analysis/06_external/results/external_plan_check.json">external_plan_check.json</a> <span class=meta>(1,298 B)</span></li>
+<li><a href="../../../../analysis/06_external/results/external_vs_laos.json">external_vs_laos.json</a> <span class=meta>(4,277 B)</span></li>
+<li><a href="../../../../analysis/06_external/results/fig_external_skill.csv">fig_external_skill.csv</a> <span class=meta>(799 B)</span></li>
+<li><a href="../../../../analysis/06_external/results/fig_external_skill.png">fig_external_skill.png</a> <span class=meta>(104,611 B)</span></li>
+<li><a href="../../../../analysis/06_external/results/manifest_external.csv">manifest_external.csv</a> <span class=meta>(910 B)</span></li>
+<li><a href="../../../../analysis/06_external/results/pool_reconstruction_external.json">pool_reconstruction_external.json</a> <span class=meta>(2,081 B)</span></li>
+<li><a href="../../../../analysis/06_external/results/run_status_external.csv">run_status_external.csv</a> <span class=meta>(451 B)</span></li>
+</ul>
+<details><summary>1 other combination(s)</summary>
+<h3>logs</h3>
+<ul>
+<li><a href="../../../../analysis/06_external/results/logs/main__tha.log">main__tha.log</a> <span class=meta>(9,516 B)</span></li>
+<li><a href="../../../../analysis/06_external/results/logs/main__thaFinal.log">main__thaFinal.log</a> <span class=meta>(9,767 B)</span></li>
+<li><a href="../../../../analysis/06_external/results/logs/main__vnm.log">main__vnm.log</a> <span class=meta>(9,513 B)</span></li>
+<li><a href="../../../../analysis/06_external/results/logs/main__vnmFinal.log">main__vnmFinal.log</a> <span class=meta>(6,593 B)</span></li>
+</ul>
+</details>
+<h2>Scripts</h2><ul>
+<li><a href="../../../../analysis/06_external/scripts/fig_external_skill.py">fig_external_skill.py</a> <span class=meta>(5,040 B)</span></li>
+<li><a href="../../../../analysis/06_external/scripts/plan_external.py">plan_external.py</a> <span class=meta>(14,401 B)</span></li>
+<li><a href="../../../../analysis/06_external/scripts/report_external.py">report_external.py</a> <span class=meta>(13,314 B)</span></li>
+<li><a href="../../../../analysis/06_external/scripts/run_external.py">run_external.py</a> <span class=meta>(6,254 B)</span></li>
+</ul>
+<h2>Provenance</h2><ul>
+<li><a href="../../../../analysis/06_external/provenance/fig_external_skill.md">fig_external_skill.md</a> <span class=meta>(3,354 B)</span></li>
+<li><a href="../../../../analysis/06_external/provenance/plan_external.md">plan_external.md</a> <span class=meta>(5,156 B)</span></li>
+<li><a href="../../../../analysis/06_external/provenance/report_external.md">report_external.md</a> <span class=meta>(3,642 B)</span></li>
+<li><a href="../../../../analysis/06_external/provenance/run_external.md">run_external.md</a> <span class=meta>(4,577 B)</span></li>
+</ul>
+<h2>run.sh</h2>
+<pre>#!/usr/bin/env bash
+# Main script for node: 06_external
+# Generated shape -- edit the &quot;own scripts&quot; block; the child calls are maintained
+# by `node.py rebuild`, which enforces the alternatives/sub-analyses semantics.
+set -euo pipefail
+cd &quot;$(dirname &quot;$0&quot;)&quot;
+REPO_ROOT=&quot;$(cd &quot;../..&quot; &amp;&amp; pwd)&quot;
+# Node scripts run under the pinned analysis environment (AGENTS.md §2), not under
+# .venv, which is the repository&#x27;s own machinery. A node needing something beyond it
+# declares env/ and overrides PYTHON below.
+PYTHON=&quot;$REPO_ROOT/environment/chapenv/bin/python&quot;
+
+
+# Own scripts -- plan the set before running it, run it, then report it. The plan is
+# committed before the run: `AGENTS.md` §6 asks for the cost of each unit, the ranking and
+# where the line fell, and an estimate written after the clock has stopped is not an
+# estimate.
+&quot;$PYTHON&quot; &quot;scripts/plan_external.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/run_external.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/report_external.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/fig_external_skill.py&quot;
+</pre>

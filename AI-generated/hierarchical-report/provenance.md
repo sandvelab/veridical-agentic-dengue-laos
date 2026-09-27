@@ -146,3 +146,42 @@ The build takes about three seconds and the output is gitignored apart from this
 the rebuild is not a decision anybody has to weigh. That is the property that makes Rule 8
 cheap here: the report is never the thing that is out of date, because it is never the thing
 that is stored.
+
+## Committed as a dated snapshot — 2026-09-27, row 34
+
+```
+result:              AI-generated/hierarchical-report/   (69 combinations, 1 387 pages,
+                     1 461 files, 23 MB) -- now versioned, not ignored
+script:              AI-internal/useful-scripts/build_hierarchical_report.py
+                     sha256:96e47bf5046d2052ec19a4d882f221ab0c9e55ec9da727b9e5162b3f68698ffa
+                     imports AI-internal/useful-scripts/claims.py
+                     sha256:f9c2951668c503c726ead0dabf626cf1a56875554ea62c3dc78516c7e4330ab3
+invocation:          .venv/bin/python AI-internal/useful-scripts/build_hierarchical_report.py
+inputs:              the tree at commit 46c2745, unchanged since the release
+commit:              46c2745
+instructions-commit: 595c32d (AGENTS.md, CLAUDE.md, .claude/)
+produced:            2026-09-27
+```
+
+**Why the output is now committed.** The human, reading the public repository, followed
+`README.md`'s pointer to `index.html` and found nothing: the report was gitignored, so the
+entry point the README names did not exist for anyone who had not cloned and built. The
+batch-19 section above argued that ignoring the output means "the report is never the thing
+that is out of date, because it is never the thing that is stored". That holds for a reader
+with a checkout and fails for one on the repository host, who is the reader Rule 10 is for.
+
+**What replaces the guarantee.** Committing the output makes staleness possible, so each
+build now says what it is a snapshot of: the first line of `index.html` and of the folder
+README state the build date and the commit of the tree it was built from, the command that
+regenerates it, and that a tree changed since that commit means rebuilding rather than
+trusting the copy. The script change is to that text only; no page's structure or content
+moved otherwise. The previous local build (2026-09-05, `922506b`) was stale against the
+released head, which is the failure this now makes visible rather than silent.
+
+**Checked before committing**: no occurrence of the home-directory path in any of the
+1 461 files, no file over 2 MB, and no page left over from an earlier build.
+
+alternatives-considered: rewording the README to say "build it first", which keeps the
+repository free of derived files but leaves the host reader without the way in; publishing
+the build on GitHub Pages or as a release asset, which would need a second place to keep in
+step with the tree. The human chose committing it with a dated note.

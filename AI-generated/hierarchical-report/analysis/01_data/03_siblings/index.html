@@ -1,0 +1,89 @@
+<!doctype html><meta charset=utf-8>
+<title>03_siblings</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<div class=crumb><a href="../../index.html">analysis</a> / <a href="../index.html">01_data</a> / 03_siblings</div>
+<h1>03_siblings</h1>
+<div class=claim>What do the two sibling harmonised datasets — Thailand and Vietnam — contain, and on what
+arrangement of them can the reported model be checked so that the comparison with Laos is
+about the country rather than about the years?
+The plan&#x27;s §4 names `tha` and `vnm` as an external check and nothing more: no model is
+developed on them, so nothing here is sealed and neither file is a holdout. What this node
+has to settle is the arrangement, because an external check run on a different span would
+confound the country with the calendar, and then it would answer neither question.</div>
+<h2>Claims resting on this node</h2>
+<p class=meta>From the claim collection. Nothing enters the manuscript that is not there.</p>
+<div class=claimblock>
+<span class=cid>C46</span> Two of the three statements this project found not to describe the Lao dataset describe none of the three files of that harmonisation, so they are the harmonisation&#x27;s rather than Laos&#x27;s. rainfall is declared in all three schemas as a monthly total in millimetres and is a mean daily rate in all three; and row_count means different things in different files -- Vietnam declares 9612 against 9828 rows and Laos 2575 against 2808, both counting rows with an observed target, while Thailand declares 27720, which is its row count exactly and 696 more than its complete records. Thailand&#x27;s population column is also not a static snapshot: all 77 provinces carry an annual series, so the fork this project spent a node arguing over is one the harmonisation answers differently per country.
+<br><span class=meta>grounds: <a href="../../../../../analysis/01_data/03_siblings/results/schema_reconciliation.json">schema_reconciliation.json</a> · <a href="../../../../../analysis/01_data/01_partition/results/rowcount_reconciliation.json">rowcount_reconciliation.json</a> · <a href="../../../../../analysis/01_data/02_characterise/results/covariate_units_check.json">covariate_units_check.json</a> &nbsp;·&nbsp; agent-autonomous</span>
+</div>
+<h2>Results</h2>
+<ul>
+<li><a href="../../../../../analysis/01_data/03_siblings/results/THA_development_1998-01_2009-12.csv">THA_development_1998-01_2009-12.csv</a> <span class=meta>(1,086,608 B)</span></li>
+<li><a href="../../../../../analysis/01_data/03_siblings/results/THA_full_1998-01_2010-12.csv">THA_full_1998-01_2010-12.csv</a> <span class=meta>(1,177,350 B)</span></li>
+<li><a href="../../../../../analysis/01_data/03_siblings/results/VNM_development_1998-01_2009-12.csv">VNM_development_1998-01_2009-12.csv</a> <span class=meta>(824,182 B)</span></li>
+<li><a href="../../../../../analysis/01_data/03_siblings/results/VNM_full_1998-01_2010-12.csv">VNM_full_1998-01_2010-12.csv</a> <span class=meta>(893,051 B)</span></li>
+<li><a href="../../../../../analysis/01_data/03_siblings/results/backtest_scheme_external.json">backtest_scheme_external.json</a> <span class=meta>(3,389 B)</span></li>
+<li><a href="../../../../../analysis/01_data/03_siblings/results/evaluable_cells_external.csv">evaluable_cells_external.csv</a> <span class=meta>(8,804 B)</span></li>
+<li><a href="../../../../../analysis/01_data/03_siblings/results/part_structure.csv">part_structure.csv</a> <span class=meta>(1,630 B)</span></li>
+<li><a href="../../../../../analysis/01_data/03_siblings/results/schema_reconciliation.json">schema_reconciliation.json</a> <span class=meta>(2,347 B)</span></li>
+<li><a href="../../../../../analysis/01_data/03_siblings/results/sibling_outputs.sha256">sibling_outputs.sha256</a> <span class=meta>(926 B)</span></li>
+<li><a href="../../../../../analysis/01_data/03_siblings/results/sibling_partition_check.json">sibling_partition_check.json</a> <span class=meta>(2,135 B)</span></li>
+<li><a href="../../../../../analysis/01_data/03_siblings/results/split_schedule_external.csv">split_schedule_external.csv</a> <span class=meta>(1,417 B)</span></li>
+</ul>
+<h2>Scripts</h2><ul>
+<li><a href="../../../../../analysis/01_data/03_siblings/scripts/check_external_scheme.py">check_external_scheme.py</a> <span class=meta>(7,575 B)</span></li>
+<li><a href="../../../../../analysis/01_data/03_siblings/scripts/partition_siblings.py">partition_siblings.py</a> <span class=meta>(13,830 B)</span></li>
+</ul>
+<h2>Provenance</h2><ul>
+<li><a href="../../../../../analysis/01_data/03_siblings/provenance/check_external_scheme.md">check_external_scheme.md</a> <span class=meta>(3,739 B)</span></li>
+<li><a href="../../../../../analysis/01_data/03_siblings/provenance/partition_siblings.md">partition_siblings.md</a> <span class=meta>(5,675 B)</span></li>
+</ul>
+<h2>run.sh</h2>
+<pre>#!/usr/bin/env bash
+# Main script for node: 03_siblings
+# Generated shape -- edit the &quot;own scripts&quot; block; the child calls are maintained
+# by `node.py rebuild`, which enforces the alternatives/sub-analyses semantics.
+set -euo pipefail
+cd &quot;$(dirname &quot;$0&quot;)&quot;
+REPO_ROOT=&quot;$(cd &quot;../../..&quot; &amp;&amp; pwd)&quot;
+# Node scripts run under the pinned analysis environment (AGENTS.md §2), not under
+# .venv, which is the repository&#x27;s own machinery. A node needing something beyond it
+# declares env/ and overrides PYTHON below.
+PYTHON=&quot;$REPO_ROOT/environment/chapenv/bin/python&quot;
+
+
+# Own scripts -- the cut first, then the check that the schemes land where the mirror
+# requires. The second reads the files the first writes.
+&quot;$PYTHON&quot; &quot;scripts/partition_siblings.py&quot;
+&quot;$PYTHON&quot; &quot;scripts/check_external_scheme.py&quot;
+</pre>

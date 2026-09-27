@@ -1,0 +1,751 @@
+<!doctype html><meta charset=utf-8>
+<title>LA-SL · provinces_reportingOnly__aggregate_caseWeighted</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<div class=crumb><a href="../../index.html">Analysis report</a> / <a href="index.html">provinces_reportingOnly__aggregate_caseWeighted</a> / LA-SL</div>
+<h1>LA-SL — Salavan</h1>
+<p class=meta>Combination <code>provinces_reportingOnly__aggregate_caseWeighted</code>. 24 evaluated month(s).</p>
+<h2>This province&rsquo;s means</h2>
+<div class=scroll><table><tr>
+<th class="">model</th>
+<th class="n">cells</th>
+<th class="n">mean CRPS</th>
+<th class="n">MAE</th>
+<th class="n">10–90</th>
+<th class="n">25–75</th>
+<th class="n">cases observed</th>
+</tr>
+<tr>
+<td class="">reference_r1</td>
+<td class="n">24</td>
+<td class="n">64.581</td>
+<td class="n">62.127</td>
+<td class="n">0.739</td>
+<td class="n">0.674</td>
+<td class="n">1,455</td>
+</tr>
+<tr>
+<td class="">reference_r3</td>
+<td class="n">24</td>
+<td class="n">64.756</td>
+<td class="n">56.863</td>
+<td class="n">0.753</td>
+<td class="n">0.735</td>
+<td class="n">1,455</td>
+</tr>
+<tr>
+<td class="">reference</td>
+<td class="n">24</td>
+<td class="n">65.280</td>
+<td class="n">60.855</td>
+<td class="n">0.741</td>
+<td class="n">0.704</td>
+<td class="n">1,455</td>
+</tr>
+<tr>
+<td class="">reference_r4</td>
+<td class="n">24</td>
+<td class="n">65.823</td>
+<td class="n">62.029</td>
+<td class="n">0.735</td>
+<td class="n">0.671</td>
+<td class="n">1,455</td>
+</tr>
+<tr>
+<td class="">reference_r2</td>
+<td class="n">24</td>
+<td class="n">65.959</td>
+<td class="n">62.400</td>
+<td class="n">0.735</td>
+<td class="n">0.735</td>
+<td class="n">1,455</td>
+</tr>
+<tr>
+<td class="">ensemble</td>
+<td class="n">24</td>
+<td class="n">83.847</td>
+<td class="n">112.292</td>
+<td class="n">0.265</td>
+<td class="n">0.236</td>
+<td class="n">1,455</td>
+</tr>
+<tr>
+<td class="">persistence</td>
+<td class="n">24</td>
+<td class="n">98.586</td>
+<td class="n">102.488</td>
+<td class="n">0.003</td>
+<td class="n">0.000</td>
+<td class="n">1,455</td>
+</tr>
+<tr>
+<td class="">climatology</td>
+<td class="n">24</td>
+<td class="n">100.428</td>
+<td class="n">115.611</td>
+<td class="n">0.030</td>
+<td class="n">0.001</td>
+<td class="n">1,455</td>
+</tr>
+</table></div>
+<h2>Month by month — the values</h2>
+<p class=meta>CRPS per model at each evaluated month, with the count that was observed and the split and horizon the cell belongs to. This is the bottom: every mean above is an average of these.</p>
+<div class=scroll><table><tr>
+<th class="">month</th>
+<th class="n">observed</th>
+<th class="">split</th>
+<th class="n">horizon</th>
+<th class="n">climatology</th>
+<th class="n">ensemble</th>
+<th class="n">persistence</th>
+<th class="n">reference</th>
+<th class="n">reference_r1</th>
+<th class="n">reference_r2</th>
+<th class="n">reference_r3</th>
+<th class="n">reference_r4</th>
+</tr>
+<tr>
+<td class="">200801</td>
+<td class="n">0</td>
+<td class="">200801</td>
+<td class="n">1</td>
+<td class="n">0.110</td>
+<td class="n">1.017</td>
+<td class="n">5.888</td>
+<td class="n">2.008</td>
+<td class="n">5.301</td>
+<td class="n">1.013</td>
+<td class="n">0.884</td>
+<td class="n">0.836</td>
+</tr>
+<tr>
+<td class="">200802</td>
+<td class="n">1</td>
+<td class="">200801</td>
+<td class="n">2</td>
+<td class="n">1.000</td>
+<td class="n">0.989</td>
+<td class="n">4.933</td>
+<td class="n">0.799</td>
+<td class="n">1.985</td>
+<td class="n">0.426</td>
+<td class="n">0.389</td>
+<td class="n">0.395</td>
+</tr>
+<tr>
+<td class="">200803</td>
+<td class="n">5</td>
+<td class="">200801</td>
+<td class="n">3</td>
+<td class="n">4.620</td>
+<td class="n">2.266</td>
+<td class="n">1.539</td>
+<td class="n">3.020</td>
+<td class="n">0.727</td>
+<td class="n">3.701</td>
+<td class="n">3.771</td>
+<td class="n">3.880</td>
+</tr>
+<tr>
+<td class="">200804</td>
+<td class="n">2</td>
+<td class="">200804</td>
+<td class="n">1</td>
+<td class="n">2.000</td>
+<td class="n">1.069</td>
+<td class="n">2.408</td>
+<td class="n">0.967</td>
+<td class="n">1.021</td>
+<td class="n">0.989</td>
+<td class="n">0.963</td>
+<td class="n">0.896</td>
+</tr>
+<tr>
+<td class="">200805</td>
+<td class="n">105</td>
+<td class="">200804</td>
+<td class="n">2</td>
+<td class="n">82.750</td>
+<td class="n">88.714</td>
+<td class="n">94.771</td>
+<td class="n">91.897</td>
+<td class="n">91.597</td>
+<td class="n">92.028</td>
+<td class="n">92.485</td>
+<td class="n">91.477</td>
+</tr>
+<tr>
+<td class="">200806</td>
+<td class="n">226</td>
+<td class="">200804</td>
+<td class="n">3</td>
+<td class="n">206.970</td>
+<td class="n">206.202</td>
+<td class="n">215.529</td>
+<td class="n">191.884</td>
+<td class="n">191.431</td>
+<td class="n">192.077</td>
+<td class="n">191.443</td>
+<td class="n">192.585</td>
+</tr>
+<tr>
+<td class="">200807</td>
+<td class="n">78</td>
+<td class="">200807</td>
+<td class="n">1</td>
+<td class="n">75.250</td>
+<td class="n">46.226</td>
+<td class="n">144.639</td>
+<td class="n">43.571</td>
+<td class="n">43.771</td>
+<td class="n">43.855</td>
+<td class="n">42.284</td>
+<td class="n">44.374</td>
+</tr>
+<tr>
+<td class="">200808</td>
+<td class="n">63</td>
+<td class="">200807</td>
+<td class="n">2</td>
+<td class="n">52.450</td>
+<td class="n">37.707</td>
+<td class="n">157.655</td>
+<td class="n">41.581</td>
+<td class="n">39.465</td>
+<td class="n">47.435</td>
+<td class="n">38.805</td>
+<td class="n">40.617</td>
+</tr>
+<tr>
+<td class="">200809</td>
+<td class="n">85</td>
+<td class="">200807</td>
+<td class="n">3</td>
+<td class="n">76.050</td>
+<td class="n">45.105</td>
+<td class="n">135.592</td>
+<td class="n">42.135</td>
+<td class="n">41.046</td>
+<td class="n">45.059</td>
+<td class="n">37.389</td>
+<td class="n">45.046</td>
+</tr>
+<tr>
+<td class="">200810</td>
+<td class="n">91</td>
+<td class="">200810</td>
+<td class="n">1</td>
+<td class="n">89.540</td>
+<td class="n">46.129</td>
+<td class="n">5.024</td>
+<td class="n">29.171</td>
+<td class="n">28.918</td>
+<td class="n">27.829</td>
+<td class="n">31.830</td>
+<td class="n">28.109</td>
+</tr>
+<tr>
+<td class="">200811</td>
+<td class="n">21</td>
+<td class="">200810</td>
+<td class="n">2</td>
+<td class="n">19.160</td>
+<td class="n">13.518</td>
+<td class="n">59.914</td>
+<td class="n">16.082</td>
+<td class="n">12.733</td>
+<td class="n">11.270</td>
+<td class="n">26.836</td>
+<td class="n">13.487</td>
+</tr>
+<tr>
+<td class="">200812</td>
+<td class="n">8</td>
+<td class="">200810</td>
+<td class="n">3</td>
+<td class="n">5.690</td>
+<td class="n">8.914</td>
+<td class="n">72.337</td>
+<td class="n">7.832</td>
+<td class="n">7.556</td>
+<td class="n">7.108</td>
+<td class="n">9.795</td>
+<td class="n">6.869</td>
+</tr>
+<tr>
+<td class="">200901</td>
+<td class="n">1</td>
+<td class="">200901</td>
+<td class="n">1</td>
+<td class="n">0.545</td>
+<td class="n">1.248</td>
+<td class="n">5.890</td>
+<td class="n">1.864</td>
+<td class="n">1.714</td>
+<td class="n">1.845</td>
+<td class="n">1.740</td>
+<td class="n">2.156</td>
+</tr>
+<tr>
+<td class="">200902</td>
+<td class="n">24</td>
+<td class="">200901</td>
+<td class="n">2</td>
+<td class="n">23.826</td>
+<td class="n">18.226</td>
+<td class="n">14.107</td>
+<td class="n">19.124</td>
+<td class="n">18.804</td>
+<td class="n">19.696</td>
+<td class="n">18.851</td>
+<td class="n">19.143</td>
+</tr>
+<tr>
+<td class="">200903</td>
+<td class="n">25</td>
+<td class="">200901</td>
+<td class="n">3</td>
+<td class="n">23.817</td>
+<td class="n">18.762</td>
+<td class="n">14.945</td>
+<td class="n">12.929</td>
+<td class="n">12.772</td>
+<td class="n">13.666</td>
+<td class="n">12.224</td>
+<td class="n">13.053</td>
+</tr>
+<tr>
+<td class="">200904</td>
+<td class="n">19</td>
+<td class="">200904</td>
+<td class="n">1</td>
+<td class="n">18.653</td>
+<td class="n">9.380</td>
+<td class="n">5.019</td>
+<td class="n">6.560</td>
+<td class="n">6.385</td>
+<td class="n">6.760</td>
+<td class="n">7.018</td>
+<td class="n">6.076</td>
+</tr>
+<tr>
+<td class="">200905</td>
+<td class="n">122</td>
+<td class="">200904</td>
+<td class="n">2</td>
+<td class="n">83.900</td>
+<td class="n">86.665</td>
+<td class="n">91.851</td>
+<td class="n">37.625</td>
+<td class="n">37.896</td>
+<td class="n">37.211</td>
+<td class="n">34.577</td>
+<td class="n">40.814</td>
+</tr>
+<tr>
+<td class="">200906</td>
+<td class="n">42</td>
+<td class="">200904</td>
+<td class="n">3</td>
+<td class="n">30.133</td>
+<td class="n">21.392</td>
+<td class="n">14.971</td>
+<td class="n">40.176</td>
+<td class="n">43.750</td>
+<td class="n">39.678</td>
+<td class="n">40.820</td>
+<td class="n">36.456</td>
+</tr>
+<tr>
+<td class="">200907</td>
+<td class="n">164</td>
+<td class="">200907</td>
+<td class="n">1</td>
+<td class="n">148.176</td>
+<td class="n">116.412</td>
+<td class="n">118.635</td>
+<td class="n">54.898</td>
+<td class="n">51.469</td>
+<td class="n">58.964</td>
+<td class="n">52.832</td>
+<td class="n">56.328</td>
+</tr>
+<tr>
+<td class="">200908</td>
+<td class="n">127</td>
+<td class="">200907</td>
+<td class="n">2</td>
+<td class="n">107.332</td>
+<td class="n">82.963</td>
+<td class="n">80.187</td>
+<td class="n">45.177</td>
+<td class="n">46.138</td>
+<td class="n">44.556</td>
+<td class="n">46.357</td>
+<td class="n">43.657</td>
+</tr>
+<tr>
+<td class="">200909</td>
+<td class="n">91</td>
+<td class="">200907</td>
+<td class="n">3</td>
+<td class="n">68.831</td>
+<td class="n">51.484</td>
+<td class="n">45.277</td>
+<td class="n">38.845</td>
+<td class="n">36.141</td>
+<td class="n">40.300</td>
+<td class="n">40.553</td>
+<td class="n">38.386</td>
+</tr>
+<tr>
+<td class="">200910</td>
+<td class="n">94</td>
+<td class="">200910</td>
+<td class="n">1</td>
+<td class="n">76.984</td>
+<td class="n">38.701</td>
+<td class="n">2.435</td>
+<td class="n">31.012</td>
+<td class="n">30.660</td>
+<td class="n">30.470</td>
+<td class="n">30.355</td>
+<td class="n">32.564</td>
+</tr>
+<tr>
+<td class="">200911</td>
+<td class="n">44</td>
+<td class="">200910</td>
+<td class="n">2</td>
+<td class="n">38.830</td>
+<td class="n">22.407</td>
+<td class="n">43.493</td>
+<td class="n">17.390</td>
+<td class="n">16.631</td>
+<td class="n">14.567</td>
+<td class="n">15.389</td>
+<td class="n">22.973</td>
+</tr>
+<tr>
+<td class="">200912</td>
+<td class="n">17</td>
+<td class="">200910</td>
+<td class="n">3</td>
+<td class="n">13.700</td>
+<td class="n">11.978</td>
+<td class="n">69.440</td>
+<td class="n">8.969</td>
+<td class="n">10.000</td>
+<td class="n">9.426</td>
+<td class="n">9.653</td>
+<td class="n">6.797</td>
+</tr>
+</table></div>
+<h3>Whether the outcome fell inside each model&rsquo;s interval</h3>
+<div class=scroll><table><tr>
+<th class="">month</th>
+<th class="">climatology</th>
+<th class="">ensemble</th>
+<th class="">persistence</th>
+<th class="">reference</th>
+<th class="">reference_r1</th>
+<th class="">reference_r2</th>
+<th class="">reference_r3</th>
+<th class="">reference_r4</th>
+</tr>
+<tr>
+<td class="">200801</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+<tr>
+<td class="">200802</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+<tr>
+<td class="">200803</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+</tr>
+<tr>
+<td class="">200804</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+<tr>
+<td class="">200805</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+</tr>
+<tr>
+<td class="">200806</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+</tr>
+<tr>
+<td class="">200807</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+<tr>
+<td class="">200808</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+<tr>
+<td class="">200809</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+<tr>
+<td class="">200810</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+<tr>
+<td class="">200811</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+<tr>
+<td class="">200812</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+<tr>
+<td class="">200901</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+<tr>
+<td class="">200902</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+</tr>
+<tr>
+<td class="">200903</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">out</td>
+</tr>
+<tr>
+<td class="">200904</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+<tr>
+<td class="">200905</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+<tr>
+<td class="">200906</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+<tr>
+<td class="">200907</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+<tr>
+<td class="">200908</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+<tr>
+<td class="">200909</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+<tr>
+<td class="">200910</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+<tr>
+<td class="">200911</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+<tr>
+<td class="">200912</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">out</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+<td class="">in</td>
+</tr>
+</table></div>
+<p class=meta>10–90 interval. The 25–75 column is in the per-cell file; on this dataset it is not a clean reading of calibration, because a model whose quartiles coincide has the interval [0, 0] and every zero month falls inside it.</p>
+<p class=meta><a href="../../../../analysis/04_score/01_collect/results/provinces_reportingOnly__aggregate_caseWeighted/metrics_cell.csv">metrics_cell.csv</a> — the file every number on this page is read from.</p>

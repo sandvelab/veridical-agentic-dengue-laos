@@ -1,0 +1,534 @@
+<!doctype html><meta charset=utf-8>
+<title>provinces_reportingOnly__holdout</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<div class=crumb><a href="../../index.html">Analysis report</a> / <a href="../../analysis/index.html">analysis</a> / detail / provinces_reportingOnly__holdout</div>
+<h1>provinces_reportingOnly__holdout</h1>
+<p class=meta>National, then province, then month, then the values. Every figure on this page is displayed from the file the analysis wrote; nothing here is recomputed.</p>
+<h2>The conclusion under this combination</h2>
+<p class=claim>Skill score against the reference model: <strong>-0.1828</strong> — mean CRPS 76.555 for <strong>ensemble</strong> against the reference&rsquo;s 64.724, over 192 cells in 16 provinces and 4 splits of the holdout data.</p>
+<div class=scroll><table><tr>
+<th class=""></th>
+<th class="n">value</th>
+</tr>
+<tr>
+<td class="">beats the reference</td>
+<td class="n">False</td>
+</tr>
+<tr>
+<td class="">beats both required baselines</td>
+<td class="n">True</td>
+</tr>
+<tr>
+<td class="">10–90 coverage, ours (nominal 0.80)</td>
+<td class="n">0.771</td>
+</tr>
+<tr>
+<td class="">10–90 coverage, reference</td>
+<td class="n">0.770</td>
+</tr>
+<tr>
+<td class="">paired mean difference vs reference</td>
+<td class="n">11.831</td>
+</tr>
+<tr>
+<td class="">its standard error, clustered by split</td>
+<td class="n">11.414</td>
+</tr>
+<tr>
+<td class="">what this backtest can resolve at all</td>
+<td class="n">20.095</td>
+</tr>
+</table></div>
+<h2>National <span class=tag>unweighted</span></h2>
+<p class=meta>The mean each model is reported at, over every evaluated cell.</p>
+<div class=scroll><table><tr>
+<th class="">model</th>
+<th class="n">mean CRPS</th>
+<th class="n">MAE</th>
+<th class="n">10–90</th>
+<th class="n">25–75</th>
+<th class="n">cells</th>
+<th class="n">provinces</th>
+<th class="n">splits</th>
+</tr>
+<tr>
+<td class="">reference_r2</td>
+<td class="n">58.758</td>
+<td class="n">75.385</td>
+<td class="n">0.776</td>
+<td class="n">0.583</td>
+<td class="n">192</td>
+<td class="n">16</td>
+<td class="n">4</td>
+</tr>
+<tr>
+<td class="">reference_r1</td>
+<td class="n">60.501</td>
+<td class="n">76.060</td>
+<td class="n">0.766</td>
+<td class="n">0.552</td>
+<td class="n">192</td>
+<td class="n">16</td>
+<td class="n">4</td>
+</tr>
+<tr>
+<td class="">reference_r3</td>
+<td class="n">60.784</td>
+<td class="n">76.224</td>
+<td class="n">0.781</td>
+<td class="n">0.557</td>
+<td class="n">192</td>
+<td class="n">16</td>
+<td class="n">4</td>
+</tr>
+<tr>
+<td class="">reference</td>
+<td class="n">64.724</td>
+<td class="n">84.040</td>
+<td class="n">0.770</td>
+<td class="n">0.552</td>
+<td class="n">192</td>
+<td class="n">16</td>
+<td class="n">4</td>
+</tr>
+<tr class=ours>
+<td class="">ensemble</td>
+<td class="n">76.555</td>
+<td class="n">100.312</td>
+<td class="n">0.771</td>
+<td class="n">0.589</td>
+<td class="n">192</td>
+<td class="n">16</td>
+<td class="n">4</td>
+</tr>
+<tr>
+<td class="">reference_r4</td>
+<td class="n">78.853</td>
+<td class="n">108.490</td>
+<td class="n">0.755</td>
+<td class="n">0.516</td>
+<td class="n">192</td>
+<td class="n">16</td>
+<td class="n">4</td>
+</tr>
+<tr class=ours>
+<td class="">climatology</td>
+<td class="n">81.498</td>
+<td class="n">98.841</td>
+<td class="n">0.464</td>
+<td class="n">0.302</td>
+<td class="n">192</td>
+<td class="n">16</td>
+<td class="n">4</td>
+</tr>
+<tr class=ours>
+<td class="">persistence</td>
+<td class="n">128.052</td>
+<td class="n">142.026</td>
+<td class="n">0.417</td>
+<td class="n">0.224</td>
+<td class="n">192</td>
+<td class="n">16</td>
+<td class="n">4</td>
+</tr>
+</table></div>
+<p class=meta>Bold is a model of ours. <a href="../../../../analysis/04_score/02_aggregate/a_unweighted/results/provinces_reportingOnly__holdout/metrics_summary.csv">metrics_summary.csv</a></p>
+<h3>The same mean, cut two other ways</h3>
+<p class=meta>by split</p>
+<div class=scroll><table><tr>
+<th class="">model</th>
+<th class="n">201001</th>
+<th class="n">201004</th>
+<th class="n">201007</th>
+<th class="n">201010</th>
+</tr>
+<tr>
+<td class="">climatology</td>
+<td class="n">12.886</td>
+<td class="n">31.560</td>
+<td class="n">228.173</td>
+<td class="n">53.375</td>
+</tr>
+<tr>
+<td class="">ensemble</td>
+<td class="n">9.507</td>
+<td class="n">31.380</td>
+<td class="n">214.688</td>
+<td class="n">50.647</td>
+</tr>
+<tr>
+<td class="">persistence</td>
+<td class="n">15.493</td>
+<td class="n">32.188</td>
+<td class="n">209.859</td>
+<td class="n">254.668</td>
+</tr>
+<tr>
+<td class="">reference</td>
+<td class="n">9.883</td>
+<td class="n">41.726</td>
+<td class="n">165.017</td>
+<td class="n">42.272</td>
+</tr>
+<tr>
+<td class="">reference_r1</td>
+<td class="n">9.928</td>
+<td class="n">43.978</td>
+<td class="n">145.169</td>
+<td class="n">42.929</td>
+</tr>
+<tr>
+<td class="">reference_r2</td>
+<td class="n">9.940</td>
+<td class="n">34.075</td>
+<td class="n">148.878</td>
+<td class="n">42.141</td>
+</tr>
+<tr>
+<td class="">reference_r3</td>
+<td class="n">9.914</td>
+<td class="n">44.378</td>
+<td class="n">146.934</td>
+<td class="n">41.912</td>
+</tr>
+<tr>
+<td class="">reference_r4</td>
+<td class="n">9.748</td>
+<td class="n">44.472</td>
+<td class="n">219.088</td>
+<td class="n">42.106</td>
+</tr>
+</table></div>
+<p class=meta>by horizon, months ahead</p>
+<div class=scroll><table><tr>
+<th class="">model</th>
+<th class="n">1</th>
+<th class="n">2</th>
+<th class="n">3</th>
+</tr>
+<tr>
+<td class="">climatology</td>
+<td class="n">87.533</td>
+<td class="n">69.712</td>
+<td class="n">87.250</td>
+</tr>
+<tr>
+<td class="">ensemble</td>
+<td class="n">74.529</td>
+<td class="n">67.882</td>
+<td class="n">87.256</td>
+</tr>
+<tr>
+<td class="">persistence</td>
+<td class="n">104.881</td>
+<td class="n">125.124</td>
+<td class="n">154.152</td>
+</tr>
+<tr>
+<td class="">reference</td>
+<td class="n">61.072</td>
+<td class="n">55.332</td>
+<td class="n">77.769</td>
+</tr>
+<tr>
+<td class="">reference_r1</td>
+<td class="n">56.676</td>
+<td class="n">49.767</td>
+<td class="n">75.060</td>
+</tr>
+<tr>
+<td class="">reference_r2</td>
+<td class="n">57.675</td>
+<td class="n">49.526</td>
+<td class="n">69.075</td>
+</tr>
+<tr>
+<td class="">reference_r3</td>
+<td class="n">56.042</td>
+<td class="n">51.794</td>
+<td class="n">74.518</td>
+</tr>
+<tr>
+<td class="">reference_r4</td>
+<td class="n">73.896</td>
+<td class="n">70.240</td>
+<td class="n">92.424</td>
+</tr>
+</table></div>
+<h2>By province</h2>
+<p class=meta>Each province&rsquo;s own mean, and one click to the months it averages.</p>
+<div class=scroll><table><tr>
+<th class="">province</th>
+<th class="">name</th>
+<th class="n">cells</th>
+<th class="n">cases observed</th>
+<th class="n">climatology</th>
+<th class="n">ensemble</th>
+<th class="n">persistence</th>
+<th class="n">reference</th>
+<th class="n">reference_r1</th>
+<th class="n">reference_r2</th>
+<th class="n">reference_r3</th>
+<th class="n">reference_r4</th>
+</tr>
+<tr>
+<td class=""><a href="LA-AT.html">LA-AT</a></td>
+<td class="">Attapeu</td>
+<td class="n">12</td>
+<td class="n">207</td>
+<td class="n">13.688</td>
+<td class="n">9.848</td>
+<td class="n">7.165</td>
+<td class="n">11.187</td>
+<td class="n">11.661</td>
+<td class="n">10.358</td>
+<td class="n">11.264</td>
+<td class="n">11.466</td>
+</tr>
+<tr>
+<td class=""><a href="LA-BK.html">LA-BK</a></td>
+<td class="">Bokeo</td>
+<td class="n">12</td>
+<td class="n">98</td>
+<td class="n">5.739</td>
+<td class="n">4.595</td>
+<td class="n">5.604</td>
+<td class="n">6.226</td>
+<td class="n">6.178</td>
+<td class="n">5.387</td>
+<td class="n">6.407</td>
+<td class="n">6.931</td>
+</tr>
+<tr>
+<td class=""><a href="LA-BL.html">LA-BL</a></td>
+<td class="">Bolikhamsai</td>
+<td class="n">12</td>
+<td class="n">1,363</td>
+<td class="n">77.125</td>
+<td class="n">69.416</td>
+<td class="n">86.550</td>
+<td class="n">89.732</td>
+<td class="n">84.942</td>
+<td class="n">85.826</td>
+<td class="n">81.456</td>
+<td class="n">106.705</td>
+</tr>
+<tr>
+<td class=""><a href="LA-CH.html">LA-CH</a></td>
+<td class="">Champasak</td>
+<td class="n">12</td>
+<td class="n">3,029</td>
+<td class="n">152.062</td>
+<td class="n">150.427</td>
+<td class="n">277.811</td>
+<td class="n">119.078</td>
+<td class="n">111.160</td>
+<td class="n">119.530</td>
+<td class="n">111.558</td>
+<td class="n">134.062</td>
+</tr>
+<tr>
+<td class=""><a href="LA-HO.html">LA-HO</a></td>
+<td class="">Houaphan</td>
+<td class="n">12</td>
+<td class="n">13</td>
+<td class="n">0.918</td>
+<td class="n">0.948</td>
+<td class="n">1.789</td>
+<td class="n">0.761</td>
+<td class="n">0.786</td>
+<td class="n">0.826</td>
+<td class="n">0.792</td>
+<td class="n">0.639</td>
+</tr>
+<tr>
+<td class=""><a href="LA-KH.html">LA-KH</a></td>
+<td class="">Khammouane</td>
+<td class="n">12</td>
+<td class="n">1,700</td>
+<td class="n">96.368</td>
+<td class="n">91.957</td>
+<td class="n">119.544</td>
+<td class="n">94.668</td>
+<td class="n">87.805</td>
+<td class="n">81.260</td>
+<td class="n">90.020</td>
+<td class="n">119.588</td>
+</tr>
+<tr>
+<td class=""><a href="LA-LM.html">LA-LM</a></td>
+<td class="">Luang Namtha</td>
+<td class="n">12</td>
+<td class="n">134</td>
+<td class="n">10.679</td>
+<td class="n">8.151</td>
+<td class="n">13.797</td>
+<td class="n">7.480</td>
+<td class="n">7.616</td>
+<td class="n">7.066</td>
+<td class="n">7.927</td>
+<td class="n">7.310</td>
+</tr>
+<tr>
+<td class=""><a href="LA-LP.html">LA-LP</a></td>
+<td class="">Luang Prabang</td>
+<td class="n">12</td>
+<td class="n">1,888</td>
+<td class="n">129.255</td>
+<td class="n">128.735</td>
+<td class="n">283.524</td>
+<td class="n">112.753</td>
+<td class="n">109.539</td>
+<td class="n">106.428</td>
+<td class="n">109.671</td>
+<td class="n">125.374</td>
+</tr>
+<tr>
+<td class=""><a href="LA-OU.html">LA-OU</a></td>
+<td class="">Oudomxay</td>
+<td class="n">12</td>
+<td class="n">841</td>
+<td class="n">69.161</td>
+<td class="n">51.843</td>
+<td class="n">53.383</td>
+<td class="n">57.186</td>
+<td class="n">58.879</td>
+<td class="n">57.114</td>
+<td class="n">58.035</td>
+<td class="n">54.717</td>
+</tr>
+<tr>
+<td class=""><a href="LA-PH.html">LA-PH</a></td>
+<td class="">Phongsaly</td>
+<td class="n">12</td>
+<td class="n">1</td>
+<td class="n">0.086</td>
+<td class="n">0.185</td>
+<td class="n">0.082</td>
+<td class="n">0.102</td>
+<td class="n">0.064</td>
+<td class="n">0.108</td>
+<td class="n">0.066</td>
+<td class="n">0.170</td>
+</tr>
+<tr>
+<td class=""><a href="LA-SL.html">LA-SL</a></td>
+<td class="">Salavan</td>
+<td class="n">12</td>
+<td class="n">2,876</td>
+<td class="n">217.223</td>
+<td class="n">172.810</td>
+<td class="n">278.193</td>
+<td class="n">105.395</td>
+<td class="n">89.302</td>
+<td class="n">98.264</td>
+<td class="n">88.464</td>
+<td class="n">145.549</td>
+</tr>
+<tr>
+<td class=""><a href="LA-SV.html">LA-SV</a></td>
+<td class="">Savannakhet</td>
+<td class="n">12</td>
+<td class="n">2,523</td>
+<td class="n">107.703</td>
+<td class="n">120.741</td>
+<td class="n">203.685</td>
+<td class="n">105.008</td>
+<td class="n">99.284</td>
+<td class="n">99.564</td>
+<td class="n">99.494</td>
+<td class="n">121.688</td>
+</tr>
+<tr>
+<td class=""><a href="LA-VT.html">LA-VT</a></td>
+<td class="">Vientiane Capital</td>
+<td class="n">12</td>
+<td class="n">7,632</td>
+<td class="n">383.219</td>
+<td class="n">380.842</td>
+<td class="n">654.249</td>
+<td class="n">296.941</td>
+<td class="n">273.955</td>
+<td class="n">239.814</td>
+<td class="n">279.917</td>
+<td class="n">394.077</td>
+</tr>
+<tr>
+<td class=""><a href="LA-XA.html">LA-XA</a></td>
+<td class="">Xaignabouli</td>
+<td class="n">12</td>
+<td class="n">170</td>
+<td class="n">7.490</td>
+<td class="n">7.331</td>
+<td class="n">11.755</td>
+<td class="n">7.629</td>
+<td class="n">7.502</td>
+<td class="n">7.958</td>
+<td class="n">7.603</td>
+<td class="n">7.455</td>
+</tr>
+<tr>
+<td class=""><a href="LA-XE.html">LA-XE</a></td>
+<td class="">Xekong</td>
+<td class="n">12</td>
+<td class="n">348</td>
+<td class="n">26.746</td>
+<td class="n">20.943</td>
+<td class="n">38.447</td>
+<td class="n">15.868</td>
+<td class="n">13.435</td>
+<td class="n">14.603</td>
+<td class="n">13.906</td>
+<td class="n">21.527</td>
+</tr>
+<tr>
+<td class=""><a href="LA-XI.html">LA-XI</a></td>
+<td class="">Xiangkhouang</td>
+<td class="n">12</td>
+<td class="n">80</td>
+<td class="n">6.513</td>
+<td class="n">6.113</td>
+<td class="n">13.259</td>
+<td class="n">5.577</td>
+<td class="n">5.908</td>
+<td class="n">6.031</td>
+<td class="n">5.969</td>
+<td class="n">4.399</td>
+</tr>
+</table></div>
+<h2>Where these numbers come from</h2><ul>
+<li><a href="../../../../analysis/04_score/01_collect/results/provinces_reportingOnly__holdout/metrics_cell.csv">metrics_cell.csv</a> <span class=meta>— per-cell scores, every model</span></li>
+<li><a href="../../../../analysis/04_score/01_collect/results/provinces_reportingOnly__holdout/models.csv">models.csv</a> <span class=meta>— the models that were scored, and under which combination</span></li>
+<li><a href="../../../../analysis/04_score/03_compare/results/provinces_reportingOnly__holdout/leaderboard.csv">leaderboard.csv</a> <span class=meta>— the leaderboard</span></li>
+<li><a href="../../../../analysis/04_score/03_compare/results/provinces_reportingOnly__holdout/paired_summary.csv">paired_summary.csv</a> <span class=meta>— the paired comparison against the reference</span></li>
+</ul>

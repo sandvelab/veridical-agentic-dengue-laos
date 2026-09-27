@@ -1,0 +1,242 @@
+<!doctype html><meta charset=utf-8>
+<title>02_setup</title><style>
+:root { --fg:#1a1a1a; --muted:#666; --line:#ddd; --accent:#0b5; --warn:#b40; --bg:#fff; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --muted:#999; --line:#333; --accent:#4d8; --warn:#f86; --bg:#161616; }
+}
+body { font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       max-width: 52rem; margin: 2rem auto; padding: 0 1.2rem; color: var(--fg);
+       background: var(--bg); }
+h1 { font-size: 1.4rem; margin-bottom: .2rem; }
+h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid var(--line);
+     padding-bottom: .3rem; }
+h3 { font-size: .95rem; margin-top: 1.3rem; }
+.claim { font-size: 1.05rem; margin: .6rem 0 1rem; }
+.crumb, .meta { color: var(--muted); font-size: .85rem; }
+.tag { display:inline-block; font-size:.72rem; padding:.1rem .45rem; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:.4rem; }
+.main-path { border-color: var(--accent); color: var(--accent); }
+.not-taken { border-color: var(--warn); color: var(--warn); }
+ul { padding-left: 1.1rem; } li { margin: .25rem 0; }
+a { color: inherit; } a:hover { color: var(--accent); }
+pre { background: rgba(128,128,128,.1); padding: .7rem; overflow-x: auto; font-size: .82rem; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+td, th { border-bottom: 1px solid var(--line); padding: .3rem .5rem; text-align: left;
+         white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.ours td { font-weight: 600; }
+details { margin: .4rem 0; }
+summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.claimblock { border-left: 2px solid var(--line); padding-left: .8rem; margin: .8rem 0; }
+.claimblock .cid { font-weight: 600; }
+</style>
+<div class=crumb><a href="../index.html">analysis</a> / 02_setup</div>
+<h1>02_setup</h1>
+<div class=claim>What dataset and evaluation setting do all models — ours, the baselines and the reference — face in common? Everything decided here moves every model together, so a choice taken differently re-scores the whole comparison rather than one side of it.</div>
+<h2>Children <span class=tag>sub-analyses</span></h2>
+<ul>
+<li><a href="01_population/index.html">01_population</a><br><span class=meta>How should the static population figure enter the analysis dataset? The file carries one population number per province for the whole 1998-2010 record, which is wrong by a decade of growth at both ends.</span></li>
+<li><a href="02_trainingWindow/index.html">02_trainingWindow</a><br><span class=meta>How much of the record should models be allowed to learn from, given that the share of zero-valued months falls monotonically across the period and the early years may describe a different reporting regime?</span></li>
+<li><a href="03_provinces/index.html">03_provinces</a><br><span class=meta>Which provinces belong in the analysis at all? One province reports nothing across the whole record and a second stops reporting partway through, and what the headline mean is a mean over depends on the answer.</span></li>
+<li><a href="04_retrain/index.html">04_retrain</a><br><span class=meta>How often is a model refitted across the backtest? Chap&#x27;s n-retrain governs whether one fit serves all splits or each split gets its own.</span></li>
+</ul>
+<h2>Results</h2>
+<h3>main</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/main/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(229,287 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/main/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,136 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/main/setup_spec.json">setup_spec.json</a> <span class=meta>(4,572 B)</span></li>
+</ul>
+<h3>main__holdout</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/main__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(248,465 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/main__holdout/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,195 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/main__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(4,621 B)</span></li>
+</ul>
+<details><summary>26 other combination(s)</summary>
+<h3>main__tha</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/main__tha/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(1,086,608 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/main__tha/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,174 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/main__tha/setup_spec.json">setup_spec.json</a> <span class=meta>(5,582 B)</span></li>
+</ul>
+<h3>main__thaFinal</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/main__thaFinal/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(1,177,350 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/main__thaFinal/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,202 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/main__thaFinal/setup_spec.json">setup_spec.json</a> <span class=meta>(5,627 B)</span></li>
+</ul>
+<h3>main__vnm</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/main__vnm/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(824,182 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/main__vnm/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,174 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/main__vnm/setup_spec.json">setup_spec.json</a> <span class=meta>(4,552 B)</span></li>
+</ul>
+<h3>main__vnmFinal</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/main__vnmFinal/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(893,051 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/main__vnmFinal/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,202 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/main__vnmFinal/setup_spec.json">setup_spec.json</a> <span class=meta>(4,597 B)</span></li>
+</ul>
+<h3>popColumn_backCast</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/popColumn_backCast/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(229,011 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/popColumn_backCast/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,238 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/popColumn_backCast/setup_spec.json">setup_spec.json</a> <span class=meta>(5,374 B)</span></li>
+</ul>
+<h3>popColumn_backCast__holdout</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/popColumn_backCast__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(248,177 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/popColumn_backCast__holdout/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,297 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/popColumn_backCast__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(5,421 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(216,991 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,284 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane/setup_spec.json">setup_spec.json</a> <span class=meta>(5,713 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__aggregate_caseWeighted/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(216,991 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__aggregate_caseWeighted/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,452 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__aggregate_caseWeighted/setup_spec.json">setup_spec.json</a> <span class=meta>(5,905 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(235,144 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,511 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__aggregate_caseWeighted__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(5,953 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__family_hierNB</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__family_hierNB/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(216,991 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__family_hierNB/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,389 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__family_hierNB/setup_spec.json">setup_spec.json</a> <span class=meta>(5,833 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__family_hierNB__holdout</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__family_hierNB__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(235,144 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__family_hierNB__holdout/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,448 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__family_hierNB__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(5,881 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__holdout</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(235,144 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__holdout/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,343 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(5,761 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__weighting_crpsWeighted</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__weighting_crpsWeighted/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(216,991 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__weighting_crpsWeighted/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,452 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__weighting_crpsWeighted/setup_spec.json">setup_spec.json</a> <span class=meta>(5,905 B)</span></li>
+</ul>
+<h3>provinces_mergeVientiane__weighting_crpsWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(235,144 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,511 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_mergeVientiane__weighting_crpsWeighted__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(5,953 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(204,192 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,275 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly/setup_spec.json">setup_spec.json</a> <span class=meta>(4,927 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__aggregate_caseWeighted</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__aggregate_caseWeighted/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(204,192 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__aggregate_caseWeighted/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,443 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__aggregate_caseWeighted/setup_spec.json">setup_spec.json</a> <span class=meta>(5,119 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__aggregate_caseWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(221,292 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,502 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__aggregate_caseWeighted__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(5,167 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__family_hierNB</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__family_hierNB/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(204,192 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__family_hierNB/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,380 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__family_hierNB/setup_spec.json">setup_spec.json</a> <span class=meta>(5,047 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__family_hierNB__holdout</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__family_hierNB__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(221,292 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__family_hierNB__holdout/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,439 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__family_hierNB__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(5,095 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__holdout</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(221,292 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__holdout/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,334 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(4,975 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__weighting_crpsWeighted</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__weighting_crpsWeighted/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(204,192 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__weighting_crpsWeighted/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,443 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__weighting_crpsWeighted/setup_spec.json">setup_spec.json</a> <span class=meta>(5,119 B)</span></li>
+</ul>
+<h3>provinces_reportingOnly__weighting_crpsWeighted__holdout</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(221,292 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,502 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/provinces_reportingOnly__weighting_crpsWeighted__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(5,167 B)</span></li>
+</ul>
+<h3>retrain_everySplit</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/retrain_everySplit/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(229,287 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/retrain_everySplit/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,240 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/retrain_everySplit/setup_spec.json">setup_spec.json</a> <span class=meta>(4,811 B)</span></li>
+</ul>
+<h3>retrain_everySplit__holdout</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/retrain_everySplit__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(248,465 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/retrain_everySplit__holdout/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,299 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/retrain_everySplit__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(4,856 B)</span></li>
+</ul>
+<h3>trainingWindow_from2004</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/trainingWindow_from2004/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(114,735 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/trainingWindow_from2004/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,269 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/trainingWindow_from2004/setup_spec.json">setup_spec.json</a> <span class=meta>(5,099 B)</span></li>
+</ul>
+<h3>trainingWindow_from2004__holdout</h3>
+<ul>
+<li><a href="../../../../analysis/02_setup/results/trainingWindow_from2004__holdout/analysis_dataset.csv">analysis_dataset.csv</a> <span class=meta>(133,913 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/trainingWindow_from2004__holdout/setup_inputs.sha256">setup_inputs.sha256</a> <span class=meta>(1,328 B)</span></li>
+<li><a href="../../../../analysis/02_setup/results/trainingWindow_from2004__holdout/setup_spec.json">setup_spec.json</a> <span class=meta>(5,147 B)</span></li>
+</ul>
+</details>
+<h2>Scripts</h2><ul>
+<li><a href="../../../../analysis/02_setup/scripts/assemble_setup.py">assemble_setup.py</a> <span class=meta>(6,352 B)</span></li>
+</ul>
+<h2>Provenance</h2><ul>
+<li><a href="../../../../analysis/02_setup/provenance/assemble_setup.md">assemble_setup.md</a> <span class=meta>(11,387 B)</span></li>
+</ul>
+<h2>run.sh</h2>
+<pre>#!/usr/bin/env bash
+# Main script for node: 02_setup
+# Generated shape -- edit the &quot;own scripts&quot; block; the child calls are maintained
+# by `node.py rebuild`, which enforces the alternatives/sub-analyses semantics.
+set -euo pipefail
+cd &quot;$(dirname &quot;$0&quot;)&quot;
+REPO_ROOT=&quot;$(cd &quot;../..&quot; &amp;&amp; pwd)&quot;
+# Node scripts run under the pinned analysis environment (AGENTS.md §2), not under
+# .venv, which is the repository&#x27;s own machinery. A node needing something beyond it
+# declares env/ and overrides PYTHON below.
+PYTHON=&quot;$REPO_ROOT/environment/chapenv/bin/python&quot;
+
+# Sub-analyses: every child runs, in order.
+bash &quot;01_population/run.sh&quot;
+bash &quot;02_trainingWindow/run.sh&quot;
+bash &quot;03_provinces/run.sh&quot;
+bash &quot;04_retrain/run.sh&quot;
+
+# Own scripts
+&quot;$PYTHON&quot; &quot;scripts/assemble_setup.py&quot;
+</pre>
