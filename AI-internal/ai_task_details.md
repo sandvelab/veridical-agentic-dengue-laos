@@ -2983,3 +2983,24 @@ Found while writing it: all 71 `## Answers` sections open with the template's it
 instruction, and the HTML page skipped any Answers section that began with `_(`, so no node
 page in the HTML report had shown its result. It now strips the instruction, as the
 Markdown builder does, through a shared `answers_text()`.
+
+## T37 — outside the plan: the README rewritten for a reader on GitHub (2026-09-27)
+
+### What happened
+
+The human asked what *Where the project stands* was for, given that the project has run and
+has results, and asked for a pass over the whole README so that a reader on GitHub can see
+where the final results are — the manuscript and the claim graph — followed by how
+provenance and reproducibility are ensured, keeping what the repository is for, how it
+ensures veridicality and what it contains.
+
+The section is gone. The README now opens by saying the project is finished and released on
+2026-09-07, then a table of where to look, a four-bullet headline whose every figure links to
+the file it is read from (`analysis/results/main/conclusion.json`, its `__holdout` twin, and
+both `05_stability` distributions, re-read before writing), then purpose, veridicality,
+provenance and reproducibility, contents, reproduction, what is not yet done (the DOI) and
+the licence. `readme-at-start.md` remains the one place for detailed state; the README
+carries only the stable fact that the project is complete. The run-time statement was
+corrected from "about six hours" to the 14.87 h of the clean-room run of 2026-09-05, which
+had the external check in the tree. Every relative link was checked to resolve. Ledger row
+36 and a §4b entry.
